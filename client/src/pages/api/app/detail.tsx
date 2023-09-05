@@ -4,16 +4,16 @@ import { connectToDatabase } from '@/service/mongo';
 import { authUser } from '@/service/utils/auth';
 import { authApp } from '@/service/utils/auth';
 
-/* 获取我的模型 */
+/* get my model */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { appId } = req.query as { appId: string };
 
     if (!appId) {
-      throw new Error('参数错误');
+      throw new Error('Parameter error');
     }
 
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();

@@ -54,26 +54,26 @@ const ResponseTags = ({
   return responseData.length === 0 ? null : (
     <Flex alignItems={'center'} mt={2} flexWrap={'wrap'}>
       {quoteList.length > 0 && (
-        <MyTooltip label="查看引用">
+        <MyTooltip label="View References">
           <Tag
             colorSchema="blue"
             cursor={'pointer'}
             {...TagStyles}
             onClick={() => setQuoteModalData(quoteList)}
           >
-            {quoteList.length}条引用
+            {quoteList.length} quotes
           </Tag>
         </MyTooltip>
       )}
       {completeMessages.length > 0 && (
-        <MyTooltip label={'点击查看完整对话记录'}>
+        <MyTooltip label={'Click to view the complete conversation record'}>
           <Tag
             colorSchema="green"
             cursor={'pointer'}
             {...TagStyles}
             onClick={() => setContextModalData(completeMessages)}
           >
-            {completeMessages.length}条上下文
+            {completeMessages.length} context
           </Tag>
         </MyTooltip>
       )}
@@ -82,9 +82,9 @@ const ResponseTags = ({
           {tokens}Tokens
         </Tag>
       )}
-      <MyTooltip label={'点击查看完整响应值'}>
+      <MyTooltip label={'Click to view the complete response value'}>
         <Tag colorSchema="gray" cursor={'pointer'} {...TagStyles} onClick={onOpenWholeModal}>
-          {t('chat.Complete Response')}
+          {t('chat. Complete Response')}
         </Tag>
       </MyTooltip>
 

@@ -13,7 +13,7 @@ const Footer = () => {
   const list = useMemo(
     () => [
       {
-        label: t('home.Footer Product'),
+        label: t('home. Footer Product'),
         child: [
           {
             label: t('home.Footer FastGPT Cloud', { title: feConfigs.systemTitle }),
@@ -36,16 +36,16 @@ const Footer = () => {
         ]
       },
       {
-        label: t('home.Footer Developer'),
+        label: t('home. Footer Developer'),
         child: [
           {
-            label: t('home.Footer Git'),
+            label: t('home. Footer Git'),
             onClick: () => {
               window.open('https://github.com/labring/FastGPT', '_blank');
             }
           },
           {
-            label: t('home.Footer Docs'),
+            label: t('home. Footer Docs'),
             onClick: () => {
               window.open('https://doc.fastgpt.run/docs/intro', '_blank');
             }
@@ -53,16 +53,16 @@ const Footer = () => {
         ]
       },
       {
-        label: t('home.Footer Support'),
+        label: t('home. Footer Support'),
         child: [
           {
-            label: t('home.Footer Feedback'),
+            label: t('home. Footer Feedback'),
             onClick: () => {
               window.open('https://github.com/labring/FastGPT/issues', '_blank');
             }
           },
           {
-            label: t('home.Community'),
+            label: t('home. Community'),
             onClick: () => {
               onOpen();
             }

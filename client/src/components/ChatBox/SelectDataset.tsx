@@ -38,9 +38,9 @@ const SelectDataset = ({
     <MyModal isOpen={true} onClose={onClose} w={'100%'} maxW={['90vw', '900px']} isCentered={!isPc}>
       <Flex flexDirection={'column'} h={['90vh', 'auto']}>
         <ModalHeader>
-          <Box>{t('chat.Select Mark Kb')}</Box>
+          <Box>{t('chat. Select Mark Kb')}</Box>
           <Box fontSize={'sm'} color={'myGray.500'} fontWeight={'normal'}>
-            {t('chat.Select Mark Kb Desc')}
+            {t('chat. Select Mark Kb Desc')}
           </Box>
         </ModalHeader>
         <ModalBody

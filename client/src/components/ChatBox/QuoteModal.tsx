@@ -39,8 +39,8 @@ const QuoteModal = ({
         const data = await getKbDataItemById(item.id);
 
         if (!data) {
-          onUpdateQuote(item.id, '已删除');
-          throw new Error('该数据已被删除');
+          onUpdateQuote(item.id, 'Deleted');
+          throw new Error('The data has been deleted');
         }
 
         setEditDataItem(data);
@@ -65,9 +65,11 @@ const QuoteModal = ({
         minW={['90vw', '600px']}
         title={
           <>
-            知识库引用({rawSearch.length}条)
+            Knowledge base references ({rawSearch.length} entries)
             <Box fontSize={['xs', 'sm']} fontWeight={'normal'}>
-              注意: 修改知识库内容成功后，此处不会显示变更情况。点击编辑后，会显示知识库最新的内容。
+              Note: After successfully modifying the knowledge base content, the changes will not be
+              displayed here. After clicking edit, the latest content of the knowledge base will be
+              displayed.
             </Box>
           </>
         }
@@ -129,8 +131,8 @@ const QuoteModal = ({
       {editDataItem && (
         <InputDataModal
           onClose={() => setEditDataItem(undefined)}
-          onSuccess={() => onUpdateQuote(editDataItem.id, '手动修改')}
-          onDelete={() => onUpdateQuote(editDataItem.id, '已删除')}
+          onSuccess={() => onUpdateQuote(editDataItem.id, 'Manual modification')}
+          onDelete={() => onUpdateQuote(editDataItem.id, 'Deleted')}
           kbId={editDataItem.kb_id}
           defaultValues={{
             ...editDataItem,

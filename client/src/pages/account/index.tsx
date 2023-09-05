@@ -33,20 +33,20 @@ const Account = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
   const tabList = useRef([
     {
       icon: 'meLight',
-      label: t('user.Personal Information'),
+      label: t('user. Personal Information'),
       id: TabEnum.info
     },
 
     {
       icon: 'billRecordLight',
-      label: t('user.Usage Record'),
+      label: t('user. Usage Record'),
       id: TabEnum.bill
     },
     ...(feConfigs?.show_userDetail
       ? [
           {
             icon: 'promotionLight',
-            label: t('user.Promotion Record'),
+            label: t('user. Promotion Record'),
             id: TabEnum.promotion
           },
           {
@@ -58,18 +58,18 @@ const Account = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       : []),
     {
       icon: 'informLight',
-      label: t('user.Notice'),
+      label: t('user. Notice'),
       id: TabEnum.inform
     },
     {
       icon: 'loginoutLight',
-      label: t('user.Sign Out'),
+      label: t('user. Sign Out'),
       id: TabEnum.loginout
     }
   ]);
 
   const { openConfirm, ConfirmModal } = useConfirm({
-    content: '确认退出登录？'
+    content: 'Are you sure to log out? '
   });
 
   const router = useRouter();

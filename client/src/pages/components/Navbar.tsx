@@ -23,7 +23,7 @@ const Navbar = () => {
     ...(feConfigs?.show_contact
       ? [
           {
-            label: t('home.Community'),
+            label: t('home. Community'),
             key: 'community',
             onClick: () => {
               onOpenCommunity();

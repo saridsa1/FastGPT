@@ -123,7 +123,7 @@ const OutLink = ({ shareId, chatId }: { shareId: string; chatId: string }) => {
       } catch (e: any) {
         toast({
           status: 'error',
-          title: getErrText(e, '获取应用失败')
+          title: getErrText(e, 'Failed to obtain application')
         });
         if (e?.code === 501) {
           delManyShareChatHistoryByShareId(shareId);

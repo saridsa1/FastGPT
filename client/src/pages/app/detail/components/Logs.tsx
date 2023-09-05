@@ -79,7 +79,7 @@ const Logs = ({ appId }: { appId: string }) => {
                 cursor={'pointer'}
                 onClick={onOpenMarkDesc}
               >
-                {t('chat.Read Mark Description')}
+                {t('chat. Read Mark Description')}
               </Box>
             </Box>
           </>
@@ -91,12 +91,12 @@ const Logs = ({ appId }: { appId: string }) => {
         <Table variant={'simple'} fontSize={'sm'}>
           <Thead>
             <Tr>
-              <Th>{t('app.Logs Source')}</Th>
-              <Th>{t('app.Logs Time')}</Th>
-              <Th>{t('app.Logs Title')}</Th>
-              <Th>{t('app.Logs Message Total')}</Th>
-              <Th>{t('app.Feedback Count')}</Th>
-              <Th>{t('app.Mark Count')}</Th>
+              <Th>{t('app. Logs Source')}</Th>
+              <Th>{t('app. Logs Time')}</Th>
+              <Th>{t('app. Logs Title')}</Th>
+              <Th>{t('app. Logs Message Total')}</Th>
+              <Th>{t('app. Feedback Count')}</Th>
+              <Th>{t('app. Mark Count')}</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -105,7 +105,7 @@ const Logs = ({ appId }: { appId: string }) => {
                 key={item.id}
                 _hover={{ bg: 'myWhite.600' }}
                 cursor={'pointer'}
-                title={'点击查看对话详情'}
+                title={'Click to view the conversation details'}
                 onClick={() => setDetailLogsId(item.id)}
               >
                 <Td>{t(ChatSourceMap[item.source]?.name || 'UnKnow')}</Td>
@@ -144,7 +144,7 @@ const Logs = ({ appId }: { appId: string }) => {
         <Flex h={'100%'} flexDirection={'column'} alignItems={'center'} pt={'10vh'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            {t('app.Logs Empty')}
+            {t('app. Logs Empty')}
           </Box>
         </Flex>
       )}
@@ -251,7 +251,7 @@ function DetailLogsModal({
               </Box>
               <Tag>
                 <MyIcon name={'history'} w={'14px'} />
-                <Box ml={1}>{`${history.length}条记录`}</Box>
+                <Box ml={1}>{`${history.length} records`}</Box>
               </Tag>
               {!!chat?.app?.chatModels && (
                 <Tag ml={2} colorSchema={'green'}>

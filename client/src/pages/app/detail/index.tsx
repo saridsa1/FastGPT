@@ -59,12 +59,12 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
 
   const tabList = useMemo(
     () => [
-      { label: '简易配置', id: TabEnum.basicEdit, icon: 'overviewLight' },
-      { label: '高级编排', id: TabEnum.adEdit, icon: 'settingLight' },
-      { label: '外部使用', id: TabEnum.outLink, icon: 'shareLight' },
-      { label: 'API访问', id: TabEnum.API, icon: 'apiLight' },
-      { label: '对话日志', id: TabEnum.logs, icon: 'logsLight' },
-      { label: '立即对话', id: 'startChat', icon: 'chat' }
+      { label: 'Easy Configuration', id: TabEnum.basicEdit, icon: 'overviewLight' },
+      { label: 'Advanced Editing', id: TabEnum.adEdit, icon: 'settingLight' },
+      { label: 'External use', id: TabEnum.outLink, icon: 'shareLight' },
+      { label: 'API Access', id: TabEnum.API, icon: 'apiLight' },
+      { label: 'Dialog Log', id: TabEnum.logs, icon: 'logsLight' },
+      { label: 'Chat now', id: 'startChat', icon: 'chat' }
     ],
     []
   );
@@ -74,7 +74,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
       process.env.NODE_ENV === 'production'
         ? (e: any) => {
             e.preventDefault();
-            e.returnValue = '内容已修改，确认离开页面吗？';
+            e.returnValue = 'The content has been modified, are you sure to leave the page? ';
           }
         : () => {};
     window.addEventListener('beforeunload', listen);
@@ -88,7 +88,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
   useQuery([appId], () => loadAppDetail(appId, true), {
     onError(err: any) {
       toast({
-        title: err?.message || '获取应用异常',
+        title: err?.message || 'Get application exception',
         status: 'error'
       });
       router.replace('/app/list');
@@ -149,7 +149,7 @@ const AppDetail = ({ currentTab }: { currentTab: `${TabEnum}` }) => {
               borderRadius={'50%'}
               aria-label={''}
             />
-            我的应用
+            My Applications
           </Flex>
         </Box>
         {/* phone tab */}

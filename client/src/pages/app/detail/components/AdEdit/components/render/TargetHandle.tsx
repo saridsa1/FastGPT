@@ -28,7 +28,7 @@ const TargetHandle = ({ handleKey, valueType, onConnect, ...props }: Props) => {
       transform={'translate(50%,-50%)'}
       {...props}
     >
-      <MyTooltip label={`${valueType}类型`}>
+      <MyTooltip label={`${valueType}Type`}>
         <Handle
           style={{
             width: '12px',

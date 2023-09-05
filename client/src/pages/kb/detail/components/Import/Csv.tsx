@@ -32,7 +32,7 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
   const emptyFiles = useMemo(() => files.length === 0, [files]);
 
   const { openConfirm, ConfirmModal } = useConfirm({
-    content: `该任务无法终止，需要一定时间生成索引，请确认导入。如果余额不足，未完成的任务会被暂停，充值后可继续进行。`
+    content: `This task cannot be terminated and it will take some time to generate the index. Please confirm the import. If the balance is insufficient, unfinished tasks will be suspended and can be continued after recharging. `
   });
 
   const { mutate: onclickUpload, isLoading: uploading } = useMutation({
@@ -46,7 +46,9 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
 
       if (filterChunks.length !== chunks.length) {
         toast({
-          title: `${chunks.length - filterChunks.length}条数据超出长度，已被过滤`,
+          title: `${
+            chunks.length - filterChunks.length
+          } data exceeds the length and has been filtered`,
           status: 'info'
         });
       }
@@ -66,7 +68,7 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
       }
 
       toast({
-        title: `去重后共导入 ${success} 条数据，请耐心等待训练.`,
+        title: `After deduplication, a total of ${success} pieces of data were imported, please wait patiently for training.`,
         status: 'success'
       });
 
@@ -79,7 +81,7 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
     },
     onError(err) {
       toast({
-        title: getErrText(err, '导入文件失败'),
+        title: getErrText(err, 'Failed to import file'),
         status: 'error'
       });
     }
@@ -153,7 +155,7 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
                 {uploading ? (
                   <Box>{Math.round((successChunks / totalChunk) * 100)}%</Box>
                 ) : (
-                  '确认导入'
+                  'Confirm import'
                 )}
               </Button>
             </Flex>
@@ -164,11 +166,11 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
         <Box flex={'2 0 0'} w={['100%', 0]} h={'100%'} pt={[4, 8]} overflow={'overlay'}>
           <Flex px={[4, 8]} alignItems={'center'}>
             <Box fontSize={['lg', 'xl']} fontWeight={'bold'}>
-              分段预览({totalChunk}组)
+              Segment preview ({totalChunk} group)
             </Box>
             {totalChunk > 100 && (
               <Box ml={2} fontSize={'sm'} color={'myhGray.500'}>
-                仅展示部分
+                Show only part
               </Box>
             )}
           </Flex>
@@ -186,7 +188,7 @@ const CsvImport = ({ kbId }: { kbId: string }) => {
                 >
                   <Flex mb={1} px={4} userSelect={'none'}>
                     <Box px={3} py={'1px'} border={theme.borders.base} borderRadius={'md'}>
-                      # {i + 1}
+                      #{i + 1}
                     </Box>
                     {item.source && <Box ml={1}>({item.source})</Box>}
                     <Box flex={1} />

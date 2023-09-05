@@ -98,7 +98,7 @@ export const Label = ({
           defaultField={editField}
           onClose={() => setEditField(undefined)}
           onSubmit={(data) => {
-            // same key
+            //same key
             if (editField.key === data.key) {
               onChangeNode({
                 moduleId,

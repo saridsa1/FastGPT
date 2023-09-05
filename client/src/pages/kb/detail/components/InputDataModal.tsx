@@ -45,13 +45,13 @@ const InputDataModal = ({
   const maxToken = kbDetail.vectorModel?.maxToken || 2000;
 
   /**
-   * 确认导入新数据
+   * Confirm import of new data
    */
   const sureImportData = useCallback(
     async (e: FormData) => {
       if (e.q.length >= maxToken) {
         toast({
-          title: '总长度超长了',
+          title: 'The total length is too long',
           status: 'warning'
         });
         return;
@@ -63,7 +63,7 @@ const InputDataModal = ({
           dataId: '',
           a: e.a,
           q: e.q,
-          source: '手动录入'
+          source: 'Manual entry'
         };
         data.dataId = await insertData2Kb({
           kbId,
@@ -71,7 +71,7 @@ const InputDataModal = ({
         });
 
         toast({
-          title: '导入数据成功,需要一段时间训练',
+          title: 'Importing data successfully, it will take some time to train',
           status: 'success'
         });
         reset({
@@ -82,7 +82,7 @@ const InputDataModal = ({
         onSuccess(data);
       } catch (err: any) {
         toast({
-          title: getErrText(err, '出现了点意外~'),
+          title: getErrText(err, 'Something unexpected happened~'),
           status: 'error'
         });
       }
@@ -109,14 +109,14 @@ const InputDataModal = ({
         } catch (err) {
           toast({
             status: 'error',
-            title: getErrText(err, '更新数据失败')
+            title: getErrText(err, 'Failed to update data')
           });
         }
         setLoading(false);
       }
 
       toast({
-        title: '修改数据成功',
+        title: 'Data modified successfully',
         status: 'success'
       });
       onClose();
@@ -134,7 +134,7 @@ const InputDataModal = ({
       isOpen={true}
       onClose={onClose}
       isCentered
-      title={defaultValues.dataId ? '变更数据' : '手动导入数据'}
+      title={defaultValues.dataId ? 'Change data' : 'Manually import data'}
       w={'90vw'}
       maxW={'90vw'}
       h={'90vh'}
@@ -151,13 +151,15 @@ const InputDataModal = ({
         >
           <Box flex={1} mr={[0, 4]} mb={[4, 0]} h={['50%', '100%']}>
             <Flex>
-              <Box h={'30px'}>{'匹配的知识点'}</Box>
-              <MyTooltip label={'被向量化的部分，通常是问题，也可以是一段陈述描述'}>
+              <Box h={'30px'}>{'Matching knowledge points'}</Box>
+              <MyTooltip
+                label={'The vectorized part is usually a question, or it can also be a statement'}
+              >
                 <QuestionOutlineIcon ml={1} />
               </MyTooltip>
             </Flex>
             <Textarea
-              placeholder={`匹配的知识点。这部分内容会被搜索，请把控内容的质量，最多 ${maxToken} 字。`}
+              placeholder={`Matching knowledge points. This part of the content will be searched, please control the quality of the content, up to ${maxToken} words. `}
               maxLength={maxToken}
               resize={'none'}
               h={'calc(100% - 30px)'}
@@ -168,16 +170,18 @@ const InputDataModal = ({
           </Box>
           <Box flex={1} h={['50%', '100%']}>
             <Flex>
-              <Box h={'30px'}>{'预期答案'}</Box>
+              <Box h={'30px'}>{'Expected answer'}</Box>
               <MyTooltip
-                label={'匹配的知识点被命中后，这部分内容会随匹配知识点一起注入模型，引导模型回答'}
+                label={
+                  'After the matching knowledge point is hit, this part of the content will be injected into the model together with the matching knowledge point to guide the model to answer'
+                }
               >
                 <QuestionOutlineIcon ml={1} />
               </MyTooltip>
             </Flex>
             <Textarea
               placeholder={
-                '预期答案。这部分内容不会被搜索，但会作为"匹配的知识点"的内容补充，通常是问题的答案。总和最多 3000 字。'
+                ' Expected answer. This part of the content will not be searched, but will be supplemented as content of "matching knowledge points", usually answers to questions. A total of up to 3000 words. '
               }
               maxLength={3000}
               resize={'none'}
@@ -217,7 +221,7 @@ const InputDataModal = ({
                     onClose();
                     toast({
                       status: 'success',
-                      title: '记录已删除'
+                      title: 'Record deleted'
                     });
                   } catch (error) {
                     toast({
@@ -232,13 +236,13 @@ const InputDataModal = ({
           </Box>
           <Box>
             <Button variant={'base'} mr={3} isLoading={loading} onClick={onClose}>
-              取消
+              Cancel
             </Button>
             <Button
               isLoading={loading}
               onClick={handleSubmit(defaultValues.dataId ? updateData : sureImportData)}
             >
-              {defaultValues.dataId ? '确认变更' : '确认导入'}
+              {defaultValues.dataId ? 'Confirm Change' : 'Confirm Import'}
             </Button>
           </Box>
         </Flex>
@@ -275,7 +279,7 @@ export function RawFileText({ fileId, filename = '', ...props }: RawFileTextProp
                   window.open(asPath, '_blank');
                 } catch (error) {
                   toast({
-                    title: getErrText(error, '获取文件地址失败'),
+                    title: getErrText(error, 'Failed to get file address'),
                     status: 'error'
                   });
                 }

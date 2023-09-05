@@ -64,9 +64,9 @@ const NodeUserGuide = ({ data }: NodeProps<FlowModuleItemType>) => {
             <Table>
               <Thead>
                 <Tr>
-                  <Th>变量名</Th>
-                  <Th>变量 key</Th>
-                  <Th>必填</Th>
+                  <Th>Variable name</Th>
+                  <Th>Variable key</Th>
+                  <Th>Required</Th>
                   <Th></Th>
                 </Tr>
               </Thead>
@@ -110,7 +110,7 @@ const NodeUserGuide = ({ data }: NodeProps<FlowModuleItemType>) => {
                 setEditVariable(newVariable);
               }}
             >
-              新增
+              Add
             </Button>
           </Box>
         </Container>

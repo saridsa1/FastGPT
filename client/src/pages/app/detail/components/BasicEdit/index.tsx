@@ -76,10 +76,10 @@ const Settings = ({ appId }: { appId: string }) => {
   const [refresh, setRefresh] = useState(false);
 
   const { openConfirm: openConfirmSave, ConfirmModal: ConfirmSaveModal } = useConfirm({
-    content: t('app.Confirm Save App Tip')
+    content: t('app. Confirm Save App Tip')
   });
   const { openConfirm: openConfirmDel, ConfirmModal: ConfirmDelModal } = useConfirm({
-    content: t('app.Confirm Del App Tip')
+    content: t('app. Confirm Del App Tip')
   });
   const { register, setValue, getValues, reset, handleSubmit, control } = useForm<EditFormType>({
     defaultValues: getDefaultAppForm()
@@ -112,7 +112,7 @@ const Settings = ({ appId }: { appId: string }) => {
   const chatModelSelectList = useMemo(() => {
     return chatModelList.map((item) => ({
       value: item.model,
-      label: `${item.name} (${formatPrice(item.price, 1000)} 元/1k tokens)`
+      label: `${item.name} (${formatPrice(item.price, 1000)} yuan/1k tokens)`
     }));
   }, [refresh]);
   const tokenLimit = useMemo(() => {
@@ -126,7 +126,7 @@ const Settings = ({ appId }: { appId: string }) => {
     [myKbList, kbList]
   );
 
-  /* 点击删除 */
+  /* Click to delete */
   const { mutate: handleDelModel, isLoading } = useRequest({
     mutationFn: async () => {
       if (!appDetail) return null;
@@ -136,12 +136,12 @@ const Settings = ({ appId }: { appId: string }) => {
     onSuccess(res) {
       if (!res) return;
       toast({
-        title: '删除成功',
+        title: 'Delete successfully',
         status: 'success'
       });
       router.replace(`/app/list`);
     },
-    errorToast: '删除失败'
+    errorToast: 'Delete failed'
   });
 
   const appModule2Form = useCallback(() => {
@@ -159,8 +159,8 @@ const Settings = ({ appId }: { appId: string }) => {
         type: AppTypeEnum.basic
       });
     },
-    successToast: '保存成功',
-    errorToast: '保存出现异常'
+    successToast: 'Save successfully',
+    errorToast: 'Exception occurred while saving'
   });
 
   useEffect(() => {
@@ -201,7 +201,7 @@ const Settings = ({ appId }: { appId: string }) => {
       overflow={'overlay'}
     >
       <Box fontSize={['md', 'xl']} fontWeight={'bold'}>
-        基础信息
+        basic information
       </Box>
       {/* basic info */}
       <Box
@@ -243,7 +243,7 @@ const Settings = ({ appId }: { appId: string }) => {
           wordBreak={'break-all'}
           color={'myGray.600'}
         >
-          {appDetail.intro || '快来给应用一个介绍~'}
+          {appDetail.intro || 'Come and give an introduction to the application~'}
         </Box>
         <Flex>
           <Button
@@ -252,7 +252,7 @@ const Settings = ({ appId }: { appId: string }) => {
             leftIcon={<MyIcon name={'chat'} w={'16px'} />}
             onClick={() => router.push(`/chat?appId=${appId}`)}
           >
-            对话
+            dialogue
           </Button>
           <Button
             mx={3}
@@ -268,7 +268,7 @@ const Settings = ({ appId }: { appId: string }) => {
               });
             }}
           >
-            外接
+            external
           </Button>
           <Button
             size={['sm', 'md']}
@@ -276,15 +276,20 @@ const Settings = ({ appId }: { appId: string }) => {
             leftIcon={<MyIcon name={'settingLight'} w={'16px'} />}
             onClick={() => setSettingAppInfo(appDetail)}
           >
-            设置
+            set up
           </Button>
         </Flex>
       </Box>
 
       <Flex mt={5} justifyContent={'space-between'} alignItems={'center'}>
         <Box fontSize={['md', 'xl']} fontWeight={'bold'}>
-          应用配置
-          <MyTooltip label={'仅包含基础功能，复杂 agent 功能请使用高级编排。'} forceShow>
+          Application configuration
+          <MyTooltip
+            label={
+              'Contains only basic functions, please use advanced orchestration for complex agent functions. '
+            }
+            forceShow
+          >
             <QuestionOutlineIcon ml={2} fontSize={'md'} />
           </MyTooltip>
         </Box>
@@ -300,7 +305,7 @@ const Settings = ({ appId }: { appId: string }) => {
             }
           }}
         >
-          {isPc ? '保存并预览' : '保存'}
+          {isPc ? 'Save and preview' : 'Save'}
         </Button>
       </Flex>
 
@@ -309,10 +314,10 @@ const Settings = ({ appId }: { appId: string }) => {
         <Flex alignItems={'center'}>
           <Avatar src={'/imgs/module/variable.png'} objectFit={'contain'} w={'18px'} />
           <Box ml={2} flex={1}>
-            变量
+            variable
           </Box>
           <Flex {...BoxBtnStyles} onClick={() => setEditVariable(addVariable())}>
-            +&ensp;新增
+            + New
           </Flex>
         </Flex>
         <Box mt={2} borderRadius={'lg'} overflow={'hidden'} borderWidth={'1px'} borderBottom="none">
@@ -320,9 +325,9 @@ const Settings = ({ appId }: { appId: string }) => {
             <Table bg={'white'}>
               <Thead>
                 <Tr>
-                  <Th>变量名</Th>
-                  <Th>变量 key</Th>
-                  <Th>必填</Th>
+                  <Th>Variable name</Th>
+                  <Th>Variable key</Th>
+                  <Th>Required</Th>
                   <Th></Th>
                 </Tr>
               </Thead>
@@ -359,11 +364,11 @@ const Settings = ({ appId }: { appId: string }) => {
       <Box mt={5} {...BoxStyles}>
         <Flex alignItems={'center'}>
           <Avatar src={'/imgs/module/AI.png'} w={'18px'} />
-          <Box ml={2}>AI 配置</Box>
+          <Box ml={2}>AI Configuration</Box>
         </Flex>
 
         <Flex alignItems={'center'} mt={5}>
-          <Box {...LabelStyles}>对话模型</Box>
+          <Box {...LabelStyles}>Dialogue Model</Box>
           <MySelect
             width={['100%', '300px']}
             value={getValues('chatModel.model')}
@@ -380,12 +385,12 @@ const Settings = ({ appId }: { appId: string }) => {
           />
         </Flex>
         <Flex alignItems={'center'} my={10}>
-          <Box {...LabelStyles}>温度</Box>
+          <Box {...LabelStyles}>Temperature</Box>
           <Box flex={1} ml={'10px'}>
             <MySlider
               markList={[
-                { label: '严谨', value: 0 },
-                { label: '发散', value: 10 }
+                { label: 'rigorous', value: 0 },
+                { label: 'divergent', value: 10 }
               ]}
               width={'95%'}
               min={0}
@@ -399,7 +404,7 @@ const Settings = ({ appId }: { appId: string }) => {
           </Box>
         </Flex>
         <Flex alignItems={'center'} mt={12} mb={10}>
-          <Box {...LabelStyles}>回复上限</Box>
+          <Box {...LabelStyles}>Reply limit</Box>
           <Box flex={1} ml={'10px'}>
             <MySlider
               markList={[
@@ -420,7 +425,7 @@ const Settings = ({ appId }: { appId: string }) => {
         </Flex>
         <Flex mt={10} alignItems={'flex-start'}>
           <Box {...LabelStyles}>
-            提示词
+            prompt word
             <MyTooltip label={ChatModelSystemTip} forceShow>
               <QuestionOutlineIcon display={['none', 'inline']} ml={1} />
             </MyTooltip>
@@ -434,7 +439,7 @@ const Settings = ({ appId }: { appId: string }) => {
         </Flex>
         <Flex mt={5} alignItems={'flex-start'}>
           <Box {...LabelStyles}>
-            限定词
+            Qualifiers
             <MyTooltip label={ChatModelLimitTip} forceShow>
               <QuestionOutlineIcon display={['none', 'inline']} ml={1} />
             </MyTooltip>
@@ -453,24 +458,25 @@ const Settings = ({ appId }: { appId: string }) => {
         <Flex alignItems={'center'}>
           <Flex alignItems={'center'} flex={1}>
             <Avatar src={'/imgs/module/db.png'} w={'18px'} />
-            <Box ml={2}>知识库</Box>
+            <Box ml={2}>Knowledge Base</Box>
           </Flex>
           <Flex alignItems={'center'} mr={3} {...BoxBtnStyles} onClick={onOpenKbSelect}>
             <SmallAddIcon />
-            选择
+            choose
           </Flex>
           <Flex alignItems={'center'} {...BoxBtnStyles} onClick={onOpenKbParams}>
             <MyIcon name={'edit'} w={'14px'} mr={1} />
-            参数
+            parameter
           </Flex>
         </Flex>
         <Flex mt={1} color={'myGray.600'} fontSize={['sm', 'md']}>
-          相似度: {getValues('kb.searchSimilarity')}, 单次搜索数量: {getValues('kb.searchLimit')},
-          空搜索时拒绝回复: {getValues('kb.searchEmptyText') !== '' ? 'true' : 'false'}
+          Similarity: {getValues('kb.searchSimilarity')}, single search quantity:{' '}
+          {getValues('kb.searchLimit')}, Deny reply when empty search:{' '}
+          {getValues('kb.searchEmptyText') !== '' ? 'true' : 'false'}
         </Flex>
         <Grid templateColumns={['repeat(2,1fr)', 'repeat(3,1fr)']} my={2} gridGap={[2, 4]}>
           {selectedKbList.map((item) => (
-            <MyTooltip key={item._id} label={'查看知识库详情'}>
+            <MyTooltip key={item._id} label={'View knowledge base details'}>
               <Flex
                 alignItems={'center'}
                 p={2}
@@ -502,7 +508,7 @@ const Settings = ({ appId }: { appId: string }) => {
       <Box mt={5} {...BoxStyles}>
         <Flex alignItems={'center'}>
           <Avatar src={'/imgs/module/userGuide.png'} w={'18px'} />
-          <Box mx={2}>对话开场白</Box>
+          <Box mx={2}>Conversation Opener</Box>
           <MyTooltip label={welcomeTextTip} forceShow>
             <QuestionOutlineIcon />
           </MyTooltip>
@@ -536,7 +542,7 @@ const Settings = ({ appId }: { appId: string }) => {
               if (variables.find((item) => item.key === variable.key)) {
                 return toast({
                   status: 'warning',
-                  title: t('app.Variable Key Repeat Tip')
+                  title: t('app. Variable Key Repeat Tip')
                 });
               }
               appendVariable(variable);
@@ -589,7 +595,7 @@ const ChatTest = ({ appId }: { appId: string }) => {
           ?.inputs?.find((item) => item.key === 'maxContext')?.value || 0;
       const history = chatList.slice(-historyMaxLen - 2, -2);
 
-      // 流请求，获取数据
+      //Stream request, get data
       const { responseText, responseData } = await streamFetch({
         url: '/api/chat/chatTest',
         data: {
@@ -598,7 +604,7 @@ const ChatTest = ({ appId }: { appId: string }) => {
           modules,
           variables,
           appId,
-          appName: `调试-${appDetail.name}`
+          appName: `Debug-${appDetail.name}`
         },
         onMessage: generatingMessage,
         abortSignal: controller
@@ -624,9 +630,9 @@ const ChatTest = ({ appId }: { appId: string }) => {
     <Flex position={'relative'} flexDirection={'column'} h={'100%'} py={4} overflowX={'auto'}>
       <Flex px={[2, 5]}>
         <Box fontSize={['md', 'xl']} fontWeight={'bold'} flex={1}>
-          调试预览
+          debug preview
         </Box>
-        <MyTooltip label={'重置'}>
+        <MyTooltip label={'Reset'}>
           <IconButton
             className="chat"
             size={'sm'}

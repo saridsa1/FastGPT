@@ -97,7 +97,7 @@ const DateRangePicker = ({
                   mr={2}
                   onClick={() => setShowSelected(false)}
                 >
-                  取消
+                  Cancel
                 </Button>
                 <Button
                   size={'sm'}
@@ -106,7 +106,7 @@ const DateRangePicker = ({
                     setShowSelected(false);
                   }}
                 >
-                  确认
+                  confirm
                 </Button>
               </Flex>
             }

@@ -39,7 +39,7 @@ const KBSelect = ({
     <>
       <Grid gridTemplateColumns={'1fr 1fr'} gridGap={4}>
         <Button h={'36px'} onClick={onOpenKbSelect}>
-          选择知识库
+          Select knowledge base
         </Button>
         {showKbList.map((item) => (
           <Flex

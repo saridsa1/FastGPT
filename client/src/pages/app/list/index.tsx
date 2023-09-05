@@ -34,8 +34,8 @@ const MyApps = () => {
   const router = useRouter();
   const { myApps, loadMyApps } = useUserStore();
   const { openConfirm, ConfirmModal } = useConfirm({
-    title: '删除提示',
-    content: '确认删除该应用所有信息？'
+    title: 'Delete Tip',
+    content: 'Confirm to delete all information of this application? '
   });
   const {
     isOpen: isOpenCreateModal,
@@ -43,19 +43,19 @@ const MyApps = () => {
     onClose: onCloseCreateModal
   } = useDisclosure();
 
-  /* 点击删除 */
+  /* Click to delete */
   const onclickDelApp = useCallback(
     async (id: string) => {
       try {
         await delModelById(id);
         toast({
-          title: '删除成功',
+          title: 'Delete successfully',
           status: 'success'
         });
         loadMyApps(true);
       } catch (err: any) {
         toast({
-          title: err?.message || '删除失败',
+          title: err?.message || 'Delete failed',
           status: 'error'
         });
       }
@@ -63,7 +63,7 @@ const MyApps = () => {
     [toast, loadMyApps]
   );
 
-  /* 加载模型 */
+  /* Load model */
   useQuery(['loadModels'], () => loadMyApps(true), {
     refetchOnMount: true
   });
@@ -75,7 +75,7 @@ const MyApps = () => {
           {t('app.My Apps')}
         </Box>
         <Button leftIcon={<AddIcon />} variant={'base'} onClick={onOpenCreateModal}>
-          新建
+          new build
         </Button>
       </Flex>
       <Grid
@@ -136,7 +136,7 @@ const MyApps = () => {
               fontSize={'sm'}
               color={'myGray.600'}
             >
-              {app.intro || '这个应用还没写介绍~'}
+              {app.intro || 'This application has not written an introduction~'}
             </Box>
             <IconButton
               className="chat"
@@ -145,7 +145,7 @@ const MyApps = () => {
               bottom={4}
               size={'sm'}
               icon={
-                <MyTooltip label={'去聊天'}>
+                <MyTooltip label={'Go to Chat'}>
                   <MyIcon name={'chat'} w={'14px'} />
                 </MyTooltip>
               }

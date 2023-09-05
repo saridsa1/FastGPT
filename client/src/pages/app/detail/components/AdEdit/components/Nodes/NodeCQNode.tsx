@@ -65,7 +65,7 @@ const NodeCQNode = ({ data }: NodeProps<FlowModuleItemType>) => {
                       }}
                     />
                     <Box flex={1}>
-                      <Box flex={1}>类型{i + 1}</Box>
+                      <Box flex={1}>Type {i + 1}</Box>
                       <Box position={'relative'}>
                         <Input
                           mt={1}
@@ -125,7 +125,7 @@ const NodeCQNode = ({ data }: NodeProps<FlowModuleItemType>) => {
                     });
                   }}
                 >
-                  添加问题类型
+                  Add question type
                 </Button>
               </Box>
             )

@@ -64,7 +64,7 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
         setRefresh((state) => !state);
       } catch (err: any) {
         toast({
-          title: getErrText(err, '头像选择异常'),
+          title: getErrText(err, 'Avatar selection exception'),
           status: 'warning'
         });
       }
@@ -85,19 +85,19 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
       onSuccess();
       onClose();
     },
-    successToast: '创建成功',
-    errorToast: '创建应用异常'
+    successToast: 'Created successfully',
+    errorToast: 'Create application exception'
   });
 
   return (
     <MyModal isOpen onClose={onClose} isCentered={!isPc}>
-      <ModalHeader fontSize={'2xl'}>创建属于你的 AI 应用</ModalHeader>
+      <ModalHeader fontSize={'2xl'}>Create your own AI application</ModalHeader>
       <ModalBody>
         <Box color={'myGray.800'} fontWeight={'bold'}>
-          取个响亮的名字
+          Choose a resounding name
         </Box>
         <Flex mt={3} alignItems={'center'}>
-          <MyTooltip label={'点击设置头像'}>
+          <MyTooltip label={'Click to set avatar'}>
             <Avatar
               flexShrink={0}
               src={getValues('avatar')}
@@ -114,12 +114,12 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
             autoFocus
             bg={'myWhite.600'}
             {...register('name', {
-              required: '应用名不能为空~'
+              required: 'Application name cannot be empty~'
             })}
           />
         </Flex>
         <Box mt={[4, 7]} mb={[0, 3]} color={'myGray.800'} fontWeight={'bold'}>
-          从模板中选择
+          Choose from templates
         </Box>
         <Grid
           userSelect={'none'}
@@ -164,10 +164,10 @@ const CreateModal = ({ onClose, onSuccess }: { onClose: () => void; onSuccess: (
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          Cancel
         </Button>
         <Button isLoading={creating} onClick={handleSubmit((data) => onclickCreate(data))}>
-          确认创建
+          Confirm creation
         </Button>
       </ModalFooter>
 

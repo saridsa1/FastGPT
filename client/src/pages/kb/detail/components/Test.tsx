@@ -71,14 +71,14 @@ const Test = ({ kbId }: { kbId: string }) => {
         <Box border={'2px solid'} borderColor={'myBlue.600'} p={3} mx={4} borderRadius={'md'}>
           <Box fontSize={'sm'} fontWeight={'bold'}>
             <MyIcon mr={2} name={'text'} w={'18px'} h={'18px'} color={'myBlue.700'} />
-            测试文本
+            test text
           </Box>
           <Textarea
             rows={6}
             resize={'none'}
             variant={'unstyled'}
             maxLength={kbDetail.vectorModel.maxToken}
-            placeholder="输入需要测试的文本"
+            placeholder="Enter the text to be tested"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
@@ -87,19 +87,19 @@ const Test = ({ kbId }: { kbId: string }) => {
               {inputText.length}
             </Box>
             <Button isDisabled={inputText === ''} isLoading={isLoading} onClick={mutate}>
-              测试
+              test
             </Button>
           </Flex>
         </Box>
         <Box mt={5} flex={'1 0 0'} px={4} overflow={'overlay'} display={['none', 'block']}>
           <Flex alignItems={'center'} color={'myGray.600'}>
             <MyIcon mr={2} name={'history'} w={'16px'} h={'16px'} />
-            <Box fontSize={'2xl'}>测试历史</Box>
+            <Box fontSize={'2xl'}>Test History</Box>
           </Flex>
           <Box mt={2}>
             <Flex py={2} fontWeight={'bold'} borderBottom={theme.borders.sm}>
-              <Box flex={1}>测试文本</Box>
-              <Box w={'80px'}>时间</Box>
+              <Box flex={1}>Test Text</Box>
+              <Box w={'80px'}>Time</Box>
               <Box w={'14px'}></Box>
             </Flex>
             {kbTestHistory.map((item) => (
@@ -110,7 +110,7 @@ const Test = ({ kbId }: { kbId: string }) => {
                 borderBottom={theme.borders.base}
                 _hover={{
                   bg: '#f4f4f4',
-                  '& .delete': {
+                  '&.delete': {
                     display: 'block'
                   }
                 }}
@@ -121,7 +121,7 @@ const Test = ({ kbId }: { kbId: string }) => {
                   {item.text}
                 </Box>
                 <Box w={'80px'}>{formatTimeToChatTime(item.time)}</Box>
-                <MyTooltip label={'删除该测试记录'}>
+                <MyTooltip label={'Delete this test record'}>
                   <Box w={'14px'} h={'14px'}>
                     <MyIcon
                       className="delete"
@@ -153,18 +153,18 @@ const Test = ({ kbId }: { kbId: string }) => {
           >
             <MyIcon name={'empty'} color={'transparent'} w={'54px'} />
             <Box mt={3} color={'myGray.600'}>
-              测试结果将在这里展示
+              Test results will be shown here
             </Box>
           </Flex>
         ) : (
           <>
             <Flex alignItems={'flex-end'}>
               <Box fontSize={'3xl'} color={'myGray.600'}>
-                测试结果
+                Test Results
               </Box>
               <MyTooltip
                 label={
-                  '根据知识库内容与测试文本的相似度进行排序，你可以根据测试结果调整对应的文本。\n注意：测试记录中的数据可能已经被修改过，点击某条测试数据后将展示最新的数据。'
+                  'Sort according to the similarity between the content of the knowledge base and the test text, and you can adjust the corresponding text according to the test results. \nNote: The data in the test record may have been modified, and the latest data will be displayed after clicking on a piece of test data. '
                 }
                 forceShow
               >
@@ -195,14 +195,14 @@ const Test = ({ kbId }: { kbId: string }) => {
                   border={theme.borders.base}
                   _notLast={{ mb: 2 }}
                   cursor={'pointer'}
-                  title={'编辑'}
+                  title={'Edit'}
                   onClick={async () => {
                     try {
                       setLoading(true);
                       const data = await getKbDataItemById(item.id);
 
                       if (!data) {
-                        throw new Error('该数据已被删除');
+                        throw new Error('The data has been deleted');
                       }
 
                       setEditData({

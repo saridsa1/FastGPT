@@ -23,20 +23,20 @@ const CreateFileModal = ({
     <MyModal title={t('file.Create File')} isOpen onClose={onClose} w={'600px'} top={'15vh'}>
       <ModalBody>
         <Box mb={1} fontSize={'sm'}>
-          文件名
+          file name
         </Box>
         <Input
           mb={5}
           {...register('filename', {
-            required: '文件名不能为空'
+            required: 'File name cannot be empty'
           })}
         />
         <Box mb={1} fontSize={'sm'}>
-          文件内容
+          document content
         </Box>
         <Textarea
           {...register('content', {
-            required: '文件内容不能为空'
+            required: 'File content cannot be empty'
           })}
           rows={12}
           whiteSpace={'nowrap'}
@@ -45,7 +45,7 @@ const CreateFileModal = ({
       </ModalBody>
       <ModalFooter>
         <Button variant={'base'} mr={4} onClick={onClose}>
-          取消
+          Cancel
         </Button>
         <Button
           onClick={() => {
@@ -53,7 +53,7 @@ const CreateFileModal = ({
             onClose();
           }}
         >
-          确认
+          confirm
         </Button>
       </ModalFooter>
     </MyModal>

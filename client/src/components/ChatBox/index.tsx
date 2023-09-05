@@ -198,7 +198,7 @@ const ChatBox = (
       chatHistory[chatHistory.length - 1]?.status !== 'finish',
     [chatHistory]
   );
-  // compute variable input is finish.
+  //compute variable input is finished.
   const [variableInputFinish, setVariableInputFinish] = useState(false);
   const variableIsFinish = useMemo(() => {
     if (!variableModules || variableModules.length === 0 || chatHistory.length > 0) return true;
@@ -217,7 +217,7 @@ const ChatBox = (
     defaultValues: variables
   });
 
-  // 滚动到底部
+  //scroll to the bottom
   const scrollToBottom = useCallback(
     (behavior: 'smooth' | 'auto' = 'smooth') => {
       if (!ChatBoxRef.current) return;
@@ -228,7 +228,7 @@ const ChatBox = (
     },
     [ChatBoxRef]
   );
-  // 聊天信息生成中……获取当前滚动条位置，判断是否需要滚动到底部
+  // Chat information is being generated... get the current scroll bar position, and judge whether it needs to scroll to the bottom
   const generatingScroll = useCallback(
     throttle(() => {
       if (!ChatBoxRef.current) return;
@@ -267,7 +267,7 @@ const ChatBox = (
     [generatingScroll, setChatHistory]
   );
 
-  // 复制内容
+  // copy content
   const onclickCopy = useCallback(
     (value: string) => {
       copyData(value);
@@ -275,12 +275,12 @@ const ChatBox = (
     [copyData]
   );
 
-  // 重置输入内容
+  // reset input content
   const resetInputVal = useCallback((val: string) => {
     if (!TextareaDom.current) return;
 
     setTimeout(() => {
-      /* 回到最小高度 */
+      /* back to minimum height */
       if (TextareaDom.current) {
         TextareaDom.current.value = val;
         TextareaDom.current.style.height =
@@ -297,7 +297,7 @@ const ChatBox = (
       if (!onStartChat) return;
       if (isChatting) {
         toast({
-          title: '正在聊天中...请等待结束',
+          title: 'Chatting...please wait for the end',
           status: 'warning'
         });
         return;
@@ -307,7 +307,7 @@ const ChatBox = (
 
       if (!val) {
         toast({
-          title: '内容为空',
+          title: 'Content is empty',
           status: 'warning'
         });
         return;
@@ -329,10 +329,10 @@ const ChatBox = (
         }
       ];
 
-      // 插入内容
+      //Insert content
       setChatHistory(newChatList);
 
-      // 清空输入内容
+      //Clear the input content
       resetInputVal('');
       setTimeout(() => {
         scrollToBottom();
@@ -374,7 +374,7 @@ const ChatBox = (
         }, 100);
       } catch (err: any) {
         toast({
-          title: getErrText(err, '聊天出错了~'),
+          title: getErrText(err, 'chat error'),
           status: 'error',
           duration: 5000,
           isClosable: true
@@ -410,7 +410,7 @@ const ChatBox = (
     ]
   );
 
-  // output data
+  //output data
   useImperativeHandle(ref, () => ({
     getChatHistory: () => chatHistory,
     resetVariables(e) {
@@ -589,7 +589,7 @@ const ChatBox = (
                       setVariableInputFinish(true);
                     })}
                   >
-                    {'开始对话'}
+                    {'Start a conversation'}
                   </Button>
                 )}
               </Card>
@@ -619,7 +619,7 @@ const ChatBox = (
                         justifyContent={'flex-end'}
                         mr={3}
                       >
-                        <MyTooltip label={'复制'}>
+                        <MyTooltip label={'Copy'}>
                           <MyIcon
                             {...controlIconStyle}
                             name={'copy'}
@@ -628,7 +628,7 @@ const ChatBox = (
                           />
                         </MyTooltip>
                         {onDelMessage && (
-                          <MyTooltip label={'删除'}>
+                          <MyTooltip label={'Delete'}>
                             <MyIcon
                               {...controlIconStyle}
                               mr={0}
@@ -667,7 +667,7 @@ const ChatBox = (
                     <Flex w={'100%'} alignItems={'flex-end'}>
                       <ChatAvatar src={appAvatar} type={'AI'} />
                       <Flex {...controlContainerStyle(item.status)} ml={3}>
-                        <MyTooltip label={'复制'}>
+                        <MyTooltip label={'Copy'}>
                           <MyIcon
                             {...controlIconStyle}
                             name={'copy'}
@@ -676,7 +676,7 @@ const ChatBox = (
                           />
                         </MyTooltip>
                         {onDelMessage && (
-                          <MyTooltip label={'删除'}>
+                          <MyTooltip label={'Delete'}>
                             <MyIcon
                               {...controlIconStyle}
                               name={'delete'}
@@ -694,7 +694,7 @@ const ChatBox = (
                           </MyTooltip>
                         )}
                         {showVoiceIcon && hasVoiceApi && (
-                          <MyTooltip label={'语音播报'}>
+                          <MyTooltip label={'voice broadcast'}>
                             <MyIcon
                               {...controlIconStyle}
                               name={'voice'}
@@ -732,7 +732,7 @@ const ChatBox = (
                           </MyTooltip>
                         )}
                         {feedbackType === FeedbackTypeEnum.admin && (
-                          <MyTooltip label={t('chat.Read User Feedback')}>
+                          <MyTooltip label={t('chat. Read User Feedback')}>
                             <MyIcon
                               display={item.userFeedback ? 'block' : 'none'}
                               {...controlIconStyle}
@@ -754,8 +754,8 @@ const ChatBox = (
                           <MyTooltip
                             label={
                               item.userFeedback
-                                ? `取消反馈。\n您当前反馈内容为:\n${item.userFeedback}`
-                                : '反馈'
+                                ? `Cancel feedback. \nYour current feedback content is:\n${item.userFeedback}`
+                                : 'Feedback'
                             }
                           >
                             <MyIcon
@@ -829,7 +829,7 @@ const ChatBox = (
                             <Flex alignItems={'center'} py={2}>
                               <MyIcon name={'markLight'} w={'14px'} color={'myGray.900'} />
                               <Box ml={2} color={'myGray.500'}>
-                                {t('chat.Admin Mark Content')}
+                                {t('chat. Admin Mark Content')}
                               </Box>
                               <Box h={'1px'} bg={'myGray.300'} flex={'1'} />
                             </Flex>
@@ -857,7 +857,7 @@ const ChatBox = (
             borderRadius={['none', 'md']}
             backgroundColor={'white'}
           >
-            {/* 输入框 */}
+            {/* Input box */}
             <Textarea
               ref={TextareaDom}
               py={0}
@@ -866,7 +866,7 @@ const ChatBox = (
               _focusVisible={{
                 border: 'none'
               }}
-              placeholder="提问"
+              placeholder="Question"
               resize={'none'}
               rows={1}
               height={'22px'}
@@ -884,17 +884,17 @@ const ChatBox = (
                 textarea.style.height = `${textarea.scrollHeight}px`;
               }}
               onKeyDown={(e) => {
-                // 触发快捷发送
+                // Trigger quick send
                 if (isPc && e.keyCode === 13 && !e.shiftKey) {
                   handleSubmit((data) => sendPrompt(data, TextareaDom.current?.value))();
                   e.preventDefault();
                 }
-                // 全选内容
+                //Select all content
                 // @ts-ignore
                 e.key === 'a' && e.ctrlKey && e.target?.select();
               }}
             />
-            {/* 发送和等待按键 */}
+            {/* send and wait for keypress */}
             <Flex
               alignItems={'center'}
               justifyContent={'center'}
@@ -1093,7 +1093,7 @@ export const useChatBox = () => {
             fileDownload({
               text: html,
               type: 'text/html',
-              filename: '聊天记录.html'
+              filename: 'Chat history.html'
             });
         },
         pdf: () => {
@@ -1103,7 +1103,7 @@ export const useChatBox = () => {
             // @ts-ignore
             html2pdf(html, {
               margin: 0,
-              filename: `聊天记录.pdf`
+              filename: `Chat record.pdf`
             });
         }
       };

@@ -46,7 +46,7 @@ const SideTabs = ({ list, size = 'md', activeId, onChange, ...props }: Props) =>
             ? {
                 bg: ' myBlue.300 !important',
                 fontWeight: 'bold',
-                color: 'myBlue.700 ',
+                color: 'myBlue.700',
                 cursor: 'default'
               }
             : {

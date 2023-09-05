@@ -21,7 +21,7 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
     if (!inputVal || inputVal <= 0 || isNaN(+inputVal)) return;
     setLoading(true);
     try {
-      // 获取支付二维码
+      // Get payment QR code
       const res = await getPayCode(inputVal);
       new window.QRCode(document.getElementById('payQRCode'), {
         text: res.codeUrl,
@@ -53,7 +53,7 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
       onSuccess(res) {
         if (!res) return;
         toast({
-          title: '充值成功',
+          title: 'Recharge successful',
           status: 'success'
         });
         router.reload();
@@ -81,7 +81,7 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
                   variant={item === inputVal ? 'solid' : 'outline'}
                   onClick={() => setInputVal(item)}
                 >
-                  {item}元
+                  {item}yuan
                 </Button>
               ))}
             </Grid>
@@ -90,7 +90,7 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
                 value={inputVal}
                 type={'number'}
                 step={1}
-                placeholder={'其他金额，请取整数'}
+                placeholder={'Other amounts, please round up'}
                 onChange={(e) => {
                   setInputVal(Math.floor(+e.target.value));
                 }}
@@ -98,19 +98,23 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
             </Box>
             <Markdown
               source={`
-| 计费项 | 价格: 元/ 1K tokens(包含上下文)|
+| Billing Items | Price: Yuan / 1K tokens (including context)|
 | --- | --- |
-| 知识库 - 索引 | 0.002 |
-| FastAI4k - 对话 | 0.015 |
-| FastAI16k - 对话 | 0.03 |
-| FastAI-Plus - 对话 | 0.45 |
-| 文件拆分 | 0.03 |`}
+| Knowledge Base - Index | 0.002 |
+| FastAI4k - Conversation | 0.015 |
+| FastAI16k - Dialogue | 0.03 |
+| FastAI-Plus - Dialogue | 0.45 |
+|File Splitting | 0.03 |`}
             />
           </>
         )}
-        {/* 付费二维码 */}
+        {/* Paid QR code */}
         <Box textAlign={'center'}>
-          {payId && <Box mb={3}>请微信扫码支付: {inputVal}元，请勿关闭页面</Box>}
+          {payId && (
+            <Box mb={3}>
+              Please scan the code on WeChat to pay: {inputVal} yuan, please do not close the page
+            </Box>
+          )}
           <Box id={'payQRCode'} display={'inline-block'}></Box>
         </Box>
       </ModalBody>
@@ -119,7 +123,7 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
         {!payId && (
           <>
             <Button variant={'base'} onClick={onClose}>
-              取消
+              Cancel
             </Button>
             <Button
               ml={3}
@@ -127,7 +131,7 @@ const PayModal = ({ onClose }: { onClose: () => void }) => {
               isDisabled={!inputVal || inputVal === 0}
               onClick={handleClickPay}
             >
-              获取充值二维码
+              Obtain the recharge QR code
             </Button>
           </>
         )}

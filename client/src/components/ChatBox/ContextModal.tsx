@@ -16,7 +16,7 @@ const ContextModal = ({
     <MyModal
       isOpen={true}
       onClose={onClose}
-      title={`完整对话记录(${context.length}条)`}
+      title={`Complete conversation record (${context.length} items)`}
       h={['90vh', '80vh']}
       minW={['90vw', '600px']}
       isCentered

@@ -45,7 +45,7 @@ const ChatTest = (
           ?.inputs?.find((item) => item.key === 'maxContext')?.value || 0;
       const history = chatList.slice(-historyMaxLen - 2, -2);
 
-      // 流请求，获取数据
+      //Stream request, get data
       const { responseText, responseData } = await streamFetch({
         url: '/api/chat/chatTest',
         data: {
@@ -54,7 +54,7 @@ const ChatTest = (
           modules,
           variables,
           appId: app._id,
-          appName: `调试-${app.name}`
+          appName: `Debug-${app.name}`
         },
         onMessage: generatingMessage,
         abortSignal: controller
@@ -90,9 +90,9 @@ const ChatTest = (
       >
         <Flex py={4} px={5} whiteSpace={'nowrap'}>
           <Box fontSize={'xl'} fontWeight={'bold'} flex={1}>
-            调试预览
+            debug preview
           </Box>
-          <MyTooltip label={'重置'}>
+          <MyTooltip label={'Reset'}>
             <IconButton
               className="chat"
               size={'sm'}

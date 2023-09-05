@@ -48,16 +48,16 @@ const NodeExtract = ({ data }: NodeProps<FlowModuleItemType>) => {
                       })
                     }
                   >
-                    新增字段
+                    new field
                   </Button>
                 </Box>
                 <TableContainer>
                   <Table>
                     <Thead>
                       <Tr>
-                        <Th>字段 key</Th>
-                        <Th>字段描述</Th>
-                        <Th>必须</Th>
+                        <Th>Field key</Th>
+                        <Th>Field Description</Th>
+                        <Th>Must</Th>
                         <Th></Th>
                       </Tr>
                     </Thead>
@@ -159,8 +159,8 @@ const NodeExtract = ({ data }: NodeProps<FlowModuleItemType>) => {
                 key: '',
                 value: outputs.concat({
                   key: data.key,
-                  label: `提取结果-${data.desc}`,
-                  description: '无法提取时不会返回',
+                  label: `Extraction result-${data.desc}`,
+                  description: 'It will not be returned when it cannot be extracted',
                   valueType: FlowValueTypeEnum.string,
                   type: FlowOutputItemTypeEnum.source,
                   targets: []
@@ -177,7 +177,7 @@ const NodeExtract = ({ data }: NodeProps<FlowModuleItemType>) => {
                     output.key === data.key
                       ? {
                           ...output,
-                          label: `提取结果-${data.desc}`
+                          label: `Extraction result-${data.desc}`
                         }
                       : output
                   )
@@ -199,8 +199,8 @@ const NodeExtract = ({ data }: NodeProps<FlowModuleItemType>) => {
                     key: '',
                     value: newOutputs.concat({
                       key: data.key,
-                      label: `提取结果-${data.desc}`,
-                      description: '无法提取时不会返回',
+                      label: `Extraction result-${data.desc}`,
+                      description: 'It will not be returned when it cannot be extracted',
                       valueType: FlowValueTypeEnum.string,
                       type: FlowOutputItemTypeEnum.source,
                       targets: []

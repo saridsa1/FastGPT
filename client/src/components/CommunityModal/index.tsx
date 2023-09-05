@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import Markdown from '../Markdown';
 
 const md = `
-| 交流群 | 小助手 |
-| ----------------------- | -------------------- |
+| Exchange group | Assistant |
+| ----------------------- | ----------------------- --- |
 | ![](https://otnvvf-imgs.oss.laf.run/wxqun300.jpg) | ![](https://otnvvf-imgs.oss.laf.run/wx300.jpg) |
 `;
 
@@ -20,7 +20,7 @@ const CommunityModal = ({ onClose }: { onClose: () => void }) => {
 
       <ModalFooter>
         <Button variant={'base'} onClick={onClose}>
-          关闭
+          closure
         </Button>
       </ModalFooter>
     </MyModal>

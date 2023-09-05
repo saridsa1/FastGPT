@@ -36,7 +36,7 @@ const API = ({ appId }: { appId: string }) => {
             ml={2}
             fontWeight={'bold'}
             cursor={'pointer'}
-            onClick={() => copyData(appId, '已复制 AppId')}
+            onClick={() => copyData(appId, 'AppId copied')}
           >
             {appId}
           </Box>
@@ -49,10 +49,10 @@ const API = ({ appId }: { appId: string }) => {
               px={4}
               borderRadius={'md'}
               cursor={'pointer'}
-              onClick={() => copyData(baseUrl, '已复制 API 地址')}
+              onClick={() => copyData(baseUrl, 'API address copied')}
             >
               <Box border={theme.borders.md} px={2} borderRadius={'md'} fontSize={'sm'}>
-                API服务器
+                API server
               </Box>
               <Box ml={2} color={'myGray.900'} fontSize={['sm', 'md']}>
                 {baseUrl}
@@ -64,7 +64,7 @@ const API = ({ appId }: { appId: string }) => {
               variant={'base'}
               onClick={onOpenAPIModal}
             >
-              API 秘钥
+              API key
             </Button>
           </>
         )}

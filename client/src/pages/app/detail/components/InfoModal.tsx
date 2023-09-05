@@ -48,7 +48,7 @@ const InfoModal = ({
   });
   const [refresh, setRefresh] = useState(false);
 
-  // 提交保存模型修改
+  //Submit and save model modifications
   const { mutate: saveSubmitSuccess, isLoading: btnLoading } = useRequest({
     mutationFn: async (data: AppSchema) => {
       await updateAppDetail(data._id, {
@@ -63,18 +63,18 @@ const InfoModal = ({
       onSuccess && onSuccess();
       onClose();
       toast({
-        title: '更新成功',
+        title: 'Update successful',
         status: 'success'
       });
     },
-    errorToast: '更新失败'
+    errorToast: 'Update failed'
   });
 
-  // 提交保存表单失败
+  //Failed to submit and save form
   const saveSubmitError = useCallback(() => {
     // deep search message
     const deepSearch = (obj: any): string => {
-      if (!obj) return '提交表单错误';
+      if (!obj) return 'Error submitting the form';
       if (!!obj.message) {
         return obj.message;
       }
@@ -107,7 +107,7 @@ const InfoModal = ({
         setRefresh((state) => !state);
       } catch (err: any) {
         toast({
-          title: getErrText(err, '头像选择异常'),
+          title: getErrText(err, 'Avatar selection exception'),
           status: 'warning'
         });
       }
@@ -116,9 +116,9 @@ const InfoModal = ({
   );
 
   return (
-    <MyModal isOpen={true} onClose={onClose} title={'应用信息设置'}>
+    <MyModal isOpen={true} onClose={onClose} title={'App Information Settings'}>
       <ModalBody>
-        <Box>头像 & 名称</Box>
+        <Box>Avatar & Name</Box>
         <Flex mt={2} alignItems={'center'}>
           <Avatar
             src={getValues('avatar')}
@@ -127,29 +127,29 @@ const InfoModal = ({
             cursor={'pointer'}
             borderRadius={'lg'}
             mr={4}
-            title={'点击切换头像'}
+            title={'Click to switch avatar'}
             onClick={() => onOpenSelectFile()}
           />
           <FormControl>
             <Input
               bg={'myWhite.600'}
-              placeholder={'给应用设置一个名称'}
+              placeholder={'Set a name for the application'}
               {...register('name', {
-                required: '展示名称不能为空'
+                required: 'The display name cannot be empty'
               })}
             ></Input>
           </FormControl>
         </Flex>
         <Box mt={7} mb={1}>
-          应用介绍
+          Application introduction
         </Box>
         {/* <Box color={'myGray.500'} mb={2} fontSize={'sm'}>
-            该介绍主要用于记忆和在应用市场展示
+            This introduction is mainly used for memory and display in the application market
           </Box> */}
         <Textarea
           rows={4}
           maxLength={500}
-          placeholder={'给你的 AI 应用一个介绍'}
+          placeholder={'Give an introduction to your AI application'}
           bg={'myWhite.600'}
           {...register('intro')}
         />
@@ -157,10 +157,10 @@ const InfoModal = ({
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          Cancel
         </Button>
         <Button isLoading={btnLoading} onClick={saveUpdateModel}>
-          保存
+          save
         </Button>
       </ModalFooter>
 

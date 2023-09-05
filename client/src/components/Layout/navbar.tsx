@@ -28,21 +28,21 @@ const Navbar = ({ unread }: { unread: number }) => {
   const navbarList = useMemo(
     () => [
       {
-        label: t('navbar.Chat'),
+        label: t('navbar. Chat'),
         icon: 'chat',
         activeIcon: 'chatFill',
         link: `/chat?appId=${lastChatAppId}&chatId=${lastChatId}`,
         activeLink: ['/chat']
       },
       {
-        label: t('navbar.Apps'),
+        label: t('navbar. Apps'),
         icon: 'appLight',
         activeIcon: 'appFill',
         link: `/app/list`,
         activeLink: ['/app/list', '/app/detail']
       },
       {
-        label: t('navbar.Datasets'),
+        label: t('navbar. Datasets'),
         icon: 'dbLight',
         activeIcon: 'dbFill',
         link: `/kb/list`,
@@ -51,7 +51,7 @@ const Navbar = ({ unread }: { unread: number }) => {
       ...(feConfigs?.show_appStore
         ? [
             {
-              label: t('navbar.Store'),
+              label: t('navbar. Store'),
               icon: 'appStoreLight',
               activeIcon: 'appStoreFill',
               link: '/appStore',
@@ -114,7 +114,7 @@ const Navbar = ({ unread }: { unread: number }) => {
           fallbackSrc={HUMAN_ICON}
         />
       </Box>
-      {/* 导航列表 */}
+      {/* Navigation list */}
       <Box flex={1}>
         {navbarList.map((item) => (
           <Box

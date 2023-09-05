@@ -13,7 +13,7 @@ const QuestionInputNode = ({ data }: NodeProps<FlowModuleItemType>) => {
     <NodeCard minW={'240px'} {...data}>
       <Container borderTop={'2px solid'} borderTopColor={'myGray.200'} textAlign={'end'}>
         <Box position={'relative'}>
-          用户问题
+          user question
           <SourceHandle
             handleKey={SystemInputEnum.userChatInput}
             valueType={FlowValueTypeEnum.string}

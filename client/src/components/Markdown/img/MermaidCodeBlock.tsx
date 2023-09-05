@@ -23,23 +23,21 @@ mermaidAPI.initialize({
 });
 
 const punctuationMap: Record<string, string> = {
-  '，': ',',
-  '；': ';',
-  '。': '.',
-  '：': ':',
-  '！': '!',
-  '？': '?',
-  '“': '"',
-  '”': '"',
-  '‘': "'",
-  '’': "'",
+  ',': ',',
+  ';': ';',
+  '. ': '.',
+  ':': ':',
+  '! ': '!',
+  '? ': '?',
+  '"': '"',
+  '\\"': '"',
+  "'": "'",
   '【': '[',
-  '】': ']',
-  '（': '(',
-  '）': ')',
+  ']': ']',
+  '(': '(',
+  ')': ')',
   '《': '<',
-  '》': '>',
-  '、': ','
+  '》': '>'
 };
 
 const MermaidBlock = ({ code }: { code: string }) => {
@@ -75,7 +73,7 @@ const MermaidBlock = ({ code }: { code: string }) => {
     canvas.height = h;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    // 绘制白色背景
+    // draw white background
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, w, h);
 

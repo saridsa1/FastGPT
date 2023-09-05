@@ -15,7 +15,7 @@ const unAuthPage: { [key: string]: boolean } = {
 const Auth = ({ children }: { children: JSX.Element }) => {
   const router = useRouter();
   const toast = useToast({
-    title: '请先登录',
+    title: 'Please log in first',
     position: 'top',
     status: 'warning'
   });

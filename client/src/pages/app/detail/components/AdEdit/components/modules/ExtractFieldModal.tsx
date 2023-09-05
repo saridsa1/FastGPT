@@ -39,34 +39,34 @@ const ExtractFieldModal = ({
     <MyModal isOpen={true} onClose={onClose}>
       <ModalHeader display={'flex'} alignItems={'center'}>
         <Avatar src={'/imgs/module/extract.png'} mr={2} w={'20px'} objectFit={'cover'} />
-        提取字段配置
+        Extract field configuration
       </ModalHeader>
       <ModalBody>
         <Flex alignItems={'center'}>
-          <Box flex={'0 0 70px'}>必填</Box>
+          <Box flex={'0 0 70px'}>Required</Box>
           <Switch {...register('required')} />
         </Flex>
         <Flex mt={5} alignItems={'center'}>
-          <Box flex={'0 0 70px'}>字段描述</Box>
+          <Box flex={'0 0 70px'}>Field Description</Box>
           <Input
-            placeholder="姓名/年龄/sql语句……"
-            {...register('desc', { required: '字段描述不能为空' })}
+            placeholder="name/age/sql statement..."
+            {...register('desc', { required: 'Field description cannot be empty' })}
           />
         </Flex>
         <Flex mt={5} alignItems={'center'}>
-          <Box flex={'0 0 70px'}>字段 key</Box>
+          <Box flex={'0 0 70px'}>field key</Box>
           <Input
             placeholder="name/age/sql"
-            {...register('key', { required: '字段 key 不能为空' })}
+            {...register('key', { required: 'field key cannot be empty' })}
           />
         </Flex>
       </ModalBody>
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          Cancel
         </Button>
-        <Button onClick={handleSubmit(onSubmit)}>确认</Button>
+        <Button onClick={handleSubmit(onSubmit)}>Confirm</Button>
       </ModalFooter>
     </MyModal>
   );

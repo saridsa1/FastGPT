@@ -290,7 +290,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
             if (input) {
               toast({
                 status: 'warning',
-                title: 'key 重复'
+                title: 'key repeat'
               });
               return {
                 ...node,
@@ -398,8 +398,8 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
         type: AppTypeEnum.advanced
       });
     },
-    successToast: '保存配置成功',
-    errorToast: '保存配置异常',
+    successToast: 'Save configuration successfully',
+    errorToast: 'save configuration exception',
     onSuccess() {
       ChatTestRef.current?.resetChatTest();
     }
@@ -455,7 +455,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
         alignItems={'center'}
         userSelect={'none'}
       >
-        <MyTooltip label={'返回'} offset={[10, 10]}>
+        <MyTooltip label={'Return'} offset={[10, 10]}>
           <IconButton
             size={'sm'}
             icon={<MyIcon name={'back'} w={'14px'} />}
@@ -473,7 +473,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
           {app.name}
         </Box>
 
-        <MyTooltip label={t('app.Import Configs')}>
+        <MyTooltip label={t('app. Import Configs')}>
           <IconButton
             mr={[3, 6]}
             icon={<MyIcon name={'importLight'} w={['14px', '16px']} />}
@@ -483,7 +483,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
             onClick={onOpenImport}
           />
         </MyTooltip>
-        <MyTooltip label={t('app.Export Configs')}>
+        <MyTooltip label={t('app. Export Configs')}>
           <IconButton
             mr={[3, 6]}
             icon={<MyIcon name={'export'} w={['14px', '16px']} />}
@@ -493,7 +493,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
             onClick={() =>
               copyData(
                 JSON.stringify(flow2AppModules(), null, 2),
-                t('app.Export Config Successful')
+                t('app. Export Config Successful')
               )
             }
           />
@@ -510,7 +510,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
             onClick={() => setTestModules(undefined)}
           />
         ) : (
-          <MyTooltip label={'测试对话'}>
+          <MyTooltip label={'Test Dialog'}>
             <IconButton
               mr={[3, 6]}
               icon={<MyIcon name={'chat'} w={['14px', '16px']} />}
@@ -524,7 +524,7 @@ const AppEdit = ({ app, onCloseSettings }: Props) => {
           </MyTooltip>
         )}
 
-        <MyTooltip label={'保存配置'}>
+        <MyTooltip label={'Save configuration'}>
           <IconButton
             icon={<MyIcon name={'save'} w={['14px', '16px']} />}
             borderRadius={'lg'}

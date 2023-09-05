@@ -44,7 +44,7 @@ export const usePagination = <T = any,>({
         onChange && onChange(num);
       } catch (error: any) {
         toast({
-          title: error?.message || '获取数据异常',
+          title: error?.message || 'Exception in obtaining data',
           status: 'error'
         });
         console.log(error);
@@ -120,9 +120,9 @@ export const usePagination = <T = any,>({
   const ScrollData = useCallback(
     ({ children, ...props }: { children: React.ReactNode }) => {
       const loadText = useMemo(() => {
-        if (isLoading) return '请求中……';
-        if (total <= data.length) return '已加载全部';
-        return '点击加载更多';
+        if (isLoading) return 'Requesting...';
+        if (total <= data.length) return 'all loaded';
+        return 'Click to load more';
       }, []);
 
       return (
@@ -133,9 +133,9 @@ export const usePagination = <T = any,>({
             fontSize={'xs'}
             color={'blackAlpha.500'}
             textAlign={'center'}
-            cursor={loadText === '点击加载更多' ? 'pointer' : 'default'}
+            cursor={loadText === 'Click to load more' ? 'pointer' : 'default'}
             onClick={() => {
-              if (loadText !== '点击加载更多') return;
+              if (loadText !== 'Click to load more') return;
               mutate(pageNum + 1);
             }}
           >
@@ -153,13 +153,13 @@ export const usePagination = <T = any,>({
     const scrolling = throttle((e: Event) => {
       const element = e.target as HTMLDivElement;
       if (!element) return;
-      // 当前滚动位置
+      // current scroll position
       const scrollTop = element.scrollTop;
-      // 可视高度
+      // visible height
       const clientHeight = element.clientHeight;
-      // 内容总高度
+      // total content height
       const scrollHeight = element.scrollHeight;
-      // 判断是否滚动到底部
+      // Determine whether to scroll to the bottom
       if (scrollTop + clientHeight + thresholdVal >= scrollHeight) {
         mutate(pageNum + 1);
       }

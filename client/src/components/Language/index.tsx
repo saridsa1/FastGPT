@@ -10,7 +10,7 @@ const langMap = {
     icon: 'language_en'
   },
   [LangEnum.zh]: {
-    label: '简体中文',
+    label: 'Simplified Chinese',
     icon: 'language_zh'
   }
 };

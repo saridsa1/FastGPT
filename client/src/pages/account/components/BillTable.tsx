@@ -56,10 +56,10 @@ const BillTable = () => {
         <Table>
           <Thead>
             <Tr>
-              <Th>{t('user.Time')}</Th>
-              <Th>{t('user.Source')}</Th>
-              <Th>{t('user.Application Name')}</Th>
-              <Th>{t('user.Total Amount')}</Th>
+              <Th>{t('user. Time')}</Th>
+              <Th>{t('user. Source')}</Th>
+              <Th>{t('user. Application Name')}</Th>
+              <Th>{t('user. Total Amount')}</Th>
               <Th></Th>
             </Tr>
           </Thead>
@@ -69,10 +69,10 @@ const BillTable = () => {
                 <Td>{dayjs(item.time).format('YYYY/MM/DD HH:mm:ss')}</Td>
                 <Td>{BillSourceMap[item.source]}</Td>
                 <Td>{item.appName || '-'}</Td>
-                <Td>{item.total}元</Td>
+                <Td>{item.total}yuan</Td>
                 <Td>
                   <Button size={'sm'} variant={'base'} onClick={() => setBillDetail(item)}>
-                    详情
+                    details
                   </Button>
                 </Td>
               </Tr>
@@ -85,7 +85,7 @@ const BillTable = () => {
         <Flex flex={'1 0 0'} flexDirection={'column'} alignItems={'center'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            无使用记录~
+            No usage record~
           </Box>
         </Flex>
       )}

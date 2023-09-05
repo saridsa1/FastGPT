@@ -39,7 +39,7 @@ const Info = (
   const [refresh, setRefresh] = useState(false);
 
   const { openConfirm, ConfirmModal } = useConfirm({
-    content: '确认删除该知识库？数据将无法恢复，请确认！'
+    content: 'Confirm to delete this knowledge base? Data will not be recovered, please confirm! '
   });
 
   const { File, onOpen: onOpenSelectFile } = useSelectFile({
@@ -49,20 +49,20 @@ const Info = (
 
   const { kbDetail, getKbDetail, loadKbList, myKbList } = useUserStore();
 
-  /* 点击删除 */
+  /* Click to delete */
   const onclickDelKb = useCallback(async () => {
     setBtnLoading(true);
     try {
       await delKbById(kbId);
       toast({
-        title: '删除成功',
+        title: 'Delete successfully',
         status: 'success'
       });
       router.replace(`/kb/list`);
       await loadKbList();
     } catch (err: any) {
       toast({
-        title: err?.message || '删除失败',
+        title: err?.message || 'Delete failed',
         status: 'error'
       });
     }
@@ -79,13 +79,13 @@ const Info = (
         });
         await getKbDetail(kbId, true);
         toast({
-          title: '更新成功',
+          title: 'Update successful',
           status: 'success'
         });
         loadKbList();
       } catch (err: any) {
         toast({
-          title: err?.message || '更新失败',
+          title: err?.message || 'Update failed',
           status: 'error'
         });
       }
@@ -96,7 +96,7 @@ const Info = (
   const saveSubmitError = useCallback(() => {
     // deep search message
     const deepSearch = (obj: any): string => {
-      if (!obj) return '提交表单错误';
+      if (!obj) return 'Error submitting form';
       if (!!obj.message) {
         return obj.message;
       }
@@ -126,7 +126,7 @@ const Info = (
         setRefresh((state) => !state);
       } catch (err: any) {
         toast({
-          title: typeof err === 'string' ? err : '头像选择异常',
+          title: typeof err === 'string' ? err : 'Avatar selection exception',
           status: 'warning'
         });
       }
@@ -146,13 +146,13 @@ const Info = (
     <Box py={5} px={[5, 10]}>
       <Flex mt={5} w={'100%'} alignItems={'center'}>
         <Box flex={['0 0 90px', '0 0 160px']} w={0}>
-          知识库 ID
+          Knowledge Base ID
         </Box>
         <Box flex={1}>{kbDetail._id}</Box>
       </Flex>
       <Flex mt={8} w={'100%'} alignItems={'center'}>
         <Box flex={['0 0 90px', '0 0 160px']} w={0}>
-          索引模型
+          index model
         </Box>
         <Box flex={[1, '0 0 300px']}>{getValues('vectorModel').name}</Box>
       </Flex>
@@ -164,10 +164,10 @@ const Info = (
       </Flex>
       <Flex mt={5} w={'100%'} alignItems={'center'}>
         <Box flex={['0 0 90px', '0 0 160px']} w={0}>
-          知识库头像
+          Knowledge base avatar
         </Box>
         <Box flex={[1, '0 0 300px']}>
-          <MyTooltip label={'点击切换头像'}>
+          <MyTooltip label={'Click to switch avatar'}>
             <Avatar
               m={'auto'}
               src={getValues('avatar')}
@@ -181,19 +181,19 @@ const Info = (
       </Flex>
       <FormControl mt={8} w={'100%'} display={'flex'} alignItems={'center'}>
         <Box flex={['0 0 90px', '0 0 160px']} w={0}>
-          知识库名称
+          Knowledge base name
         </Box>
         <Input
           flex={[1, '0 0 300px']}
           {...register('name', {
-            required: '知识库名称不能为空'
+            required: 'Knowledge base name cannot be empty'
           })}
         />
       </FormControl>
       <Flex mt={8} alignItems={'center'} w={'100%'} flexWrap={'wrap'}>
         <Box flex={['0 0 90px', '0 0 160px']} w={0}>
-          标签
-          <MyTooltip label={'用空格隔开多个标签，便于搜索'} forceShow>
+          Label
+          <MyTooltip label={'Separate multiple labels with spaces for easy search'} forceShow>
             <QuestionOutlineIcon ml={1} />
           </MyTooltip>
         </Box>
@@ -201,7 +201,7 @@ const Info = (
           flex={[1, '0 0 300px']}
           ref={InputRef}
           defaultValue={getValues('tags')}
-          placeholder={'标签,使用空格分割。'}
+          placeholder={' label, separated by spaces. '}
           maxLength={30}
           onChange={(e) => {
             setValue('tags', e.target.value);
@@ -227,7 +227,7 @@ const Info = (
           w={'100px'}
           onClick={handleSubmit(saveSubmitSuccess, saveSubmitError)}
         >
-          保存
+          save
         </Button>
         <IconButton
           isLoading={btnLoading}

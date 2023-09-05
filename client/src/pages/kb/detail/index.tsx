@@ -48,10 +48,10 @@ const Detail = ({ kbId, currentTab }: { kbId: string; currentTab: `${TabEnum}` }
   const { kbDetail, getKbDetail } = useUserStore();
 
   const tabList = useRef([
-    { label: '数据集', id: TabEnum.data, icon: 'overviewLight' },
-    { label: '导入数据', id: TabEnum.import, icon: 'importLight' },
-    { label: '搜索测试', id: TabEnum.test, icon: 'kbTest' },
-    { label: '配置', id: TabEnum.info, icon: 'settingLight' }
+    { label: 'dataset', id: TabEnum.data, icon: 'overviewLight' },
+    { label: 'Import data', id: TabEnum.import, icon: 'importLight' },
+    { label: 'Search Test', id: TabEnum.test, icon: 'kbTest' },
+    { label: 'configuration', id: TabEnum.info, icon: 'settingLight' }
   ]);
 
   const setCurrentTab = useCallback(
@@ -78,7 +78,7 @@ const Detail = ({ kbId, currentTab }: { kbId: string; currentTab: `${TabEnum}` }
     onError(err: any) {
       router.replace(`/kb/list`);
       toast({
-        title: getErrText(err, '获取知识库异常'),
+        title: getErrText(err, 'Exception in getting knowledge base'),
         status: 'error'
       });
     }
@@ -150,7 +150,7 @@ const Detail = ({ kbId, currentTab }: { kbId: string; currentTab: `${TabEnum}` }
                 borderRadius={'50%'}
                 aria-label={''}
               />
-              全部知识库
+              All knowledge base
             </Flex>
           </Flex>
         ) : (

@@ -311,7 +311,7 @@ const CodeLight = ({
           <Box flex={1}>{match?.[1]}</Box>
           <Flex cursor={'pointer'} onClick={() => copyData(String(children))} alignItems={'center'}>
             <Icon name={'copy'} width={15} height={15} fill={'#fff'}></Icon>
-            <Box ml={1}>复制</Box>
+            <Box ml={1}>Copy</Box>
           </Flex>
         </Flex>
         <SyntaxHighlighter style={codeLight as any} language={match?.[1]} PreTag="pre">

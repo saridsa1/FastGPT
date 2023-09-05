@@ -27,8 +27,9 @@ function Error() {
 
   return (
     <p>
-      部分系统不兼容，导致页面崩溃。如果可以，请联系作者，反馈下具体操作和页面。大部分是 苹果 的
-      safari 浏览器导致，可以尝试更换 chrome 浏览器。
+      Some systems are not compatible, causing the page to crash. If possible, please contact the
+      author and give feedback on specific operations and pages. Mostly from Apple The safari
+      browser causes it, you can try to replace the chrome browser.
     </p>
   );
 }

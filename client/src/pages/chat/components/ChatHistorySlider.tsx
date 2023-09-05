@@ -69,8 +69,8 @@ const ChatHistorySlider = ({
 
   // custom title edit
   const { onOpenModal, EditModal: EditTitleModal } = useEditInfo({
-    title: '自定义历史记录标题',
-    placeholder: '如果设置为空，会自动跟随聊天记录。'
+    title: 'Customized history title',
+    placeholder: 'If set to empty, chat records will be automatically followed. '
   });
   const { openConfirm, ConfirmModal } = useConfirm({
     content: t('chat.Confirm to clear history')
@@ -226,7 +226,7 @@ const ChatHistorySlider = ({
                             }}
                           >
                             <MyIcon mr={2} name={'setTop'} w={'16px'}></MyIcon>
-                            {item.top ? '取消置顶' : '置顶'}
+                            {item.top ? 'Unpin' : 'Top'}
                           </MenuItem>
                         )}
                         {onSetCustomTitle && (
@@ -244,7 +244,7 @@ const ChatHistorySlider = ({
                             }}
                           >
                             <MyIcon mr={2} name={'customTitle'} w={'16px'}></MyIcon>
-                            自定义标题
+                            custom title
                           </MenuItem>
                         )}
                         <MenuItem
@@ -258,7 +258,7 @@ const ChatHistorySlider = ({
                           }}
                         >
                           <MyIcon mr={2} name={'delete'} w={'16px'}></MyIcon>
-                          删除
+                          delete
                         </MenuItem>
                       </MenuList>
                     </Menu>

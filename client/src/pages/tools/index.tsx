@@ -13,14 +13,14 @@ const Tools = () => {
   const list = [
     {
       icon: 'dbLight',
-      label: '我的知识库',
+      label: 'My Knowledge Base',
       link: '/kb/list'
     },
     ...(feConfigs?.show_appStore
       ? [
           {
             icon: 'appStoreLight',
-            label: 'AI应用市场',
+            label: 'AI application market',
             link: '/appStore'
           }
         ]
@@ -29,7 +29,7 @@ const Tools = () => {
       ? [
           {
             icon: 'git',
-            label: 'GitHub 地址',
+            label: 'GitHub address',
             link: 'https://github.com/labring/FastGPT'
           }
         ]
@@ -38,7 +38,7 @@ const Tools = () => {
       ? [
           {
             icon: 'courseLight',
-            label: '使用文档',
+            label: 'Use documentation',
             link: 'https://doc.fastgpt.run/docs/intro'
           }
         ]

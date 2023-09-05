@@ -25,7 +25,7 @@ const UrlFetchModal = dynamic(() => import('./UrlFetchModal'));
 const CreateFileModal = dynamic(() => import('./CreateFileModal'));
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz1234567890', 12);
-const csvTemplate = `question,answer,source\n"什么是 laf","laf 是一个云函数开发平台……","laf git doc"\n"什么是 sealos","Sealos 是以 kubernetes 为内核的云操作系统发行版,可以……","sealos git doc"`;
+const csvTemplate = `question,answer,source\n"What is laf","laf is a cloud function development platform...","laf git doc"\n"What is sealos","Sealos uses kubernetes as the core Cloud operating system distribution, you can...","sealos git doc"`;
 
 export type FileItemType = {
   id: string;
@@ -149,7 +149,9 @@ const FileSelect = ({
           if (extension === 'csv') {
             const { header, data } = await readCsvContent(file);
             if (header[0] !== 'question' || header[1] !== 'answer') {
-              throw new Error('csv 文件格式有误,请确保 question 和 answer 两列');
+              throw new Error(
+                'The format of the csv file is wrong, please make sure there are two columns of question and answer'
+              );
             }
             const fileItem: FileItemType = {
               id: nanoid(),
@@ -172,7 +174,7 @@ const FileSelect = ({
       } catch (error: any) {
         console.log(error);
         toast({
-          title: getErrText(error, '解析文件失败'),
+          title: getErrText(error, 'Failed to parse file'),
           status: 'error'
         });
       }
@@ -278,7 +280,7 @@ const FileSelect = ({
         let isErr = files.some((item) => item.type === '');
         if (isErr) {
           return toast({
-            title: t('file.upload error description'),
+            title: t('file. upload error description'),
             status: 'error'
           });
         }
@@ -323,7 +325,7 @@ const FileSelect = ({
       <Flex justifyContent={'center'} alignItems={'center'}>
         <MyIcon mr={1} name={'uploadFile'} w={'16px'} />
         {isDragging ? (
-          t('file.Release the mouse to upload the file')
+          t('file. Release the mouse to upload the file')
         ) : (
           <Box>
             {t('file.Drag and drop')},
@@ -351,7 +353,7 @@ const FileSelect = ({
           </Box>
         )}
       </Flex>
-      <Box mt={1}>{t('file.support', { fileExtension: fileExtension })}</Box>
+      <Box mt={1}>{t('file. support', { fileExtension: fileExtension })}</Box>
       {tipText && (
         <Box mt={1} fontSize={'sm'} color={'myGray.600'}>
           {t(tipText)}

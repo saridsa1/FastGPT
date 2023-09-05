@@ -28,8 +28,8 @@ const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz1234567890', 6);
 import MyModal from '@/components/MyModal';
 
 const VariableTypeList = [
-  { label: '文本', icon: 'settingLight', key: VariableInputEnum.input },
-  { label: '下拉单选', icon: 'settingLight', key: VariableInputEnum.select }
+  { label: 'text', icon: 'settingLight', key: VariableInputEnum.input },
+  { label: 'Drop-down radio selection', icon: 'settingLight', key: VariableInputEnum.select }
 ];
 
 export type VariableFormType = {
@@ -68,24 +68,24 @@ const VariableEditModal = ({
     <MyModal isOpen={true} onClose={onClose}>
       <ModalHeader display={'flex'}>
         <MyIcon name={'variable'} mr={2} w={'24px'} color={'#FF8A4C'} />
-        变量设置
+        Variable settings
       </ModalHeader>
       <ModalBody>
         <Flex alignItems={'center'}>
-          <Box w={'70px'}>必填</Box>
+          <Box w={'70px'}>Required</Box>
           <Switch {...register('variable.required')} />
         </Flex>
         <Flex mt={5} alignItems={'center'}>
-          <Box w={'80px'}>变量名</Box>
-          <Input {...register('variable.label', { required: '变量名不能为空' })} />
+          <Box w={'80px'}>Variable name</Box>
+          <Input {...register('variable.label', { required: 'Variable name cannot be empty' })} />
         </Flex>
         <Flex mt={5} alignItems={'center'}>
-          <Box w={'80px'}>变量 key</Box>
-          <Input {...register('variable.key', { required: '变量 key 不能为空' })} />
+          <Box w={'80px'}>variable key</Box>
+          <Input {...register('variable.key', { required: 'Variable key cannot be empty' })} />
         </Flex>
 
         <Box mt={5} mb={2}>
-          字段类型
+          Field Type
         </Box>
         <Grid gridTemplateColumns={'repeat(2,130px)'} gridGap={4}>
           {VariableTypeList.map((item) => (
@@ -119,7 +119,7 @@ const VariableEditModal = ({
         {getValues('variable.type') === VariableInputEnum.input && (
           <>
             <Box mt={5} mb={2}>
-              最大长度
+              The maximum length
             </Box>
             <Box>
               <NumberInput max={100} min={1} step={1} position={'relative'}>
@@ -143,7 +143,7 @@ const VariableEditModal = ({
         {getValues('variable.type') === VariableInputEnum.select && (
           <>
             <Box mt={5} mb={2}>
-              选项
+              options
             </Box>
             <Box>
               {selectEnums.map((item, i) => (
@@ -151,7 +151,7 @@ const VariableEditModal = ({
                   <FormControl>
                     <Input
                       {...register(`variable.enums.${i}.value`, {
-                        required: '选项内容不能为空'
+                        required: 'Option content cannot be empty'
                       })}
                     />
                   </FormControl>
@@ -176,7 +176,7 @@ const VariableEditModal = ({
               bg={'myGray.100 !important'}
               onClick={() => appendEnums({ value: '' })}
             >
-              添加选项
+              add option
             </Button>
           </>
         )}
@@ -184,9 +184,9 @@ const VariableEditModal = ({
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          Cancel
         </Button>
-        <Button onClick={handleSubmit(onSubmit)}>确认</Button>
+        <Button onClick={handleSubmit(onSubmit)}>Confirm</Button>
       </ModalFooter>
     </MyModal>
   );

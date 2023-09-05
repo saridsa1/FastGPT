@@ -44,12 +44,12 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
           })
         );
         toast({
-          title: '登录成功',
+          title: 'Login successful',
           status: 'success'
         });
       } catch (error: any) {
         toast({
-          title: error.message || '登录异常',
+          title: error.message || 'Login exception',
           status: 'error'
         });
       }
@@ -74,15 +74,15 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
   return (
     <>
       <Box fontWeight={'bold'} fontSize={'2xl'} textAlign={'center'}>
-        登录 {feConfigs?.systemTitle}
+        Login {feConfigs?.systemTitle}
       </Box>
       <form onSubmit={handleSubmit(onclickLogin)}>
         <FormControl mt={8} isInvalid={!!errors.username}>
           <Input
-            placeholder="邮箱/手机号/用户名"
+            placeholder="email/mobile phone number/user name"
             size={['md', 'lg']}
             {...register('username', {
-              required: '邮箱/手机号/用户名不能为空'
+              required: 'Email/mobile phone number/user name cannot be empty'
             })}
           ></Input>
           <FormErrorMessage position={'absolute'} fontSize="xs">
@@ -93,12 +93,12 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
           <Input
             type={'password'}
             size={['md', 'lg']}
-            placeholder="密码"
+            placeholder="password"
             {...register('password', {
-              required: '密码不能为空',
+              required: 'Password cannot be empty',
               maxLength: {
                 value: 20,
-                message: '密码最多 20 位'
+                message: 'Password must be up to 20 characters'
               }
             })}
           ></Input>
@@ -114,7 +114,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
               onClick={() => setPageType('forgetPassword')}
               fontSize="sm"
             >
-              忘记密码?
+              forget the password?
             </Box>
             <Box
               cursor={'pointer'}
@@ -122,7 +122,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
               onClick={() => setPageType('register')}
               fontSize="sm"
             >
-              注册账号
+              Register an account
             </Box>
           </Flex>
         )}
@@ -134,7 +134,7 @@ const LoginForm = ({ setPageType, loginSuccess }: Props) => {
           colorScheme="blue"
           isLoading={requesting}
         >
-          登录
+          Log in
         </Button>
         {feConfigs?.show_register && (
           <>

@@ -24,19 +24,19 @@ import { FlowOutputItemType } from '@/types/flow';
 
 const typeSelectList = [
   {
-    label: '字符串',
+    label: 'string',
     value: FlowValueTypeEnum.string
   },
   {
-    label: '数字',
+    label: 'number',
     value: FlowValueTypeEnum.number
   },
   {
-    label: '布尔',
+    label: 'Boolean',
     value: FlowValueTypeEnum.boolean
   },
   {
-    label: '任意',
+    label: 'any',
     value: FlowValueTypeEnum.any
   }
 ];
@@ -64,7 +64,7 @@ const SetInputFieldModal = ({
       </ModalHeader>
       <ModalBody>
         <Flex mt={5} alignItems={'center'}>
-          <Box flex={'0 0 70px'}>字段类型</Box>
+          <Box flex={'0 0 70px'}>Field type</Box>
           <MySelect
             w={'288px'}
             list={typeSelectList}
@@ -76,27 +76,27 @@ const SetInputFieldModal = ({
           />
         </Flex>
         <Flex mt={5} alignItems={'center'}>
-          <Box flex={'0 0 70px'}>字段名</Box>
+          <Box flex={'0 0 70px'}>Field name</Box>
           <Input
-            placeholder="预约字段/sql语句……"
-            {...register('label', { required: '字段名不能为空' })}
+            placeholder="reservation field/sql statement..."
+            {...register('label', { required: 'The field name cannot be empty' })}
           />
         </Flex>
 
         <Flex mt={5} alignItems={'center'}>
-          <Box flex={'0 0 70px'}>字段 key</Box>
+          <Box flex={'0 0 70px'}>Field key</Box>
           <Input
             placeholder="appointment/sql"
-            {...register('key', { required: '字段 key 不能为空' })}
+            {...register('key', { required: 'field key cannot be empty' })}
           />
         </Flex>
       </ModalBody>
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          Cancel
         </Button>
-        <Button onClick={handleSubmit(onSubmit)}>确认</Button>
+        <Button onClick={handleSubmit(onSubmit)}>Confirm</Button>
       </ModalFooter>
     </MyModal>
   );

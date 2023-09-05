@@ -61,7 +61,7 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
           })
         );
         toast({
-          title: `注册成功`,
+          title: `Registration successful`,
           status: 'success'
         });
         // auto register template app
@@ -74,7 +74,7 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
         });
       } catch (error: any) {
         toast({
-          title: error.message || '注册异常',
+          title: error.message || 'registration exception',
           status: 'error'
         });
       }
@@ -86,19 +86,19 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
   return (
     <>
       <Box fontWeight={'bold'} fontSize={'2xl'} textAlign={'center'}>
-        注册 {feConfigs?.systemTitle} 账号
+        Register {feConfigs?.systemTitle} account
       </Box>
       <form onSubmit={handleSubmit(onclickRegister)}>
         <FormControl mt={5} isInvalid={!!errors.username}>
           <Input
-            placeholder="邮箱/手机号"
+            placeholder="email/mobile phone number"
             size={['md', 'lg']}
             {...register('username', {
-              required: '邮箱/手机号不能为空',
+              required: 'Email/mobile phone number cannot be empty',
               pattern: {
                 value:
                   /(^1[3456789]\d{9}$)|(^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$)/,
-                message: '邮箱/手机号格式错误'
+                message: 'email format error'
               }
             })}
           ></Input>
@@ -111,9 +111,9 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
             <Input
               flex={1}
               size={['md', 'lg']}
-              placeholder="验证码"
+              placeholder="Verification Code"
               {...register('code', {
-                required: '验证码不能为空'
+                required: 'Verification code cannot be empty'
               })}
             ></Input>
             <Button
@@ -135,17 +135,17 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
         <FormControl mt={8} isInvalid={!!errors.password}>
           <Input
             type={'password'}
-            placeholder="密码"
+            placeholder="password"
             size={['md', 'lg']}
             {...register('password', {
-              required: '密码不能为空',
+              required: 'Password cannot be empty',
               minLength: {
                 value: 4,
-                message: '密码最少 4 位最多 20 位'
+                message: 'Password must be at least 4 characters and at most 20 characters'
               },
               maxLength: {
                 value: 20,
-                message: '密码最少 4 位最多 20 位'
+                message: 'Password must be at least 4 characters and at most 20 characters'
               }
             })}
           ></Input>
@@ -156,10 +156,11 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
         <FormControl mt={8} isInvalid={!!errors.password2}>
           <Input
             type={'password'}
-            placeholder="确认密码"
+            placeholder="confirm password"
             size={['md', 'lg']}
             {...register('password2', {
-              validate: (val) => (getValues('password') === val ? true : '两次密码不一致')
+              validate: (val) =>
+                getValues('password') === val ? true : 'The two passwords are inconsistent'
             })}
           ></Input>
           <FormErrorMessage position={'absolute'} fontSize="xs">
@@ -175,7 +176,7 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
           _hover={{ textDecoration: 'underline' }}
           onClick={() => setPageType('login')}
         >
-          已有账号，去登录
+          Already have an account? Log in
         </Box>
         <Button
           type="submit"
@@ -185,7 +186,7 @@ const RegisterForm = ({ setPageType, loginSuccess }: Props) => {
           colorScheme="blue"
           isLoading={requesting}
         >
-          确认注册
+          Confirm registration
         </Button>
       </form>
     </>

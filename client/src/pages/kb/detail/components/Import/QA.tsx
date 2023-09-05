@@ -44,7 +44,7 @@ const QAImport = ({ kbId }: { kbId: string }) => {
   }, [files, unitPrice]);
 
   const { openConfirm, ConfirmModal } = useConfirm({
-    content: `该任务无法终止！导入后会自动调用大模型生成问答对，会有一些细节丢失，请确认！如果余额不足，未完成的任务会被暂停。`
+    content: `The task cannot be terminated! After importing, the large model will be automatically called to generate question and answer pairs, some details will be lost, please confirm! If the balance is insufficient, unfinished tasks will be suspended. `
   });
 
   const { mutate: onclickUpload, isLoading: uploading } = useMutation({
@@ -59,7 +59,7 @@ const QAImport = ({ kbId }: { kbId: string }) => {
           kbId,
           data: chunks.slice(i, i + step),
           mode: TrainingModeEnum.qa,
-          prompt: prompt || '下面是一段长文本'
+          prompt: prompt || 'The following is a long text'
         });
 
         success += insertLen;
@@ -67,7 +67,7 @@ const QAImport = ({ kbId }: { kbId: string }) => {
       }
 
       toast({
-        title: `共导入 ${success} 条数据，请耐心等待训练.`,
+        title: `A total of ${success} pieces of data have been imported, please wait patiently for training.`,
         status: 'success'
       });
 
@@ -80,7 +80,7 @@ const QAImport = ({ kbId }: { kbId: string }) => {
     },
     onError(err) {
       toast({
-        title: getErrText(err, '导入文件失败'),
+        title: getErrText(err, 'Failed to import file'),
         status: 'error'
       });
     }
@@ -109,7 +109,7 @@ const QAImport = ({ kbId }: { kbId: string }) => {
     } catch (error) {
       toast({
         status: 'warning',
-        title: getErrText(error, '文本分段异常')
+        title: getErrText(error, 'Text segmentation exception')
       });
     }
   }, [chunkLen, toast]);
@@ -184,49 +184,52 @@ const QAImport = ({ kbId }: { kbId: string }) => {
             {/* prompt */}
             <Box py={5}>
               <Box mb={2}>
-                QA 拆分引导词{' '}
+                QA split guide words{' '}
                 <MyTooltip
-                  label={`可输入关于文件内容的范围介绍，例如:\n1. Laf 的介绍\n2. xxx的简历\n最终会补全为: 关于{输入的内容}`}
+                  label={`You can input a scope introduction about the content of the file, for example:\n1. Laf’s introduction\n2. xxx’s resume\nIt will be completed as: about {input content}`}
                   forceShow
                 >
                   <QuestionOutlineIcon ml={1} />
                 </MyTooltip>
               </Box>
               <Flex alignItems={'center'} fontSize={'sm'}>
-                <Box mr={2}>关于</Box>
+                <Box mr={2}>About</Box>
                 <Input
                   flex={1}
-                  placeholder={'Laf 云函数的介绍'}
+                  placeholder={'Introduction to Laf cloud functions'}
                   bg={'myWhite.500'}
                   defaultValue={prompt}
-                  onBlur={(e) => (e.target.value ? setPrompt(`关于"${e.target.value}"`) : '')}
+                  onBlur={(e) => (e.target.value ? setPrompt(`about "${e.target.value}"`) : '')}
                 />
               </Flex>
             </Box>
             {/* price */}
             <Flex py={5} alignItems={'center'}>
               <Box>
-                预估价格
+                estimated price
                 <MyTooltip
-                  label={`索引生成计费为: ${formatPrice(unitPrice, 1000)}/1k tokens`}
+                  label={`The billing for index generation is: ${formatPrice(
+                    unitPrice,
+                    1000
+                  )}/1k tokens`}
                   forceShow
                 >
                   <QuestionOutlineIcon ml={1} />
                 </MyTooltip>
               </Box>
-              <Box ml={4}>{price}元</Box>
+              <Box ml={4}>{price}yuan</Box>
             </Flex>
             <Flex mt={3}>
               {showRePreview && (
                 <Button variant={'base'} mr={4} onClick={onRePreview}>
-                  重新生成预览
+                  Regenerate preview
                 </Button>
               )}
               <Button isDisabled={uploading} onClick={openConfirm(onclickUpload)}>
                 {uploading ? (
                   <Box>{Math.round((successChunks / totalChunk) * 100)}%</Box>
                 ) : (
-                  '确认导入'
+                  'Confirm Import'
                 )}
               </Button>
             </Flex>
@@ -285,11 +288,11 @@ const QAImport = ({ kbId }: { kbId: string }) => {
             <Box h={'100%'} pt={[4, 8]} overflow={'overlay'}>
               <Flex px={[4, 8]} alignItems={'center'}>
                 <Box fontSize={['lg', 'xl']} fontWeight={'bold'}>
-                  分段预览({totalChunk}组)
+                  Chunk preview ({totalChunk} group)
                 </Box>
                 {totalChunk > 100 && (
                   <Box ml={2} fontSize={'sm'} color={'myhGray.500'}>
-                    仅展示部分
+                    Show only part
                   </Box>
                 )}
               </Flex>
@@ -307,7 +310,7 @@ const QAImport = ({ kbId }: { kbId: string }) => {
                     >
                       <Flex mb={1} px={4} userSelect={'none'}>
                         <Box px={3} py={'1px'} border={theme.borders.base} borderRadius={'md'}>
-                          # {i + 1}
+                          #{i + 1}
                         </Box>
                         <Box ml={2} fontSize={'sm'} color={'myhGray.500'} {...filenameStyles}>
                           {file.filename}

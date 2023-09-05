@@ -23,7 +23,7 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-// Create a client
+//Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

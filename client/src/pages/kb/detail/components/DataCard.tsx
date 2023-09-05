@@ -29,7 +29,7 @@ const DataCard = ({ kbId }: { kbId: string }) => {
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
   const { openConfirm, ConfirmModal } = useConfirm({
-    content: t('dataset.Confirm to delete the data')
+    content: t('dataset. Confirm to delete the data')
   });
 
   const {
@@ -86,13 +86,13 @@ const DataCard = ({ kbId }: { kbId: string }) => {
         filename: 'data.csv'
       });
       toast({
-        title: '导出成功，下次导出需要半小时后',
+        title: 'The export was successful, the next export will take half an hour',
         status: 'success'
       });
     },
     onError(err: any) {
       toast({
-        title: getErrText(err, '导出异常'),
+        title: getErrText(err, 'export exception'),
         status: 'error'
       });
       console.log(err);
@@ -117,10 +117,10 @@ const DataCard = ({ kbId }: { kbId: string }) => {
     <Box ref={BoxRef} position={'relative'} px={5} py={[1, 5]} h={'100%'} overflow={'overlay'}>
       <Flex justifyContent={'space-between'}>
         <Box fontWeight={'bold'} fontSize={'lg'} mr={2}>
-          知识库数据: {total}组
+          Knowledge base data: {total} group
         </Box>
         <Box>
-          <MyTooltip label={'刷新'}>
+          <MyTooltip label={'Refresh'}>
             <IconButton
               icon={<RepeatIcon />}
               aria-label={'refresh'}
@@ -141,29 +141,29 @@ const DataCard = ({ kbId }: { kbId: string }) => {
             borderColor={'myBlue.600'}
             color={'myBlue.600'}
             isLoading={isLoadingExport || isLoading}
-            title={'半小时仅能导出1次'}
+            title={'Only export once in half an hour'}
             onClick={() => onclickExport()}
           >
-            导出数据
+            export data
           </Button>
         </Box>
       </Flex>
       <Flex my={4}>
         {qaListLen > 0 || vectorListLen > 0 ? (
           <Box fontSize={'xs'}>
-            {qaListLen > 0 ? `${qaListLen}条数据正在拆分，` : ''}
-            {vectorListLen > 0 ? `${vectorListLen}条数据正在生成索引，` : ''}
-            请耐心等待...
+            {qaListLen > 0 ? `${qaListLen} pieces of data are being split, ` : ''}
+            {vectorListLen > 0 ? `${vectorListLen} pieces of data are generating indexes, ` : ''}
+            Please wait...
           </Box>
         ) : (
-          <Box fontSize={'xs'}>所有数据已就绪~</Box>
+          <Box fontSize={'xs'}>All data is ready~</Box>
         )}
         <Box flex={1} mr={1} />
         <Input
           maxW={['60%', '300px']}
           size={'sm'}
           value={searchText}
-          placeholder="根据匹配知识，预期答案和来源进行搜索"
+          placeholder="Search based on matching knowledge, expected answer and source"
           onChange={(e) => {
             setSearchText(e.target.value);
             getFirstData();
@@ -193,7 +193,7 @@ const DataCard = ({ kbId }: { kbId: string }) => {
             userSelect={'none'}
             boxShadow={'none'}
             _hover={{ boxShadow: 'lg', '& .delete': { display: 'flex' } }}
-            border={'1px solid '}
+            border={'1px solid'}
             borderColor={'myGray.200'}
             onClick={() =>
               setEditInputData({
@@ -261,7 +261,7 @@ const DataCard = ({ kbId }: { kbId: string }) => {
         <Flex flexDirection={'column'} alignItems={'center'} pt={'10vh'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            知识库空空如也
+            The knowledge base is empty
           </Box>
         </Flex>
       )}

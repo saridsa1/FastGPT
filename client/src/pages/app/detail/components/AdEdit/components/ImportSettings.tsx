@@ -17,7 +17,7 @@ const ImportSettings = ({
   const [value, setValue] = useState('');
 
   return (
-    <MyModal isOpen w={'600px'} onClose={onClose} title={t('app.Import Config')}>
+    <MyModal isOpen w={'600px'} onClose={onClose} title={t('app. Import Config')}>
       <ModalBody>
         <Textarea
           placeholder={t('app.Paste Config') || 'app.Paste Config'}
@@ -44,7 +44,7 @@ const ImportSettings = ({
             }
           }}
         >
-          确认
+          confirm
         </Button>
       </ModalFooter>
     </MyModal>

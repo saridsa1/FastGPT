@@ -63,7 +63,7 @@ const UserInfo = () => {
       });
       reset(data);
       toast({
-        title: '更新数据成功',
+        title: 'Data updated successfully',
         status: 'success'
       });
     },
@@ -87,7 +87,7 @@ const UserInfo = () => {
         });
       } catch (err: any) {
         toast({
-          title: typeof err === 'string' ? err : '头像选择异常',
+          title: typeof err === 'string' ? err : 'Avatar selection exception',
           status: 'warning'
         });
       }
@@ -109,7 +109,7 @@ const UserInfo = () => {
         cursor={'pointer'}
         onClick={onOpenSelectFile}
       >
-        <MyTooltip label={'更换头像'}>
+        <MyTooltip label={'Change avatar'}>
           <Box
             w={['44px', '54px']}
             h={['44px', '54px']}
@@ -124,7 +124,7 @@ const UserInfo = () => {
 
         <Flex alignItems={'center'} fontSize={'sm'} color={'myGray.600'}>
           <MyIcon mr={1} name={'edit'} w={'14px'} />
-          {t('user.Replace')}
+          {t('user. Replace')}
         </Flex>
       </Flex>
       <Box
@@ -135,33 +135,33 @@ const UserInfo = () => {
         mt={[6, 0]}
       >
         <Flex alignItems={'center'} w={['85%', '300px']}>
-          <Box flex={'0 0 50px'}>{t('user.Account')}:&nbsp;</Box>
+          <Box flex={'0 0 50px'}>{t('user.Account')}: </Box>
           <Box flex={1}>{userInfo?.username}</Box>
         </Flex>
         <Flex mt={6} alignItems={'center'} w={['85%', '300px']}>
-          <Box flex={'0 0 50px'}>{t('user.Password')}:&nbsp;</Box>
-          <Box flex={1}>*****</Box>
+          <Box flex={'0 0 50px'}>{t('user.Password')}: </Box>
+          <Box flex={1}>******</Box>
           <Button size={['sm', 'md']} variant={'base'} ml={5} onClick={onOpenUpdatePsw}>
-            {t('user.Change')}
+            {t('user. Change')}
           </Button>
         </Flex>
         {feConfigs?.show_userDetail && (
           <>
             <Box mt={6} whiteSpace={'nowrap'} w={['85%', '300px']}>
               <Flex alignItems={'center'}>
-                <Box flex={'0 0 50px'}>{t('user.Balance')}:&nbsp;</Box>
+                <Box flex={'0 0 50px'}>{t('user.Balance')}: </Box>
                 <Box flex={1}>
-                  <strong>{userInfo?.balance.toFixed(3)}</strong> 元
+                  <strong>{userInfo?.balance.toFixed(3)}</strong> yuan
                 </Box>
                 <Button size={['sm', 'md']} ml={5} onClick={onOpenPayModal}>
-                  {t('user.Pay')}
+                  {t('user. Pay')}
                 </Button>
               </Flex>
             </Box>
 
             <Divider my={3} />
 
-            <MyTooltip label={'点击配置账号'}>
+            <MyTooltip label={'Click to configure account'}>
               <Flex
                 w={['85%', '300px']}
                 py={3}
@@ -177,7 +177,7 @@ const UserInfo = () => {
               >
                 <Avatar src={'/imgs/openai.png'} w={'18px'} />
                 <Box ml={2} flex={1}>
-                  OpenAI 账号
+                  OpenAI account
                 </Box>
                 <Box
                   w={'9px'}

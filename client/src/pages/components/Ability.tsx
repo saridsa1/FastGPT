@@ -35,7 +35,7 @@ const Ability = () => {
         fontSize={['22px', '30px']}
         fontWeight={'bold'}
       >
-        {t('home.FastGPT Ability', { title: feConfigs.systemTitle })}
+        {t('home. FastGPT Ability', { title: feConfigs.systemTitle })}
       </Box>
       <Grid px={[5, 0]} minH={'400px'} gridTemplateColumns={['1fr', `500px 1fr`]} gridGap={6}>
         <Box
@@ -46,7 +46,7 @@ const Ability = () => {
             {t('home.AI Assistant')}
           </Box>
           <Box {...DescStyles} color={'rgba(255,255,255,0.9)'}>
-            {t('home.AI Assistant Desc')}
+            {t('home. AI Assistant Desc')}
           </Box>
           <Image
             src="/imgs/home/ai_assiatant.png"
@@ -62,10 +62,10 @@ const Ability = () => {
           backgroundImage={'linear-gradient(120deg, #3370ff 0%, #4e83fd 100%)'}
         >
           <Box {...TitleStyles} color={'white'}>
-            {t('home.Dateset')}
+            {t('home. Dateset')}
           </Box>
           <Box {...DescStyles} color={'rgba(255,255,255,0.9)'}>
-            {t('home.Dateset Desc')}
+            {t('home. Dateset Desc')}
           </Box>
           <Image
             src="/imgs/home/dataset_import.png"
@@ -84,9 +84,9 @@ const Ability = () => {
         gridGap={6}
       >
         <Box {...CardStyles} backgroundImage={'linear-gradient(to top, #6a85b6 0%, #bac8e0 100%)'}>
-          <Box {...TitleStyles}>{t('home.Advanced Settings')}</Box>
+          <Box {...TitleStyles}>{t('home. Advanced Settings')}</Box>
           <Box {...DescStyles} fontSize={['sm', 'md']}>
-            {t('home.Advanced Settings Desc')}
+            {t('home. Advanced Settings Desc')}
           </Box>
           <Image src="/imgs/home/advanced_settings.png" alt={''} w={'100%'} />
         </Box>
@@ -95,7 +95,7 @@ const Ability = () => {
           pb={4}
           backgroundImage={'linear-gradient(to right, #FDCBB1 0%, #FEE5D8 100%)'}
         >
-          <Box {...TitleStyles}>{t('home.OpenAPI')}</Box>
+          <Box {...TitleStyles}>{t('home. OpenAPI')}</Box>
           <Box {...DescStyles}>{t('home.OpenAPI Desc')}</Box>
           <Image src="/imgs/home/openapi.png" alt={''} w={'90%'} mx={'auto'} borderRadius={'lg'} />
         </Box>

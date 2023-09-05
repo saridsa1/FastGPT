@@ -14,7 +14,7 @@ const ToolMenu = ({ history }: { history: ChatItemType[] }) => {
     () => [
       {
         icon: 'chat',
-        label: '新对话',
+        label: 'New dialogue',
         onClick: () => {
           router.replace({
             query: {
@@ -26,15 +26,15 @@ const ToolMenu = ({ history }: { history: ChatItemType[] }) => {
       },
       {
         icon: 'apiLight',
-        label: 'HTML导出',
+        label: 'HTML export',
         onClick: () => onExportChat({ type: 'html', history })
       },
       {
         icon: 'markdown',
-        label: 'Markdown导出',
+        label: 'Markdown export',
         onClick: () => onExportChat({ type: 'md', history })
       },
-      { icon: 'pdf', label: 'PDF导出', onClick: () => onExportChat({ type: 'pdf', history }) }
+      { icon: 'pdf', label: 'PDF export', onClick: () => onExportChat({ type: 'pdf', history }) }
     ],
     [appId, history, onExportChat, router, shareId]
   );
@@ -42,7 +42,7 @@ const ToolMenu = ({ history }: { history: ChatItemType[] }) => {
   return history.length > 0 ? (
     <Menu autoSelect={false} isLazy>
       <MenuButton
-        _hover={{ bg: 'myWhite.600  ' }}
+        _hover={{ bg: 'myWhite.600 ' }}
         cursor={'pointer'}
         borderRadius={'md'}
         onClick={(e) => {

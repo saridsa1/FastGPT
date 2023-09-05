@@ -30,8 +30,9 @@ const Kb = () => {
   const router = useRouter();
   const { toast } = useToast();
   const { openConfirm, ConfirmModal } = useConfirm({
-    title: '删除提示',
-    content: '确认删除该知识库？知识库相关的文件、记录将永久删除，无法恢复！'
+    title: 'Delete Tip',
+    content:
+      'Confirm to delete this knowledge base? The files and records related to the knowledge base will be permanently deleted and cannot be recovered! '
   });
   const { myKbList, loadKbList, setKbList } = useUserStore();
 
@@ -43,19 +44,19 @@ const Kb = () => {
 
   const { refetch } = useQuery(['loadKbList'], () => loadKbList());
 
-  /* 点击删除 */
+  /* Click to delete */
   const onclickDelKb = useCallback(
     async (id: string) => {
       try {
         delKbById(id);
         toast({
-          title: '删除成功',
+          title: 'Delete successfully',
           status: 'success'
         });
         setKbList(myKbList.filter((item) => item._id !== id));
       } catch (err: any) {
         toast({
-          title: err?.message || '删除失败',
+          title: err?.message || 'Delete failed',
           status: 'error'
         });
       }
@@ -67,10 +68,10 @@ const Kb = () => {
     <PageContainer>
       <Flex pt={3} px={5} alignItems={'center'}>
         <Box flex={1} className="textlg" letterSpacing={1} fontSize={'24px'} fontWeight={'bold'}>
-          我的知识库
+          my knowledge base
         </Box>
         <Button leftIcon={<AddIcon />} variant={'base'} onClick={onOpenCreateModal}>
-          新建
+          new build
         </Button>
       </Flex>
       <Grid
@@ -150,7 +151,7 @@ const Kb = () => {
         <Flex mt={'35vh'} flexDirection={'column'} alignItems={'center'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            还没有知识库，快去创建一个吧！
+            No knowledge base yet, create one now!
           </Box>
         </Flex>
       )}

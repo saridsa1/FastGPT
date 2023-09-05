@@ -24,7 +24,7 @@ const NodeUserGuide = ({ data }: NodeProps<FlowModuleItemType>) => {
           <>
             <Flex mb={1} alignItems={'center'}>
               <MyIcon name={'welcomeText'} mr={2} w={'16px'} color={'#E74694'} />
-              <Box>开场白</Box>
+              <Box>Opening remarks</Box>
               <MyTooltip label={welcomeTextTip} forceShow>
                 <QuestionOutlineIcon display={['none', 'inline']} ml={1} />
               </MyTooltip>

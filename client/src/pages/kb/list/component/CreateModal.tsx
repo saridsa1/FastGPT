@@ -52,7 +52,7 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
         setRefresh((state) => !state);
       } catch (err: any) {
         toast({
-          title: getErrText(err, '头像选择异常'),
+          title: getErrText(err, 'Avatar selection exception'),
           status: 'warning'
         });
       }
@@ -66,8 +66,8 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
       const id = await postCreateKb(data);
       return id;
     },
-    successToast: '创建成功',
-    errorToast: '创建知识库出现意外',
+    successToast: 'Created successfully',
+    errorToast: 'An accident occurred while creating the knowledge base',
     onSuccess(id) {
       router.push(`/kb/detail?kbId=${id}`);
     }
@@ -75,13 +75,13 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <MyModal isOpen onClose={onClose} isCentered={!isPc} w={'400px'}>
-      <ModalHeader fontSize={'2xl'}>创建一个知识库</ModalHeader>
+      <ModalHeader fontSize={'2xl'}>Create a knowledge base</ModalHeader>
       <ModalBody>
         <Box color={'myGray.800'} fontWeight={'bold'}>
-          取个名字
+          take a name
         </Box>
         <Flex mt={3} alignItems={'center'}>
-          <MyTooltip label={'点击设置头像'}>
+          <MyTooltip label={'Click to set avatar'}>
             <Avatar
               flexShrink={0}
               src={getValues('avatar')}
@@ -98,12 +98,12 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
             autoFocus
             bg={'myWhite.600'}
             {...register('name', {
-              required: '知识库名称不能为空~'
+              required: 'Knowledge base name cannot be empty~'
             })}
           />
         </Flex>
         <Flex mt={6} alignItems={'center'}>
-          <Box flex={'0 0 80px'}>索引模型</Box>
+          <Box flex={'0 0 80px'}>Index model</Box>
           <Box flex={1}>
             <MySelect
               w={'100%'}
@@ -121,15 +121,15 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
         </Flex>
         <Flex mt={6} alignItems={'center'} w={'100%'}>
           <Box flex={'0 0 80px'}>
-            标签
-            <MyTooltip label={'用空格隔开多个标签，便于搜索'} forceShow>
+            Label
+            <MyTooltip label={'Separate multiple labels with spaces for easy search'} forceShow>
               <QuestionOutlineIcon ml={1} />
             </MyTooltip>
           </Box>
           <Input
             flex={1}
             ref={InputRef}
-            placeholder={'标签,使用空格分割。'}
+            placeholder={' label, separated by spaces. '}
             maxLength={30}
             onChange={(e) => {
               setValue('tags', e.target.value.split(' '));
@@ -150,10 +150,10 @@ const CreateModal = ({ onClose }: { onClose: () => void }) => {
 
       <ModalFooter>
         <Button variant={'base'} mr={3} onClick={onClose}>
-          取消
+          Cancel
         </Button>
         <Button isLoading={creating} onClick={handleSubmit((data) => onclickCreate(data))}>
-          确认创建
+          Confirm creation
         </Button>
       </ModalFooter>
 

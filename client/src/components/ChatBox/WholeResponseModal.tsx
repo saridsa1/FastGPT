@@ -36,10 +36,10 @@ const ResponseModal = ({
       minW={['90vw', '600px']}
       title={
         <Flex alignItems={'center'}>
-          {t('chat.Complete Response')}
+          {t('chat. Complete Response')}
           <MyTooltip
             label={
-              'moduleName: 模型名\nprice: 价格，倍率：100000\nmodel?: 模型名\ntokens?: token 消耗\n\nanswer?: 回答内容\nquestion?: 问题\ntemperature?: 温度\nmaxToken?: 最大 tokens\n\nsimilarity?: 相似度\nlimit?: 单次搜索结果\n\ncqList?: 问题分类列表\ncqResult?: 分类结果\n\nextractDescription?: 内容提取描述\nextractResult?: 提取结果'
+              'moduleName: model name\nprice: price, multiplier: 100000\nmodel?: model name\ntokens?: token consumption\n\nanswer?: answer content\nquestion?: question\ntemperature?: temperature\nmaxToken?: maximum tokens n\nsimilarity?: similarity\nlimit?: single search result\n\ncqList?: question classification list\ncqResult?: classification result\n\nextractDescription?: content extraction description\nextractResult?: extraction result'
             }
           >
             <QuestionOutlineIcon ml={2} />

@@ -13,7 +13,7 @@ const modelList = () => {
   const { Loading } = useLoading();
   const lastSearch = useRef('');
   const [searchText, setSearchText] = useState('');
-  /* 加载模型 */
+  /* Load the model */
   const {
     data: models,
     isLoading,
@@ -44,22 +44,22 @@ const modelList = () => {
     <Box px={[5, 10]} py={[4, 6]} position={'relative'} minH={'109vh'}>
       <Flex alignItems={'center'} mb={2}>
         <Box className={'textlg'} fontWeight={'bold'} fontSize={'3xl'}>
-          AI 应用市场
+          AI application market
         </Box>
         {/* <Box mt={[2, 0]} textAlign={'right'}>
           <Input
             w={['200px', '250px']}
             size={'sm'}
             value={searchText}
-            placeholder="搜索应用，回车确认"
+            placeholder="Search for applications and press Enter to confirm"
             onChange={(e) => setSearchText(e.target.value)}
             onBlur={() => {
-              if (searchText === lastSearch.current) return;
+              if (searchText === lastSearch. current) return;
               getData(1);
               lastSearch.current = searchText;
             }}
             onKeyDown={(e) => {
-              if (searchText === lastSearch.current) return;
+              if (searchText === lastSearch. current) return;
               if (e.key === 'Enter') {
                 getData(1);
                 lastSearch.current = searchText;

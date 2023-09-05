@@ -60,9 +60,9 @@ export const useEditInfo = ({
         </ModalBody>
         <ModalFooter>
           <Button mr={3} variant={'base'} onClick={onClose}>
-            取消
+            Cancel
           </Button>
-          <Button onClick={onclickConfirm}>确认</Button>
+          <Button onClick={onclickConfirm}>Confirm</Button>
         </ModalFooter>
       </MyModal>
     ),

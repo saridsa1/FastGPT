@@ -34,7 +34,7 @@ const ImportData = ({ kbId }: { kbId: string }) => {
   return (
     <Flex flexDirection={'column'} h={'100%'} pt={[1, 5]}>
       <Box {...TitleStyle} px={[4, 8]}>
-        数据导入方式
+        Data import method
       </Box>
       <Box pb={[5, 7]} px={[4, 8]} borderBottom={theme.borders.base}>
         <MyRadio
@@ -42,26 +42,26 @@ const ImportData = ({ kbId }: { kbId: string }) => {
           list={[
             {
               icon: 'manualImport',
-              title: '手动输入',
-              desc: '手动输入问答对，是最精准的数据',
+              title: 'Manual input',
+              desc: 'Manually enter the question and answer pair, which is the most accurate data',
               value: ImportTypeEnum.manual
             },
             {
               icon: 'indexImport',
-              title: '直接分段',
-              desc: '选择文本文件，直接将其按分段进行处理',
+              title: 'Direct segment',
+              desc: 'Select a text file and process it directly in segments',
               value: ImportTypeEnum.index
             },
             {
               icon: 'qaImport',
-              title: 'QA拆分',
-              desc: '选择文本文件，让大模型自动生成问答对',
+              title: 'QA Split',
+              desc: 'Select a text file and let the large model automatically generate question and answer pairs',
               value: ImportTypeEnum.qa
             },
             {
               icon: 'csvImport',
-              title: 'CSV 导入',
-              desc: '批量导入问答对，是最精准的数据',
+              title: 'CSV Import',
+              desc: 'Import question and answer pairs in batches, which is the most accurate data',
               value: ImportTypeEnum.csv
             }
           ]}

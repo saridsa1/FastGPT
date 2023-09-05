@@ -33,13 +33,13 @@ const NodeHttp = ({ data }: NodeProps<FlowModuleItemType>) => {
                 key,
                 valueType: FlowValueTypeEnum.string,
                 type: FlowInputItemTypeEnum.target,
-                label: `入参${inputs.length - 1}`,
+                label: `Input parameter ${inputs.length - 1}`,
                 edit: true
               }
             });
           }}
         >
-          添加入参
+          Add input parameters
         </Button>
       </Container>
       <Divider text="Output" />
@@ -58,7 +58,7 @@ const NodeHttp = ({ data }: NodeProps<FlowModuleItemType>) => {
                 value: [
                   {
                     key,
-                    label: `出参${outputs.length}`,
+                    label: `Output parameter ${outputs.length}`,
                     valueType: FlowValueTypeEnum.string,
                     type: FlowOutputItemTypeEnum.source,
                     edit: true,
@@ -68,7 +68,7 @@ const NodeHttp = ({ data }: NodeProps<FlowModuleItemType>) => {
               });
             }}
           >
-            添加出参
+            Add parameters
           </Button>
         </Box>
       </Container>

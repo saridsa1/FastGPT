@@ -57,7 +57,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
   }, [files, unitPrice]);
 
   const { openConfirm, ConfirmModal } = useConfirm({
-    content: `该任务无法终止，需要一定时间生成索引，请确认导入。如果余额不足，未完成的任务会被暂停，充值后可继续进行。`
+    content: `This task cannot be terminated and it will take some time to generate the index. Please confirm the import. If the balance is insufficient, unfinished tasks will be suspended and can be continued after recharging. `
   });
 
   const { mutate: onclickUpload, isLoading: uploading } = useMutation({
@@ -79,7 +79,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
       }
 
       toast({
-        title: `去重后共导入 ${success} 条数据，请耐心等待训练.`,
+        title: `After deduplication, a total of ${success} pieces of data were imported, please wait patiently for training.`,
         status: 'success'
       });
 
@@ -92,7 +92,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
     },
     onError(err) {
       toast({
-        title: getErrText(err, '导入文件失败'),
+        title: getErrText(err, 'Failed to import file'),
         status: 'error'
       });
     }
@@ -121,7 +121,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
     } catch (error) {
       toast({
         status: 'warning',
-        title: getErrText(error, '文本分段异常')
+        title: getErrText(error, 'Text segmentation error')
       });
     }
   }, [chunkLen, toast]);
@@ -167,7 +167,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
                   alignItems={'center'}
                   _hover={{
                     bg: 'myBlue.100',
-                    '& .delete': {
+                    '&.delete': {
                       display: 'block'
                     }
                   }}
@@ -196,10 +196,10 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
             {/* chunk size */}
             <Flex py={5} alignItems={'center'}>
               <Box>
-                段落长度
+                paragraph length
                 <MyTooltip
                   label={
-                    '按结束标点符号进行分段。前后段落会有 30% 的内容重叠。\n中文文档建议不要超过800，英文不要超过1500'
+                    'Segment by closing punctuation. There will be 30% content overlap between preceding and following paragraphs. \nIt is recommended that the Chinese document should not exceed 800, and the English document should not exceed 1500'
                   }
                   forceShow
                 >
@@ -214,7 +214,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
                   }
                 }}
               >
-                <MyTooltip label={`范围: 100~${kbDetail.vectorModel.maxToken}`}>
+                <MyTooltip label={`Range: 100~${kbDetail.vectorModel.maxToken}`}>
                   <NumberInput
                     ml={4}
                     defaultValue={chunkLen}
@@ -238,27 +238,27 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
             {/* price */}
             <Flex py={5} alignItems={'center'}>
               <Box>
-                预估价格
+                estimated price
                 <MyTooltip
-                  label={`索引生成计费为: ${formatPrice(unitPrice, 1000)}/1k tokens`}
+                  label={`Index generation billing is: ${formatPrice(unitPrice, 1000)}/1k tokens`}
                   forceShow
                 >
                   <QuestionOutlineIcon ml={1} />
                 </MyTooltip>
               </Box>
-              <Box ml={4}>{price}元</Box>
+              <Box ml={4}>{price}yuan</Box>
             </Flex>
             <Flex mt={3}>
               {showRePreview && (
                 <Button variant={'base'} mr={4} onClick={onRePreview}>
-                  重新生成预览
+                  Regenerate preview
                 </Button>
               )}
               <Button isDisabled={uploading} onClick={openConfirm(onclickUpload)}>
                 {uploading ? (
                   <Box>{Math.round((successChunks / totalChunk) * 100)}%</Box>
                 ) : (
-                  '确认导入'
+                  'Confirm import'
                 )}
               </Button>
             </Flex>
@@ -318,11 +318,11 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
             <Box h={'100%'} pt={[4, 8]} overflow={'overlay'}>
               <Flex px={[4, 8]} alignItems={'center'}>
                 <Box fontSize={['lg', 'xl']} fontWeight={'bold'}>
-                  分段预览({totalChunk}组)
+                  Segment preview ({totalChunk} group)
                 </Box>
                 {totalChunk > 100 && (
                   <Box ml={2} fontSize={'sm'} color={'myhGray.500'}>
-                    仅展示部分
+                    Show only part
                   </Box>
                 )}
               </Flex>
@@ -346,7 +346,7 @@ const ChunkImport = ({ kbId }: { kbId: string }) => {
                           border={theme.borders.base}
                           borderRadius={'md'}
                         >
-                          # {i + 1}
+                          #{i + 1}
                         </Box>
                         <Box ml={2} fontSize={'sm'} color={'myhGray.500'} {...filenameStyles}>
                           {file.filename}

@@ -19,7 +19,7 @@ const DeleteIcon = (props: IconProps) => {
 export default DeleteIcon;
 
 export const hoverDeleteStyles = {
-  '& .delete': {
+  '&.delete': {
     display: 'block'
   }
 };

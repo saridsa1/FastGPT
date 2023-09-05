@@ -60,10 +60,11 @@ const APIKeyModal = ({ onClose }: { onClose: () => void }) => {
     <MyModal isOpen onClose={onClose} w={'600px'}>
       <Box py={3} px={5}>
         <Box fontWeight={'bold'} fontSize={'2xl'}>
-          API 秘钥管理
+          API key management
         </Box>
         <Box fontSize={'sm'} color={'myGray.600'}>
-          如果你不想 API 秘钥被滥用，请勿将秘钥直接放置在前端使用~
+          If you dont want the API key to be abused, please dont put the key directly on the front
+          end
         </Box>
       </Box>
       <ModalBody minH={'300px'} maxH={['70vh', '500px']} overflow={'overlay'}>
@@ -72,8 +73,8 @@ const APIKeyModal = ({ onClose }: { onClose: () => void }) => {
             <Thead>
               <Tr>
                 <Th>Api Key</Th>
-                <Th>创建时间</Th>
-                <Th>最后一次使用时间</Th>
+                <Th>Creation time</Th>
+                <Th>Last use time</Th>
                 <Th />
               </Tr>
             </Thead>
@@ -83,9 +84,7 @@ const APIKeyModal = ({ onClose }: { onClose: () => void }) => {
                   <Td>{apiKey}</Td>
                   <Td>{dayjs(createTime).format('YYYY/MM/DD HH:mm:ss')}</Td>
                   <Td>
-                    {lastUsedTime
-                      ? dayjs(lastUsedTime).format('YYYY/MM/DD HH:mm:ss')
-                      : '没有使用过'}
+                    {lastUsedTime ? dayjs(lastUsedTime).format('YYYY/MM/DD HH:mm:ss') : 'Not used'}
                   </Td>
                   <Td>
                     <IconButton
@@ -110,7 +109,7 @@ const APIKeyModal = ({ onClose }: { onClose: () => void }) => {
           leftIcon={<AddIcon color={'myGray.600'} fontSize={'sm'} />}
           onClick={() => onclickCreateApiKey()}
         >
-          新建秘钥
+          new key
         </Button>
       </ModalFooter>
 
@@ -118,10 +117,10 @@ const APIKeyModal = ({ onClose }: { onClose: () => void }) => {
       <MyModal isOpen={!!apiKey} w={'400px'} onClose={() => setApiKey('')}>
         <Box py={3} px={5}>
           <Box fontWeight={'bold'} fontSize={'2xl'}>
-            新的 API 秘钥
+            new API key
           </Box>
           <Box fontSize={'sm'} color={'myGray.600'}>
-            请保管好你的秘钥，秘钥不会再次展示~
+            Please keep your secret key safe, the secret key will not be displayed again
           </Box>
         </Box>
         <ModalBody>
@@ -132,7 +131,7 @@ const APIKeyModal = ({ onClose }: { onClose: () => void }) => {
         </ModalBody>
         <ModalFooter>
           <Button variant="base" onClick={() => setApiKey('')}>
-            好的
+            OK
           </Button>
         </ModalFooter>
       </MyModal>

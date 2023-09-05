@@ -21,7 +21,7 @@ const ModuleTemplateList = ({
   const { isPc } = useGlobalStore();
 
   const filterTemplates = useMemo(() => {
-    const guideModulesIndex = ModuleTemplates.findIndex((item) => item.label === '引导模块');
+    const guideModulesIndex = ModuleTemplates.findIndex((item) => item.label === 'Guide Module');
     const guideModule: {
       label: string;
       list: FlowModuleTemplateType[];
@@ -76,7 +76,7 @@ const ModuleTemplateList = ({
         userSelect={'none'}
       >
         <Box w={['100%', '330px']} py={4} px={5} fontSize={'xl'} fontWeight={'bold'}>
-          系统模块
+          system module
         </Box>
         <Box flex={'1 0 0'} overflow={'overlay'}>
           <Box w={['100%', '330px']} mx={'auto'}>

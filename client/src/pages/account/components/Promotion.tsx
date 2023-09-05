@@ -71,12 +71,12 @@ const Promotion = () => {
           <Box {...titleStyles}>{invitedAmount}</Box>
         </Box>
         <Box {...statisticsStyles}>
-          <Box>{t('user.Amount of earnings')}</Box>
+          <Box>{t('user. Amount of earnings')}</Box>
           <Box {...titleStyles}>{earningsAmount}</Box>
         </Box>
         <Box {...statisticsStyles}>
           <Flex alignItems={'center'} justifyContent={'center'}>
-            <Box>{t('user.Promotion Rate')}</Box>
+            <Box>{t('user. Promotion Rate')}</Box>
             <MyTooltip label={t('user.Promotion rate tip')}>
               <QuestionOutlineIcon ml={1} />
             </MyTooltip>
@@ -85,7 +85,7 @@ const Promotion = () => {
         </Box>
         <Box {...statisticsStyles}>
           <Flex alignItems={'center'} justifyContent={'center'}>
-            <Box>{t('user.Invite Url')}</Box>
+            <Box>{t('user. Invite Url')}</Box>
             <MyTooltip label={t('user.Invite url tip')}>
               <QuestionOutlineIcon ml={1} />
             </MyTooltip>
@@ -98,7 +98,7 @@ const Promotion = () => {
               copyData(`${location.origin}/?hiId=${userInfo?._id}`);
             }}
           >
-            {t('user.Copy invite url')}
+            {t('user. Copy invite url')}
           </Button>
         </Box>
       </Grid>
@@ -107,9 +107,9 @@ const Promotion = () => {
           <Table>
             <Thead>
               <Tr>
-                <Th>时间</Th>
-                <Th>类型</Th>
-                <Th>金额(￥)</Th>
+                <Th>Time</Th>
+                <Th>Type</Th>
+                <Th>Amount(￥)</Th>
               </Tr>
             </Thead>
             <Tbody fontSize={'sm'}>
@@ -130,7 +130,7 @@ const Promotion = () => {
           <Flex mt={'10vh'} flexDirection={'column'} alignItems={'center'}>
             <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
             <Box mt={2} color={'myGray.500'}>
-              无邀请记录~
+              No invitation record~
             </Box>
           </Flex>
         )}

@@ -64,7 +64,7 @@ const PayRecordTable = () => {
         <Flex h={'100%'} flexDirection={'column'} alignItems={'center'} justifyContent={'center'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            无支付记录~
+            No payment record~
           </Box>
         </Flex>
       ) : (
@@ -72,10 +72,10 @@ const PayRecordTable = () => {
           <Table>
             <Thead>
               <Tr>
-                <Th>订单号</Th>
-                <Th>时间</Th>
-                <Th>金额</Th>
-                <Th>状态</Th>
+                <Th>Order Number</Th>
+                <Th>Time</Th>
+                <Th>Amount</Th>
+                <Th>Status</Th>
                 <Th></Th>
               </Tr>
             </Thead>
@@ -86,12 +86,12 @@ const PayRecordTable = () => {
                   <Td>
                     {item.createTime ? dayjs(item.createTime).format('YYYY/MM/DD HH:mm:ss') : '-'}
                   </Td>
-                  <Td>{formatPrice(item.price)}元</Td>
+                  <Td>{formatPrice(item.price)}yuan</Td>
                   <Td>{item.status}</Td>
                   <Td>
                     {item.status === 'NOTPAY' && (
                       <Button onClick={() => handleRefreshPayOrder(item._id)} size={'sm'}>
-                        更新
+                        renew
                       </Button>
                     )}
                   </Td>

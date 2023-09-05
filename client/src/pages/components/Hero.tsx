@@ -52,7 +52,7 @@ const Hero = () => {
           w={'150px'}
           onClick={() => router.push(`/app/list`)}
         >
-          {t('home.Start Now')}
+          {t('home. Start Now')}
         </Button>
       </Flex>
       <Box mt={['', '-50px']} position={'relative'}>
@@ -74,7 +74,7 @@ const Hero = () => {
           transform={['translate(-50%,5px)', 'translate(-50%,40px)']}
           onClick={() => {
             toast({
-              title: '录制中~'
+              title: 'Recording~'
             });
           }}
         />

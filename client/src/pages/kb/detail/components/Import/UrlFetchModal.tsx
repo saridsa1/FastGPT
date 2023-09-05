@@ -25,7 +25,7 @@ const UrlFetchModal = ({
       onSuccess(res);
       onClose();
     },
-    errorToast: '获取链接失败'
+    errorToast: 'Failed to obtain link'
   });
 
   return (
@@ -34,7 +34,8 @@ const UrlFetchModal = ({
         <>
           <Box>{t('file.Fetch Url')}</Box>
           <Box fontWeight={'normal'} fontSize={'sm'} color={'myGray.500'} mt={1}>
-            目前仅支持读取静态链接，请注意检查结果
+            Currently only supports reading static links, please pay attention to the inspection
+            results
           </Box>
         </>
       }
@@ -49,15 +50,15 @@ const UrlFetchModal = ({
           rows={12}
           whiteSpace={'nowrap'}
           resize={'both'}
-          placeholder={'最多10个链接，每行一个。'}
+          placeholder={'up to 10 links, one per line. '}
         />
       </ModalBody>
       <ModalFooter>
         <Button variant={'base'} mr={4} onClick={onClose}>
-          取消
+          Cancel
         </Button>
         <Button isLoading={isLoading} onClick={mutate}>
-          确认
+          confirm
         </Button>
       </ModalFooter>
     </MyModal>

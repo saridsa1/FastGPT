@@ -13,14 +13,14 @@ const NavbarPhone = ({ unread }: { unread: number }) => {
   const navbarList = useMemo(
     () => [
       {
-        label: t('navbar.Chat'),
+        label: t('navbar. Chat'),
         icon: 'chat',
         link: `/chat?appId=${lastChatAppId}&chatId=${lastChatId}`,
         activeLink: ['/chat'],
         unread: 0
       },
       {
-        label: t('navbar.Apps'),
+        label: t('navbar. Apps'),
         icon: 'tabbarModel',
         link: `/app/list`,
         activeLink: ['/app/list', '/app/detail'],
@@ -84,7 +84,7 @@ const NavbarPhone = ({ unread }: { unread: number }) => {
                     borderRadius: '50%',
                     w: '18px',
                     h: '18px',
-                    bg: ' #6782f1',
+                    bg: '#6782f1',
                     filter: 'blur(10px)',
                     boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.25)'
                   }

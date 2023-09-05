@@ -17,7 +17,7 @@ const NodeCard = (props: Props) => {
   const {
     children,
     logo = '/icon/logo.svg',
-    name = '未知模块',
+    name = 'unknown module',
     description,
     minW = '300px',
     onCopyNode,
@@ -36,18 +36,18 @@ const NodeCard = (props: Props) => {
         onClick: () => onCopyNode(moduleId)
       },
       // {
-      //   icon: 'settingLight',
-      //   label: t('app.Copy Module Config'),
-      //   onClick: () => {
-      //     const copyProps = { ...props };
-      //     delete copyProps.children;
-      //     delete copyProps.children;
-      //     console.log(copyProps);
-      //   }
+      // icon: 'settingLight',
+      // label: t('app. Copy Module Config'),
+      // onClick: () => {
+      // const copyProps = { ...props };
+      // delete copyProps.children;
+      // delete copyProps.children;
+      // console. log(copyProps);
+      // }
       // },
       {
         icon: 'delete',
-        label: t('common.Delete'),
+        label: t('common. Delete'),
         onClick: () => onDelNode(moduleId)
       },
 

@@ -26,7 +26,7 @@ const ShareModelList = ({
           flexDirection={'column'}
           p={4}
           borderRadius={'md'}
-          border={'1px solid '}
+          border={'1px solid'}
           userSelect={'none'}
           boxShadow={'none'}
           borderColor={'myGray.200'}
@@ -54,7 +54,7 @@ const ShareModelList = ({
               wordBreak={'break-all'}
               color={'blackAlpha.600'}
             >
-              {model.intro || '这个应用还没有介绍~'}
+              {model.intro || 'This application has not been introduced~'}
             </Box>
           </MyTooltip>
 
@@ -79,7 +79,7 @@ const ShareModelList = ({
                 w={['60px', '70px']}
                 onClick={() => router.push(`/chat?appId=${model._id}`)}
               >
-                体验
+                experience
               </Button>
             </Box>
           </Flex>

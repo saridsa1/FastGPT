@@ -76,7 +76,7 @@ const Chat = ({ appId, chatId }: { appId: string; chatId: string }) => {
         abortSignal: controller
       });
 
-      const newTitle = prompts[0].content?.slice(0, 20) || '新对话';
+      const newTitle = prompts[0].content?.slice(0, 20) || 'New conversation';
 
       // update history
       if (completionChatId !== chatId) {
@@ -106,7 +106,7 @@ const Chat = ({ appId, chatId }: { appId: string; chatId: string }) => {
             title: newTitle
           });
       }
-      // update chat window
+      //update chat window
       setChatData((state) => ({
         ...state,
         title: newTitle,
@@ -173,7 +173,7 @@ const Chat = ({ appId, chatId }: { appId: string; chatId: string }) => {
         setLastChatAppId('');
         setLastChatId('');
         toast({
-          title: getErrText(e, '初始化聊天失败'),
+          title: getErrText(e, 'failed to initialize chat'),
           status: 'error'
         });
         if (e?.code === 501) {
@@ -187,7 +187,7 @@ const Chat = ({ appId, chatId }: { appId: string; chatId: string }) => {
     },
     [setIsLoading, setChatData, router, setLastChatAppId, setLastChatId, toast]
   );
-  // 初始化聊天框
+  // Initialize the chat box
   useQuery(['init', appId, chatId], () => {
     // pc: redirect to latest model chat
     if (!appId && lastChatAppId) {
@@ -212,7 +212,7 @@ const Chat = ({ appId, chatId }: { appId: string; chatId: string }) => {
         if (apps.length === 0) {
           toast({
             status: 'error',
-            title: t('chat.You need to a chat app')
+            title: t('chat. You need to a chat app')
           });
           router.replace('/app/list');
         } else {

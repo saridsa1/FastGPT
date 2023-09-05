@@ -72,7 +72,7 @@ const BillTable = () => {
         <Flex flex={'1 0 0'} flexDirection={'column'} alignItems={'center'} pt={'-48px'}>
           <MyIcon name="empty" w={'48px'} h={'48px'} color={'transparent'} />
           <Box mt={2} color={'myGray.500'}>
-            暂无通知~
+            No notification yet~
           </Box>
         </Flex>
       )}

@@ -15,7 +15,7 @@ const Choice = () => {
             icon: '/imgs/home/icon_1.svg',
             title: t('home.Choice Open'),
             desc: t('home.Choice Open Desc', { title: feConfigs?.systemTitle }),
-            tooltip: '前往 GitHub',
+            tooltip: 'Go to GitHub',
             onClick: () => window.open('https://github.com/labring/FastGPT', '_blank')
           }
         ]
@@ -23,7 +23,7 @@ const Choice = () => {
           {
             icon: '/imgs/home/icon_0.svg',
             title: t('home.Choice Fast'),
-            desc: t('home.Choice Fast Desc', { title: feConfigs?.systemTitle })
+            desc: t('home. Choice Fast Desc', { title: feConfigs?.systemTitle })
           }
         ]),
     {
@@ -48,8 +48,8 @@ const Choice = () => {
     },
     {
       icon: '/imgs/home/icon_6.svg',
-      title: t('home.Choice Models'),
-      desc: t('home.Choice Models Desc')
+      title: t('home. Choice Models'),
+      desc: t('home. Choice Models Desc')
     }
   ];
 

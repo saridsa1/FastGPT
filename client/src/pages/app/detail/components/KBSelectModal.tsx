@@ -54,9 +54,9 @@ export const KBSelectModal = ({
     >
       <Flex flexDirection={'column'} h={['90vh', 'auto']}>
         <ModalHeader>
-          <Box>关联的知识库({selectedKbList.length})</Box>
+          <Box>Associated knowledge base ({selectedKbList.length})</Box>
           <Box fontSize={'sm'} color={'myGray.500'} fontWeight={'normal'}>
-            仅能选择同一个索引模型的知识库
+            Only knowledge bases with the same index model can be selected
           </Box>
         </ModalHeader>
 
@@ -99,7 +99,7 @@ export const KBSelectModal = ({
                       if (vectorModel && vectorModel !== item.vectorModel.model) {
                         return toast({
                           status: 'warning',
-                          title: '仅能选择同一个索引模型的知识库'
+                          title: 'Only knowledge bases with the same index model can be selected'
                         });
                       }
                       setSelectedKbList((state) => [
@@ -137,7 +137,7 @@ export const KBSelectModal = ({
               onChange(filterKbList);
             }}
           >
-            完成
+            Finish
           </Button>
         </ModalFooter>
       </Flex>
@@ -162,14 +162,21 @@ export const KbParamsModal = ({
   });
 
   return (
-    <MyModal isOpen={true} onClose={onClose} title={'搜索参数调整'} minW={['90vw', '600px']}>
+    <MyModal
+      isOpen={true}
+      onClose={onClose}
+      title={'Search parameter adjustment'}
+      minW={['90vw', '600px']}
+    >
       <Flex flexDirection={'column'}>
         <ModalBody>
           <Box display={['block', 'flex']} py={5} pt={[0, 5]}>
             <Box flex={'0 0 100px'} mb={[8, 0]}>
-              相似度
+              Similarity
               <MyTooltip
-                label={'不同索引模型的相似度有区别，请通过搜索测试来选择合适的数值'}
+                label={
+                  'The similarities of different index models are different, please choose the appropriate value through search testing'
+                }
                 forceShow
               >
                 <QuestionOutlineIcon ml={1} />
@@ -192,7 +199,7 @@ export const KbParamsModal = ({
           </Box>
           <Box display={['block', 'flex']} py={8}>
             <Box flex={'0 0 100px'} mb={[8, 0]}>
-              单次搜索数量
+              Single Search Quantity
             </Box>
             <Box flex={1}>
               <MySlider
@@ -212,14 +219,14 @@ export const KbParamsModal = ({
           </Box>
           <Box display={['block', 'flex']} pt={3}>
             <Box flex={'0 0 100px'} mb={[2, 0]}>
-              空搜索回复
+              Empty search reply
             </Box>
             <Box flex={1}>
               <Textarea
                 rows={5}
                 maxLength={500}
                 placeholder={
-                  '若填写该内容，没有搜索到对应内容时，将直接回复填写的内容。\n为了连贯上下文，FastGPT 会取部分上一个聊天的搜索记录作为补充，因此在连续对话时，该功能可能会失效。'
+                  'If you fill in the content and no corresponding content is found, the filled-in content will be directly replied. \nIn order to coherent context, FastGPT will take part of the search history of the previous chat as a supplement, so this function may fail during continuous conversations. '
                 }
                 {...register('searchEmptyText')}
               ></Textarea>
@@ -228,7 +235,7 @@ export const KbParamsModal = ({
         </ModalBody>
         <ModalFooter>
           <Button variant={'base'} mr={3} onClick={onClose}>
-            取消
+            Cancel
           </Button>
           <Button
             onClick={() => {
@@ -236,7 +243,7 @@ export const KbParamsModal = ({
               handleSubmit(onChange)();
             }}
           >
-            完成
+            Finish
           </Button>
         </ModalFooter>
       </Flex>

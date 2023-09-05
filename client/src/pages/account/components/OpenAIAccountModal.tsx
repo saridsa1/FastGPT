@@ -32,7 +32,8 @@ const OpenAIAccountModal = ({
     <MyModal isOpen onClose={onClose} title={t('user.OpenAI Account Setting')}>
       <ModalBody>
         <Box fontSize={'sm'} color={'myGray.500'}>
-          如果你填写了该内容，在线上平台使用 OpenAI Chat 模型不会计费（不包含知识库训练、索引生成）
+          If you fill in this content, there will be no billing for using the OpenAI Chat model on
+          the online platform (excluding knowledge base training and index generation)
         </Box>
         <Flex alignItems={'center'} mt={5}>
           <Box flex={'0 0 65px'}>API Key:</Box>
@@ -43,16 +44,18 @@ const OpenAIAccountModal = ({
           <Input
             flex={1}
             {...register('baseUrl')}
-            placeholder={'请求地址，默认为 openai 官方。可填中转地址，未自动补全 "v1"'}
+            placeholder={
+              'Request address, the default is openai official. The forwarding address can be filled in, but v1 is not automatically completed.'
+            }
           ></Input>
         </Flex>
       </ModalBody>
       <ModalFooter>
         <Button mr={3} variant={'base'} onClick={onClose}>
-          取消
+          Cancel
         </Button>
         <Button isLoading={isLoading} onClick={handleSubmit((data) => onSubmit(data))}>
-          确认
+          confirm
         </Button>
       </ModalFooter>
     </MyModal>

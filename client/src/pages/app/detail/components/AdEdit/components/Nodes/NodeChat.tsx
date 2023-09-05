@@ -31,7 +31,7 @@ const NodeChat = ({ data }: NodeProps<FlowModuleItemType>) => {
           CustomComponent={{
             model: (inputItem) => {
               const list = chatModelList.map((item) => {
-                const priceStr = `(${formatPrice(item.price, 1000)}元/1k Tokens)`;
+                const priceStr = `(${formatPrice(item.price, 1000)}yuan/1k Tokens)`;
 
                 return {
                   value: item.model,
