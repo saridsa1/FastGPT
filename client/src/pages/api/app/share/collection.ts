@@ -3,15 +3,15 @@ import { jsonRes } from '@/service/response';
 import { connectToDatabase, Collection, App } from '@/service/mongo';
 import { authUser } from '@/service/utils/auth';
 
-/* 模型收藏切换 */
+/* Model collection switching */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { appId } = req.query as { appId: string };
 
     if (!appId) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();

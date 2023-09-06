@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 async function init(limit: number, skip: number) {
-  // 遍历 app
+  // loop through apps
   const chats = await Chat.find(
     {
       chatId: { $exists: false }

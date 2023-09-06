@@ -53,7 +53,7 @@ export function countOpenAIToken({ messages }: { messages: ChatItemType[] }) {
     const text = `${item.role}\n${item.content}`;
     const enc = getOpenAiEncMap();
     const encodeText = enc.encode(text);
-    const tokens = encodeText.length + 3; // 补充估算值
+    const tokens = encodeText.length + 3; // Supplementary estimates
     return sum + tokens;
   }, 0);
 
@@ -76,11 +76,11 @@ export const authOpenAiKey = async (key: string) => {
     })
     .then((res) => {
       if (!res.data.access_until) {
-        return Promise.resolve('OpenAI Key 可能无效');
+        return Promise.resolve('OpenAI Key may be invalid');
       }
     })
     .catch((err) => {
       console.log(err);
-      return Promise.reject(err?.response?.data?.error?.message || 'OpenAI Key 可能无效');
+      return Promise.reject(err?.response?.data?.error?.message || 'OpenAI Key may be invalid');
     });
 };

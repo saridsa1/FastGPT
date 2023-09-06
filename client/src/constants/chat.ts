@@ -14,16 +14,16 @@ export enum ChatRoleEnum {
 }
 
 export enum TaskResponseKeyEnum {
-  'answerText' = 'answerText', //  answer module text key
+  'answerText' = 'answerText', // answer module text key
   'responseData' = 'responseData'
 }
 
 export const ChatRoleMap = {
   [ChatRoleEnum.System]: {
-    name: '系统提示词'
+    name: 'system prompt'
   },
   [ChatRoleEnum.Human]: {
-    name: '用户'
+    name: 'user'
   },
   [ChatRoleEnum.AI]: {
     name: 'AI'

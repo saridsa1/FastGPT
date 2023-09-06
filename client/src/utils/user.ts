@@ -19,7 +19,7 @@ export const getToken = () => {
 };
 
 /**
- * 把数据库读取到的price，转化成元
+ * Convert the price read from the database into yuan
  */
 export const formatPrice = (val = 0, multiple = 1) => {
   return Number(((val / PRICE_SCALE) * multiple).toFixed(10));

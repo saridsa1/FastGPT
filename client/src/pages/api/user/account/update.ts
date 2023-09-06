@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     }
 
-    // 更新对应的记录
+    // Update the corresponding record
     await User.updateOne(
       {
         _id: userId

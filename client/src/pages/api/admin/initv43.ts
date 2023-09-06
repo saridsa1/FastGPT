@@ -10,14 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await authUser({ req, authRoot: true });
 
     const { rowCount } = await PgClient.query(`SELECT 1
-    FROM   information_schema.columns 
-    WHERE  table_schema = 'public'
-    AND    table_name   = '${PgTrainingTableName}'
-    AND    column_name  = 'file_id'`);
+    FROM information_schema.columns
+    WHERE table_schema = 'public'
+    AND table_name = '${PgTrainingTableName}'
+    AND column_name = 'file_id'`);
 
     if (rowCount > 0) {
       return jsonRes(res, {
-        data: '已经存在file_id字段'
+        data: 'file_id field already exists'
       });
     }
 

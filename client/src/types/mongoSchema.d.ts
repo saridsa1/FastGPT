@@ -57,7 +57,7 @@ export interface AppSchema {
     limitPrompt: string;
     temperature: number;
     maxToken: number;
-    chatModel: ChatModelType; // 聊天时用的模型，训练后就是训练的模型
+    chatModel: ChatModelType; // The model used during chatting will be the trained model after training.
   };
 }
 
@@ -147,10 +147,10 @@ export interface OpenApiSchema {
 
 export interface PromotionRecordSchema {
   _id: string;
-  userId: string; // 收益人
-  objUId?: string; // 目标对象（如果是withdraw则为空）
+  userId: string; // beneficiary
+  objUId?: string; // Target object (empty if withdraw)
   type: 'register' | 'pay';
-  createTime: Date; // 记录时间
+  createTime: Date; // record time
   amount: number;
 }
 

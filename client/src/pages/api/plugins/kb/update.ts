@@ -9,10 +9,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const { id, name, tags, avatar } = req.body as KbUpdateParams;
 
     if (!id || !name) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
-    // 凭证校验
+    //Certificate verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();

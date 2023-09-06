@@ -5,7 +5,7 @@ import { authUser } from '@/service/utils/auth';
 import type { ChatHistoryItemType } from '@/types/chat';
 import { ChatSourceEnum } from '@/constants/chat';
 
-/* 获取历史记录 */
+/* get history */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { appId } = req.body as { appId?: string };

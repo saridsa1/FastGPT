@@ -41,7 +41,7 @@ export const useCopyData = () => {
 };
 
 /**
- * 密码加密
+ * Password encryption
  */
 export const createHashPassword = (text: string) => {
   const hash = crypto.createHash('sha256').update(text).digest('hex');
@@ -49,7 +49,7 @@ export const createHashPassword = (text: string) => {
 };
 
 /**
- * 对象转成 query 字符串
+ * Convert the object into query string
  */
 export const Obj2Query = (obj: Record<string, string | number>) => {
   const queryParams = new URLSearchParams();
@@ -66,16 +66,16 @@ export const parseQueryString = (str: string) => {
 
   str = splitStr[1] || splitStr[0];
 
-  // 将字符串按照 '&' 分割成键值对数组
+  // Split the string into an array of key-value pairs according to '&'
   const keyValuePairs = str.split('&');
 
-  // 遍历键值对数组，将每个键值对解析为对象的属性和值
+  // Traverse the array of key-value pairs and parse each key-value pair into the attributes and values ​​of the object
   keyValuePairs.forEach(function (keyValuePair) {
     const pair = keyValuePair.split('=');
     const key = decodeURIComponent(pair[0]);
     const value = decodeURIComponent(pair[1] || '');
 
-    // 如果对象中已经存在该属性，则将值转换为数组
+    // If the property already exists in the object, convert the value to an array
     if (queryObject.hasOwnProperty(key)) {
       if (!Array.isArray(queryObject[key])) {
         queryObject[key] = [queryObject[key]];
@@ -90,38 +90,38 @@ export const parseQueryString = (str: string) => {
 };
 
 /**
- * 格式化时间成聊天格式
+ * Format time into chat format
  */
 export const formatTimeToChatTime = (time: Date) => {
   const now = dayjs();
   const target = dayjs(time);
 
-  // 如果传入时间小于60秒，返回刚刚
+  // If the incoming time is less than 60 seconds, return just
   if (now.diff(target, 'second') < 60) {
-    return '刚刚';
+    return 'Just now';
   }
 
-  // 如果时间是今天，展示几时:几秒
+  // If the time is today, display the time: a few seconds
   if (now.isSame(target, 'day')) {
     return target.format('HH:mm');
   }
 
-  // 如果是昨天，展示昨天
+  // If it is yesterday, display yesterday
   if (now.subtract(1, 'day').isSame(target, 'day')) {
-    return '昨天';
+    return 'yesterday';
   }
 
-  // 如果是前天，展示前天
+  // If it is the day before yesterday, display the day before yesterday
   if (now.subtract(2, 'day').isSame(target, 'day')) {
-    return '前天';
+    return 'the day before yesterday';
   }
 
-  // 如果是今年，展示某月某日
+  // If it is this year, display a certain month and a certain day
   if (now.isSame(target, 'year')) {
-    return target.format('M月D日');
+    return target.format('M month D day');
   }
 
-  // 如果是更久之前，展示某年某月某日
+  // If it is longer ago, display a certain year, a certain month and a certain day
   return target.format('YYYY/M/D');
 };
 
@@ -132,7 +132,7 @@ export const hasVoiceApi = typeof window !== 'undefined' && 'speechSynthesis' in
 export const voiceBroadcast = ({ text }: { text: string }) => {
   window.speechSynthesis?.cancel();
   const msg = new SpeechSynthesisUtterance(text);
-  const voices = window.speechSynthesis?.getVoices?.(); // 获取语言包
+  const voices = window.speechSynthesis?.getVoices?.(); // Get language pack
   const voice = voices.find((item) => {
     return item.name === 'Microsoft Yaoyao - Chinese (Simplified, PRC)';
   });

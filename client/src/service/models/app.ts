@@ -56,7 +56,7 @@ const AppSchema = new Schema({
     type: Array,
     default: []
   },
-  // 弃
+  // discard
   chat: {
     relatedKbs: {
       type: [Schema.Types.ObjectId],
@@ -95,7 +95,7 @@ const AppSchema = new Schema({
       default: 0
     },
     chatModel: {
-      // 聊天时使用的模型
+      // the model to use when chatting
       type: String
     }
   }

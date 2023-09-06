@@ -9,10 +9,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await connectToDatabase();
 
-    // 凭证校验
+    //Certificate verification
     const { userId } = await authUser({ req, authToken: true });
 
-    // 删除一条数据库记录
+    //Delete a database record
     await ChatItem.deleteOne({
       dataId: contentId,
       chatId,

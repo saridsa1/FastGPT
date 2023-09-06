@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       throw new Error('user.Old password is error');
     }
 
-    // 更新对应的记录
+    // Update the corresponding record
     await User.findByIdAndUpdate(userId, {
       password: newPsw
     });

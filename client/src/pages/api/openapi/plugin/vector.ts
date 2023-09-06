@@ -20,7 +20,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     let { input, model } = req.query as Props;
 
     if (!Array.isArray(input)) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
     jsonRes<Response>(res, {
@@ -46,15 +46,15 @@ export async function getVector({
     if (!input[i]) {
       return Promise.reject({
         code: 500,
-        message: '向量生成模块输入内容为空'
+        message: 'The input content of the vector generation module is empty'
       });
     }
   }
 
-  // 获取 chatAPI
+  // Get chatAPI
   const chatAPI = getAIChatApi();
 
-  // 把输入的内容转成向量
+  // Convert the input content into a vector
   const result = await chatAPI
     .createEmbedding(
       {
@@ -88,7 +88,7 @@ export async function getVector({
 }
 
 function unityDimensional(vector: number[]) {
-  if (vector.length > 1536) return Promise.reject('向量维度不能超过 1536');
+  if (vector.length > 1536) return Promise.reject('Vector dimensions cannot exceed 1536');
   let resultVector = vector;
   const vectorLen = vector.length;
 

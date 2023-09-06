@@ -12,7 +12,7 @@ export enum AuthUserTypeEnum {
 }
 
 export const authCookieToken = async (cookie?: string, token?: string): Promise<string> => {
-  // 获取 cookie
+  // Get cookies
   const cookies = Cookie.parse(cookie || '');
   const cookieToken = cookies.token || token;
 
@@ -60,7 +60,7 @@ export const authUser = async ({
       }
       const userId = String(openApi.userId);
 
-      // 更新使用的时间
+      // Update the time used
       await OpenApi.findByIdAndUpdate(openApi._id, {
         lastUsedTime: new Date()
       });
@@ -159,7 +159,7 @@ export const authUser = async ({
   };
 };
 
-// 模型使用权校验
+// Model usage right check
 export const authApp = async ({
   appId,
   userId,
@@ -173,15 +173,15 @@ export const authApp = async ({
   authOwner?: boolean;
   reserveDetail?: boolean; // focus reserve detail
 }) => {
-  // 获取 app 数据
+  // Get app data
   const app = await App.findById<AppSchema>(appId);
   if (!app) {
     return Promise.reject('App is not exists');
   }
 
-  /* 
+  /*
     Access verification
-    1. authOwner=true or authUser = true ,  just owner can use
+    1. authOwner=true or authUser = true , just owner can use
     2. authUser = false and share, anyone can use
   */
   if (authOwner || (authUser && !app.share.isShare)) {
@@ -194,7 +194,7 @@ export const authApp = async ({
   };
 };
 
-// 知识库操作权限
+//Knowledge base operation permissions
 export const authKb = async ({ kbId, userId }: { kbId: string; userId: string }) => {
   const kb = await KB.findOne({
     _id: kbId,
@@ -211,7 +211,7 @@ export const authShareChat = async ({ shareId }: { shareId: string }) => {
   const shareChat = await OutLink.findOne({ shareId });
 
   if (!shareChat) {
-    return Promise.reject('分享链接已失效');
+    return Promise.reject('The sharing link has expired');
   }
 
   const uid = String(shareChat.userId);

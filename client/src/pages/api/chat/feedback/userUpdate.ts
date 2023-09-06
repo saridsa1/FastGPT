@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { jsonRes } from '@/service/response';
 import { connectToDatabase, ChatItem } from '@/service/mongo';
 
-/* 初始化我的聊天框，需要身份验证 */
+/* Initialize my chat box, authentication required */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     await connectToDatabase();

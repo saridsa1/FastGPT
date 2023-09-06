@@ -13,7 +13,7 @@ interface ResponseDataType {
 }
 
 /**
- * 请求开始
+ * Request starts
  */
 function requestStart(config: InternalAxiosRequestConfig): InternalAxiosRequestConfig {
   if (config.headers) {
@@ -24,18 +24,18 @@ function requestStart(config: InternalAxiosRequestConfig): InternalAxiosRequestC
 }
 
 /**
- * 请求成功,检查请求头
+ * The request is successful, check the request header
  */
 function responseSuccess(response: AxiosResponse<ResponseDataType>) {
   return response;
 }
 /**
- * 响应数据检查
+ * Response data check
  */
 function checkRes(data: ResponseDataType) {
   if (data === undefined) {
     console.log('error->', data, 'data is empty');
-    return Promise.reject('服务器异常');
+    return Promise.reject('Server exception');
   } else if (data?.code && (data.code < 200 || data.code >= 400)) {
     return Promise.reject(data);
   }
@@ -43,11 +43,11 @@ function checkRes(data: ResponseDataType) {
 }
 
 /**
- * 响应错误
+ * response error
  */
 function responseError(err: any) {
   if (!err) {
-    return Promise.reject({ message: '未知错误' });
+    return Promise.reject({ message: 'Unknown error' });
   }
   if (typeof err === 'string') {
     return Promise.reject({ message: err });
@@ -59,25 +59,25 @@ function responseError(err: any) {
   return Promise.reject(err);
 }
 
-/* 创建请求实例 */
+/* create request instance */
 const instance = axios.create({
-  timeout: 60000, // 超时时间
+  timeout: 60000, // timeout
   headers: {
     'content-type': 'application/json'
   }
 });
 
-/* 请求拦截 */
+/* request interception */
 instance.interceptors.request.use(requestStart, (err) => Promise.reject(err));
-/* 响应拦截 */
+/* Response interception */
 instance.interceptors.response.use(responseSuccess, (err) => Promise.reject(err));
 
 export function request(url: string, data: any, config: ConfigType, method: Method): any {
   if (!global.systemEnv?.pluginBaseUrl) {
-    return Promise.reject('商业版插件加载中...');
+    return Promise.reject('The commercial version plugin is loading...');
   }
 
-  /* 去空 */
+  /* go empty */
   for (const key in data) {
     if (data[key] === null || data[key] === undefined) {
       delete data[key];
@@ -91,14 +91,14 @@ export function request(url: string, data: any, config: ConfigType, method: Meth
       method,
       data: ['POST', 'PUT'].includes(method) ? data : null,
       params: !['POST', 'PUT'].includes(method) ? data : null,
-      ...config // 用户自定义配置，可以覆盖前面的配置
+      ...config // User-defined configuration, which can override the previous configuration
     })
     .then((res) => checkRes(res.data))
     .catch((err) => responseError(err));
 }
 
 /**
- * api请求方式
+ * api request method
  * @param {String} url
  * @param {Any} params
  * @param {Object} config

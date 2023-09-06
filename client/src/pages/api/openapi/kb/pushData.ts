@@ -45,7 +45,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
 
     await connectToDatabase();
 
-    // 凭证校验
+    //Certificate verification
     const { userId } = await authUser({ req });
 
     jsonRes<Response>(res, {
@@ -92,7 +92,7 @@ export async function pushDataToKb({
     [TrainingModeEnum.qa]: global.qaModel.maxToken * 0.8
   };
 
-  // 过滤重复的 qa 内容
+  // filter duplicate qa content
   const set = new Set();
   const filterData: DatasetItemType[] = [];
 
@@ -116,7 +116,7 @@ export async function pushDataToKb({
     }
   });
 
-  // 数据库去重
+  // database deduplication
   const insertData = (
     await Promise.allSettled(
       filterData.map(async (data) => {
@@ -126,7 +126,7 @@ export async function pushDataToKb({
         }
 
         if (!q) {
-          return Promise.reject('q为空');
+          return Promise.reject('q is empty');
         }
 
         q = q.replace(/\\n/g, '\n').trim().replace(/'/g, '"');
@@ -155,7 +155,7 @@ export async function pushDataToKb({
     .filter((item) => item.status === 'fulfilled')
     .map<DatasetItemType>((item: any) => item.value);
 
-  // 插入记录
+  //Insert record
   const insertRes = await TrainingData.insertMany(
     insertData.map((item) => ({
       ...item,

@@ -92,12 +92,12 @@ export const pushQABill = async ({
   try {
     await connectToDatabase();
 
-    // 获取模型单价格, 都是用 gpt35 拆分
+    // Get the model price, which is split using gpt35
     const unitPrice = global.qaModel.price || 3;
-    // 计算价格
+    // Calculate the price
     const total = unitPrice * totalTokens;
 
-    // 插入 Bill 记录
+    // Insert Bill record
     const res = await Bill.create({
       userId,
       appName,
@@ -106,7 +106,7 @@ export const pushQABill = async ({
     });
     billId = res._id;
 
-    // 账号扣费
+    // Account deduction
     await User.findByIdAndUpdate(userId, {
       $inc: { balance: -total }
     });
@@ -131,22 +131,22 @@ export const pushGenerateVectorBill = async ({
     await connectToDatabase();
 
     try {
-      // 计算价格. 至少为1
+      // Calculate price. At least 1
       const vectorModel =
         global.vectorModels.find((item) => item.model === model) || global.vectorModels[0];
       const unitPrice = vectorModel.price || 0.2;
       let total = unitPrice * tokenLen;
       total = total > 1 ? total : 1;
 
-      // 插入 Bill 记录
+      // Insert Bill record
       const res = await Bill.create({
         userId,
         model: vectorModel.model,
-        appName: '索引生成',
+        appName: 'Index Generation',
         total,
         list: [
           {
-            moduleName: '索引生成',
+            moduleName: 'index generation',
             amount: total,
             model: vectorModel.model,
             tokenLen
@@ -155,7 +155,7 @@ export const pushGenerateVectorBill = async ({
       });
       billId = res._id;
 
-      // 账号扣费
+      // Account deduction
       await User.findByIdAndUpdate(userId, {
         $inc: { balance: -total }
       });

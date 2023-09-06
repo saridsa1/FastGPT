@@ -6,7 +6,7 @@ import { authApp } from '@/service/utils/auth';
 import { HUMAN_ICON } from '@/constants/chat';
 import { getChatModelNameList, getSpecialModule } from '@/components/ChatBox/utils';
 
-/* 初始化我的聊天框，需要身份验证 */
+/* Initialize my chat box, authentication required */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     let { shareId } = req.query as {
@@ -25,11 +25,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!shareChat) {
       return jsonRes(res, {
         code: 501,
-        error: '分享链接已失效'
+        error: 'The sharing link has expired'
       });
     }
 
-    // 校验使用权限
+    //Verify usage permissions
     const [{ app }, user] = await Promise.all([
       authApp({
         appId: shareChat.appId,

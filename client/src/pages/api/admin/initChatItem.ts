@@ -58,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 async function init(limit: number) {
-  // 遍历 app
+  // Traverse app
   const chats = await Chat.find(
     {
       content: { $exists: true, $not: { $size: 0 } },

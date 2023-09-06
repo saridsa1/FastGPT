@@ -16,7 +16,7 @@ export type FlowModuleItemChangeProps = {
 };
 
 export type FlowInputItemType = {
-  key: string; // 字段名
+  key: string; // field name
   value?: any;
   valueType?: `${FlowValueTypeEnum}`;
   type: `${FlowInputItemTypeEnum}`;
@@ -38,7 +38,7 @@ export type FlowOutputTargetItemType = {
   key: string;
 };
 export type FlowOutputItemType = {
-  key: string; // 字段名
+  key: string; // field name
   label?: string;
   edit?: boolean;
   description?: string;

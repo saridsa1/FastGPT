@@ -12,12 +12,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     };
 
     if (!kbId) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
     await connectToDatabase();
 
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       {
         _id: userId,
         $or: [
-          { 'limit.exportKbTime': { $exists: false } },
+          { 'limit. exportKbTime': { $exists: false } },
           { 'limit.exportKbTime': { $lte: thirtyMinutesAgo } }
         ]
       },
@@ -35,14 +35,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     );
 
     if (!authTimes) {
-      throw new Error('上次导出未到半小时，每半小时仅可导出一次。');
+      throw new Error(
+        'The last export was less than half an hour ago, and it can only be exported once every half hour.'
+      );
     }
 
-    // 统计数据
+    // Statistical data
     const count = await PgClient.count(PgTrainingTableName, {
       where: [['kb_id', kbId], 'AND', ['user_id', userId]]
     });
-    // 从 pg 中获取所有数据
+    // get all data from pg
     const pgData = await PgClient.select<{ q: string; a: string; source: string }>(
       PgTrainingTableName,
       {

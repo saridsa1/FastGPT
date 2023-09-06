@@ -52,7 +52,7 @@ export type ChatHistoryItemResType = {
   model?: string;
   tokens?: number;
 
-  // chat
+  //chat
   answer?: string;
   question?: string;
   temperature?: number;
@@ -64,7 +64,7 @@ export type ChatHistoryItemResType = {
   similarity?: number;
   limit?: number;
 
-  // cq
+  //cq
   cqList?: ClassifyQuestionAgentItemType[];
   cqResult?: string;
 

@@ -10,9 +10,9 @@ export enum PageTypeEnum {
 }
 
 export const BillSourceMap: Record<`${BillSourceEnum}`, string> = {
-  [BillSourceEnum.fastgpt]: 'FastGPT 平台',
+  [BillSourceEnum.fastgpt]: 'FastGPT platform',
   [BillSourceEnum.api]: 'Api',
-  [BillSourceEnum.shareLink]: '免登录链接'
+  [BillSourceEnum.shareLink]: 'No login link'
 };
 
 export enum PromotionEnum {
@@ -26,7 +26,7 @@ export enum InformTypeEnum {
 
 export const InformTypeMap = {
   [InformTypeEnum.system]: {
-    label: '系统通知'
+    label: 'system notification'
   }
 };
 

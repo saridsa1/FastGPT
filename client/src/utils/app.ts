@@ -159,59 +159,59 @@ const chatModelInput = (formData: EditFormType): FlowInputItemType[] => [
     key: 'model',
     value: formData.chatModel.model,
     type: 'custom',
-    label: '对话模型',
+    label: 'dialogue model',
     connected: true
   },
   {
     key: 'temperature',
     value: formData.chatModel.temperature,
     type: 'slider',
-    label: '温度',
+    label: 'temperature',
     connected: true
   },
   {
     key: 'maxToken',
     value: formData.chatModel.maxToken,
     type: 'custom',
-    label: '回复上限',
+    label: 'reply upper limit',
     connected: true
   },
   {
     key: 'systemPrompt',
     value: formData.chatModel.systemPrompt,
     type: 'textarea',
-    label: '系统提示词',
+    label: 'system prompt word',
     connected: true
   },
   {
     key: 'limitPrompt',
     type: 'textarea',
     value: formData.chatModel.limitPrompt,
-    label: '限定词',
+    label: 'qualifier',
     connected: true
   },
   {
     key: 'switch',
     type: 'target',
-    label: '触发器',
+    label: 'trigger',
     connected: formData.kb.list.length > 0
   },
   {
     key: 'quoteQA',
     type: 'target',
-    label: '引用内容',
+    label: 'reference content',
     connected: formData.kb.list.length > 0
   },
   {
     key: 'history',
     type: 'target',
-    label: '聊天记录',
+    label: 'Chat history',
     connected: true
   },
   {
     key: 'userChatInput',
     type: 'target',
-    label: '用户问题',
+    label: 'User Question',
     connected: true
   }
 ];
@@ -219,13 +219,13 @@ const welcomeTemplate = (formData: EditFormType): AppModuleItemType[] =>
   formData.guide?.welcome?.text
     ? [
         {
-          name: '用户引导',
+          name: 'User Guide',
           flowType: FlowModuleTypeEnum.userGuide,
           inputs: [
             {
               key: 'welcomeText',
               type: 'input',
-              label: '开场白',
+              label: 'opening',
               value: formData.guide.welcome.text,
               connected: true
             }
@@ -243,14 +243,14 @@ const variableTemplate = (formData: EditFormType): AppModuleItemType[] =>
   formData.variables.length > 0
     ? [
         {
-          name: '全局变量',
+          name: 'global variable',
           flowType: FlowModuleTypeEnum.variable,
           inputs: [
             {
               key: 'variables',
               value: formData.variables,
               type: 'systemInput',
-              label: '变量输入',
+              label: 'Variable input',
               connected: true
             }
           ],
@@ -265,13 +265,13 @@ const variableTemplate = (formData: EditFormType): AppModuleItemType[] =>
     : [];
 const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
   {
-    name: '用户问题(对话入口)',
+    name: 'User question (dialogue entry)',
     flowType: FlowModuleTypeEnum.questionInput,
     inputs: [
       {
         key: 'userChatInput',
         connected: true,
-        label: '用户问题',
+        label: 'User Question',
         type: 'target'
       }
     ],
@@ -293,7 +293,7 @@ const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
     moduleId: 'userChatInput'
   },
   {
-    name: '聊天记录',
+    name: 'Chat records',
     flowType: FlowModuleTypeEnum.historyNode,
     inputs: [
       {
@@ -301,12 +301,12 @@ const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
         value: 6,
         connected: true,
         type: 'numberInput',
-        label: '最长记录数'
+        label: 'The longest record number'
       },
       {
         key: 'history',
         type: 'hidden',
-        label: '聊天记录',
+        label: 'Chat history',
         connected: true
       }
     ],
@@ -328,22 +328,22 @@ const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
     moduleId: 'history'
   },
   {
-    name: 'AI 对话',
+    name: 'AI dialogue',
     flowType: FlowModuleTypeEnum.chatNode,
     inputs: chatModelInput(formData),
     showStatus: true,
     outputs: [
       {
         key: 'answerText',
-        label: '模型回复',
-        description: '直接响应，无需配置',
+        label: 'Model reply',
+        description: 'Direct response, no configuration required',
         type: 'hidden',
         targets: []
       },
       {
         key: 'finish',
-        label: '回复结束',
-        description: 'AI 回复完成后触发',
+        label: 'End of reply',
+        description: 'Triggered after the AI ​​reply is completed',
         valueType: 'boolean',
         type: 'source',
         targets: []
@@ -358,12 +358,12 @@ const simpleChatTemplate = (formData: EditFormType): AppModuleItemType[] => [
 ];
 const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
   {
-    name: '用户问题(对话入口)',
+    name: 'User question (dialogue entry)',
     flowType: FlowModuleTypeEnum.questionInput,
     inputs: [
       {
         key: 'userChatInput',
-        label: '用户问题',
+        label: 'User Question',
         type: 'target',
         connected: true
       }
@@ -390,7 +390,7 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
     moduleId: 'userChatInput'
   },
   {
-    name: '聊天记录',
+    name: 'Chat records',
     flowType: FlowModuleTypeEnum.historyNode,
     inputs: [
       {
@@ -398,12 +398,12 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
         value: 6,
         connected: true,
         type: 'numberInput',
-        label: '最长记录数'
+        label: 'The longest record number'
       },
       {
         key: 'history',
         type: 'hidden',
-        label: '聊天记录',
+        label: 'Chat history',
         connected: true
       }
     ],
@@ -425,7 +425,7 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
     moduleId: 'history'
   },
   {
-    name: '知识库搜索',
+    name: 'Knowledge Base Search',
     flowType: FlowModuleTypeEnum.kbSearchNode,
     showStatus: true,
     inputs: [
@@ -433,33 +433,33 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
         key: 'kbList',
         value: formData.kb.list,
         type: FlowInputItemTypeEnum.custom,
-        label: '关联的知识库',
+        label: 'Associated knowledge base',
         connected: true
       },
       {
         key: 'similarity',
         value: formData.kb.searchSimilarity,
         type: FlowInputItemTypeEnum.slider,
-        label: '相似度',
+        label: 'similarity',
         connected: true
       },
       {
         key: 'limit',
         value: formData.kb.searchLimit,
         type: FlowInputItemTypeEnum.slider,
-        label: '单次搜索上限',
+        label: 'Single search limit',
         connected: true
       },
       {
         key: 'switch',
         type: FlowInputItemTypeEnum.target,
-        label: '触发器',
+        label: 'trigger',
         connected: false
       },
       {
         key: 'userChatInput',
         type: FlowInputItemTypeEnum.target,
-        label: '用户问题',
+        label: 'User Question',
         connected: true
       }
     ],
@@ -508,13 +508,13 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
   ...(formData.kb.searchEmptyText
     ? [
         {
-          name: '指定回复',
+          name: 'specified reply',
           flowType: FlowModuleTypeEnum.answerNode,
           inputs: [
             {
               key: 'switch',
               type: FlowInputItemTypeEnum.target,
-              label: '触发器',
+              label: 'trigger',
               connected: true
             },
             {
@@ -522,7 +522,7 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
               value: formData.kb.searchEmptyText,
               type: FlowInputItemTypeEnum.textarea,
               valueType: FlowValueTypeEnum.string,
-              label: '回复的内容',
+              label: 'reply content',
               connected: true
             }
           ],
@@ -536,22 +536,22 @@ const kbTemplate = (formData: EditFormType): AppModuleItemType[] => [
       ]
     : []),
   {
-    name: 'AI 对话',
+    name: 'AI dialogue',
     flowType: FlowModuleTypeEnum.chatNode,
     inputs: chatModelInput(formData),
     showStatus: true,
     outputs: [
       {
         key: 'answerText',
-        label: '模型回复',
-        description: '直接响应，无需配置',
+        label: 'Model reply',
+        description: 'Direct response, no configuration required',
         type: 'hidden',
         targets: []
       },
       {
         key: 'finish',
-        label: '回复结束',
-        description: 'AI 回复完成后触发',
+        label: 'End of reply',
+        description: 'Triggered after the AI ​​reply is completed',
         valueType: 'boolean',
         type: 'source',
         targets: []

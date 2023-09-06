@@ -6,7 +6,7 @@ import type { ShareAppItem } from '@/types/app';
 import { authUser } from '@/service/utils/auth';
 import { Types } from 'mongoose';
 
-/* 获取模型列表 */
+/* Get the model list */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const {
@@ -82,7 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       }
     ];
 
-    // 获取被分享的模型
+    // Get the shared model
     const [models, total] = await Promise.all([
       // @ts-ignore
       App.aggregate(pipeline),

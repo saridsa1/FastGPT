@@ -28,7 +28,8 @@ async function processDirectory(directoryPath) {
     const fullPath = path.join(directoryPath, entry.name);
     if (entry.isDirectory()) {
       await processDirectory(fullPath);
-    } else if (entry.isFile() && path.extname(entry.name) === '.tsx') {
+    } else if (entry.isFile() && path.extname(entry.name) === '.ts') {
+      console.log(`Processing the file ${entry.filePath}`);
       await processFile(fullPath);
     }
   }

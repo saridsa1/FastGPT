@@ -19,7 +19,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     const { dataId, a = '', q = '', kbId } = req.body as Props;
 
     if (!dataId) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
     await connectToDatabase();
@@ -46,11 +46,11 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
       return { vectors: [[]] };
     })();
 
-    // 更新 pg 内容.仅修改a，不需要更新向量。
+    //Update pg content. Only modify a, no need to update the vector.
     await PgClient.update(PgTrainingTableName, {
       where: [['id', dataId], 'AND', ['user_id', userId]],
       values: [
-        { key: 'source', value: '手动修改' },
+        { key: 'source', value: 'Manual modifications' },
         { key: 'a', value: a.replace(/'/g, '"') },
         ...(q
           ? [

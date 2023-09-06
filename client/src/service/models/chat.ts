@@ -24,7 +24,7 @@ const ChatSchema = new Schema({
   },
   title: {
     type: String,
-    default: '历史记录'
+    default: 'History'
   },
   customTitle: {
     type: String,

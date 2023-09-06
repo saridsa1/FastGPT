@@ -6,12 +6,12 @@ import { TrainingModeEnum } from '@/constants/plugin';
 import { Types } from 'mongoose';
 import { startQueue } from '@/service/utils/tools';
 
-/* 拆分数据成QA */
+/* Split data into QA */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { kbId, init = false } = req.body as { kbId: string; init: boolean };
     if (!kbId) {
-      throw new Error('参数错误');
+      throw new Error('Parameter error');
     }
     await connectToDatabase();
 

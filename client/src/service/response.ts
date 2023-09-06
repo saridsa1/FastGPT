@@ -40,11 +40,11 @@ export const jsonRes = <T = any>(
   // another error
   let msg = message || error?.message;
   if ((code < 200 || code >= 400) && !message) {
-    msg = error?.message || '请求错误';
+    msg = error?.message || 'Request error';
     if (typeof error === 'string') {
       msg = error;
     } else if (proxyError[error?.code]) {
-      msg = '接口连接异常';
+      msg = 'Interface connection exception';
     } else if (error?.response?.data?.error?.message) {
       msg = error?.response?.data?.error?.message;
     } else if (openaiAccountError[error?.response?.data?.error?.code]) {
@@ -81,11 +81,11 @@ export const sseErrRes = (res: NextApiResponse, error: any) => {
     });
   }
 
-  let msg = error?.message || '请求错误';
+  let msg = error?.message || 'request error';
   if (typeof error === 'string') {
     msg = error;
   } else if (proxyError[error?.code]) {
-    msg = '接口连接异常';
+    msg = 'Interface connection exception';
   } else if (error?.response?.data?.error?.message) {
     msg = error?.response?.data?.error?.message;
   } else if (openaiAccountError[error?.response?.data?.error?.code]) {

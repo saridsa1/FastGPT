@@ -69,7 +69,7 @@ export async function dispatchContentExtract({
   // function body
   const agentFunction = {
     name: agentFunName,
-    description: `${description}\n如果内容不存在，返回空字符串。`,
+    description: `${description}\nIf the content does not exist, return an empty string. `,
     parameters: {
       type: 'object',
       properties,

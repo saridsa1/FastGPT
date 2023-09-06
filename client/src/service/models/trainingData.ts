@@ -1,9 +1,9 @@
-/* 模型的知识库 */
+/* knowledge base of the model */
 import { Schema, model, models, Model as MongoModel } from 'mongoose';
 import { TrainingDataSchema as TrainingDateType } from '@/types/mongoSchema';
 import { TrainingTypeMap } from '@/constants/plugin';
 
-// pgList and vectorList, Only one of them will work
+// pgList and vectorList, only one of them will work
 const TrainingDataSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
@@ -34,7 +34,7 @@ const TrainingDataSchema = new Schema({
     default: 'text-embedding-ada-002'
   },
   prompt: {
-    // qa split prompt
+    //qa split prompt
     type: String,
     default: ''
   },

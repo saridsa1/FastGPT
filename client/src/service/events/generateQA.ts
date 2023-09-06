@@ -41,10 +41,10 @@ export async function generateQA(): Promise<any> {
       file_id: 1
     });
 
-    // task preemption
+    //task preemption
     if (!data) {
       reduceQueue();
-      global.qaQueueLen <= 0 && console.log(`【QA】任务完成`);
+      global.qaQueueLen <= 0 && console.log(`[QA] Task completed`);
       return;
     }
 
@@ -58,21 +58,21 @@ export async function generateQA(): Promise<any> {
 
     const chatAPI = getAIChatApi();
 
-    // 请求 chatgpt 获取回答
+    // request chatgpt to get an answer
     const response = await Promise.all(
       [data.q].map((text) => {
         const modelTokenLimit = global.qaModel.maxToken || 16000;
         const messages: ChatCompletionRequestMessage[] = [
           {
             role: 'system',
-            content: `我会给你发送一段长文本，${
-              data.prompt ? `是${data.prompt}，` : ''
-            }请学习它，并用 markdown 格式给出 25 个问题和答案，问题可以多样化、自由扩展；答案要详细、解读到位，答案包含普通文本、链接、代码、表格、公示、媒体链接等。按下面 QA 问答格式返回: 
+            content: `I will send you a long text, ${
+              data.prompt ? ` is ${data.prompt}, ` : ''
+            }Please learn it and give 25 questions and answers in markdown format. The questions can be diversified and freely expanded; the answers must be detailed and well-interpreted. The answers include ordinary text, links, codes, tables, public announcements, media links, etc. Return according to the following QA question and answer format:
 Q1:
 A1:
 Q2:
 A2:
-……`
+...`
           },
           {
             role: 'user',
@@ -103,14 +103,14 @@ A2:
             const answer = res.data.choices?.[0].message?.content;
             const totalTokens = res.data.usage?.total_tokens || 0;
 
-            const result = formatSplitText(answer || ''); // 格式化后的QA对
+            const result = formatSplitText(answer || ''); //Formatted QA pair
             console.log(`split result length: `, result.length);
-            // 计费
+            // billing
             if (result.length > 0) {
               pushQABill({
                 userId: data.userId,
                 totalTokens,
-                appName: 'QA 拆分'
+                appName: 'QA Split'
               });
             } else {
               addLog.info(`QA result 0:`, { answer });
@@ -122,7 +122,7 @@ A2:
             };
           })
           .catch((err) => {
-            console.log('QA拆分错误');
+            console.log('QA split error');
             console.log(err.response?.status, err.response?.statusText, err.response?.data);
             return Promise.reject(err);
           });
@@ -131,7 +131,7 @@ A2:
 
     const responseList = response.map((item) => item.result).flat();
 
-    // 创建 向量生成 队列
+    //Create vector generation queue
     await pushDataToKb({
       kbId,
       data: responseList.map((item) => ({
@@ -143,10 +143,10 @@ A2:
       mode: TrainingModeEnum.index
     });
 
-    // delete data from training
+    //delete data from training
     await TrainingData.findByIdAndDelete(data._id);
 
-    console.log('生成QA成功，time:', `${(Date.now() - startTime) / 1000}s`);
+    console.log('Generate QA successfully, time:', `${(Date.now() - startTime) / 1000}s`);
 
     reduceQueue();
     generateQA();
@@ -154,10 +154,10 @@ A2:
     reduceQueue();
     // log
     if (err?.response) {
-      console.log('openai error: 生成QA错误');
+      console.log('openai error: Generate QA error');
       console.log(err.response?.status, err.response?.statusText, err.response?.data);
     } else {
-      console.log('生成QA错误:', err);
+      console.log('Generating QA error:', err);
     }
 
     // message error or openai account error
@@ -165,16 +165,16 @@ A2:
       await TrainingData.findByIdAndRemove(trainingId);
     }
 
-    // 账号余额不足，删除任务
+    // Insufficient account balance, delete the task
     if (userId && err === ERROR_ENUM.insufficientQuota) {
       sendInform({
         type: 'system',
-        title: 'QA 任务中止',
+        title: 'QA task aborted',
         content:
-          '由于账号余额不足，索引生成任务中止，重新充值后将会继续。暂停的任务将在 7 天后被删除。',
+          'Due to insufficient account balance, the index generation task is suspended and will continue after recharging. Paused tasks will be deleted after 7 days. ',
         userId
       });
-      console.log('余额不足，暂停向量生成任务');
+      console.log('Insufficient balance, suspending vector generation task');
       await TrainingData.updateMany(
         {
           userId
@@ -193,18 +193,18 @@ A2:
 }
 
 /**
- * 检查文本是否按格式返回
+ * Check if text is returned in format
  */
 function formatSplitText(text: string) {
-  const regex = /Q\d+:(\s*)(.*)(\s*)A\d+:(\s*)([\s\S]*?)(?=Q|$)/g; // 匹配Q和A的正则表达式
-  const matches = text.matchAll(regex); // 获取所有匹配到的结果
+  const regex = /Q\d+:(\s*)(.*)(\s*)A\d+:(\s*)([\s\S]*?)(?=Q|$)/g; // Regular expression to match Q and A
+  const matches = text.matchAll(regex); // Get all matching results
 
-  const result = []; // 存储最终的结果
+  const result = []; // store the final result
   for (const match of matches) {
     const q = match[2];
     const a = match[5];
     if (q && a) {
-      // 如果Q和A都存在，就将其添加到结果中
+      // If both Q and A exist, add them to the result
       result.push({
         q,
         a: a.trim().replace(/\n\s*/g, '\n')

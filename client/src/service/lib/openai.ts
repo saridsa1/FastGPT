@@ -18,7 +18,7 @@ export const getAIChatApi = (props?: UserModelSchema['openaiAccount']) => {
 /* openai axios config */
 export const axiosConfig = (props?: UserModelSchema['openaiAccount']) => {
   return {
-    baseURL: props?.baseUrl || baseUrl, // 此处仅对非 npm 模块有效
+    baseURL: props?.baseUrl || baseUrl, // This is only valid for non-npm modules
     httpsAgent: global.httpsAgent,
     headers: {
       Authorization: `Bearer ${props?.key || systemAIChatKey}`,

@@ -1,34 +1,38 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { jsonRes } from '@/service/response';
-import { connectToDatabase } from '@/service/mongo';
 import { User } from '@/service/models/user';
+import { connectToDatabase } from '@/service/mongo';
 import { generateToken, setCookie } from '@/service/utils/tools';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    const { username, password } = req.body;
+    const { username, code, password, inviterId } = req.body;
 
-    if (!username || !password) {
-      throw new Error('Missing parameter');
+    if (!username || !code || !password) {
+      throw new Error('Invalid request');
     }
 
     await connectToDatabase();
 
-    const authUser = await User.findOne({
+    const authRepeat = await User.findOne({
       username
     });
-    if (!authUser) {
-      throw new Error('User is not registered');
+
+    if (authRepeat) {
+      throw new Error('User already exists');
     }
 
-    const user = await User.findOne({
+    const response = await User.create({
       username,
-      password
+      password,
+      inviterId: inviterId ? inviterId : undefined
     });
 
+    const user = await User.findById(response._id);
+
     if (!user) {
-      throw new Error('password error');
+      throw new Error('User not found');
     }
 
     const token = generateToken(user._id);

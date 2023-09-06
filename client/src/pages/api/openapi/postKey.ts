@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const count = await OpenApi.find({ userId }).countDocuments();
 
     if (count >= 10) {
-      throw new Error('最多 10 组 API 秘钥');
+      throw new Error('Up to 10 sets of API keys');
     }
 
     const apiKey = `fastgpt-${nanoid()}`;

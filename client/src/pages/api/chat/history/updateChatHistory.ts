@@ -9,7 +9,7 @@ export type Props = {
   top?: boolean;
 };
 
-/* 更新聊天标题 */
+/* Update chat title */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { chatId, customTitle, top } = req.body as Props;

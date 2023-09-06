@@ -6,7 +6,7 @@ import { App } from '@/service/models/app';
 import type { AppUpdateParams } from '@/types/app';
 import { authApp } from '@/service/utils/auth';
 
-/* 获取我的模型 */
+/* get my model */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { name, avatar, type, chat, share, intro, modules } = req.body as AppUpdateParams;
@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       throw new Error('appId is empty');
     }
 
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       userId
     });
 
-    // 更新模型
+    // update the model
     await App.updateOne(
       {
         _id: appId,

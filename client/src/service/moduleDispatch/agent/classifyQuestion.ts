@@ -56,16 +56,17 @@ export const dispatchClassifyQuestion = async (props: Record<string, any>): Prom
   });
   const adaptMessages = adaptChatItem_openAI({ messages: filterMessages, reserveId: false });
 
-  //   function body
+  // function body
   const agentFunction = {
     name: agentFunName,
-    description: '判断用户问题的类型属于哪方面，返回对应的枚举字段',
+    description:
+      'Determine which aspect the users question type belongs to and return the corresponding enumeration field',
     parameters: {
       type: 'object',
       properties: {
         type: {
           type: 'string',
-          description: agents.map((item) => `${item.value}，返回：'${item.key}'`).join('；'),
+          description: agents.map((item) => `${item.value}, return: '${item.key}'`).join(';'),
           enum: agents.map((item) => item.key)
         }
       },

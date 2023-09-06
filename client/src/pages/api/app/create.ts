@@ -17,23 +17,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const { name, avatar, modules } = req.body as Props;
 
     if (!name || !Array.isArray(modules)) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
-    // 凭证校验
+    //Certificate verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();
 
-    // 上限校验
+    // Upper limit verification
     const authCount = await App.countDocuments({
       userId
     });
     if (authCount >= 50) {
-      throw new Error('上限 50 个应用');
+      throw new Error('Maximum 50 applications');
     }
 
-    // 创建模型
+    // create model
     const response = await App.create({
       avatar,
       name,

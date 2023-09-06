@@ -159,7 +159,7 @@ class Pg {
 export const PgClient = new Pg();
 
 /**
- * data insert kb
+ *data insert kb
  */
 export const insertKbItem = ({
   userId,

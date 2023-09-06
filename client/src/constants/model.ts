@@ -4,7 +4,7 @@ import type { AppSchema } from '@/types/mongoSchema';
 export const defaultApp: AppSchema = {
   _id: '',
   userId: 'userId',
-  name: '模型加载中',
+  name: 'Model loading',
   type: 'basic',
   avatar: '/icon/logo.svg',
   intro: '',

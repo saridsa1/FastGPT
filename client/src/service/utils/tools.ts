@@ -6,12 +6,12 @@ import { generateQA } from '../events/generateQA';
 import { generateVector } from '../events/generateVector';
 import { ERROR_ENUM } from '../errorCode';
 
-/* 密码加密 */
+/* password encryption */
 export const hashPassword = (psw: string) => {
   return crypto.createHash('sha256').update(psw).digest('hex');
 };
 
-/* 生成 token */
+/* generate token */
 export const generateToken = (userId: string) => {
   const key = process.env.TOKEN_KEY as string;
   const token = jwt.sign(
@@ -23,7 +23,7 @@ export const generateToken = (userId: string) => {
   );
   return token;
 };
-// auth token
+//auth token
 export const authJWT = (token: string) =>
   new Promise<string>((resolve, reject) => {
     const key = process.env.TOKEN_KEY as string;

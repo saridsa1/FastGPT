@@ -7,8 +7,8 @@
     "show_contact": true,
     "show_git": true,
     "show_doc": true,
-    "systemTitle": "FastGPT",
-    "authorText": "Made by FastGPT Team.",
+    "systemTitle": "LLMops",
+    "authorText": "Made by LLMOps dev Team.",
     "gitLoginKey": "",
     "scripts": []
   },

@@ -19,11 +19,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } = req.body as GetAppChatLogsParams;
 
     if (!appId) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
     await connectToDatabase();
 
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     const where = {

@@ -5,10 +5,10 @@ import { UserModelSchema } from '@/types/mongoSchema';
 
 const UserSchema = new Schema({
   username: {
-    // 可以是手机/邮箱，新的验证都只用手机
+    // It can be a mobile phone/email. New verification only uses mobile phones.
     type: String,
     required: true,
-    unique: true // 唯一
+    unique: true // unique
   },
   password: {
     type: String,
@@ -30,7 +30,7 @@ const UserSchema = new Schema({
     default: 2 * PRICE_SCALE
   },
   inviterId: {
-    // 谁邀请注册的
+    // Who invited to register?
     type: Schema.Types.ObjectId,
     ref: 'user'
   },

@@ -6,6 +6,7 @@ import { connectToDatabase } from '@/service/mongo';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    console.info('In the plusAPI route');
     await connectToDatabase();
 
     const method = (req.method || 'POST') as Method;
@@ -13,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const url = `/${path?.join('/')}`;
 
+    console.info('THe URL is ' + url);
     if (!url) {
       throw new Error('url is empty');
     }

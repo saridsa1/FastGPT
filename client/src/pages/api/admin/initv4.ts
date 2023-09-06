@@ -26,13 +26,13 @@ const chatModelInput = ({
     key: 'model',
     value: model,
     type: 'custom',
-    label: '对话模型',
+    label: 'dialogue model',
     connected: true
   },
   {
     key: 'temperature',
     value: temperature,
-    label: '温度',
+    label: 'temperature',
     type: 'slider',
     connected: true
   },
@@ -40,19 +40,19 @@ const chatModelInput = ({
     key: 'maxToken',
     value: maxToken,
     type: 'custom',
-    label: '回复上限',
+    label: 'reply upper limit',
     connected: true
   },
   {
     key: 'systemPrompt',
     value: systemPrompt,
     type: 'textarea',
-    label: '系统提示词',
+    label: 'system prompt word',
     connected: true
   },
   {
     key: 'limitPrompt',
-    label: '限定词',
+    label: 'qualifier',
     type: 'textarea',
     value: limitPrompt,
     connected: true
@@ -60,25 +60,25 @@ const chatModelInput = ({
   {
     key: 'switch',
     type: 'target',
-    label: '触发器',
+    label: 'trigger',
     connected: kbList.length > 0
   },
   {
     key: 'quoteQA',
     type: 'target',
-    label: '引用内容',
+    label: 'reference content',
     connected: kbList.length > 0
   },
   {
     key: 'history',
     type: 'target',
-    label: '聊天记录',
+    label: 'Chat history',
     connected: true
   },
   {
     key: 'userChatInput',
     type: 'target',
-    label: '用户问题',
+    label: 'User Question',
     connected: true
   }
 ];
@@ -400,7 +400,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 async function init(limit: number, skip: number) {
-  // 遍历 app
+  // loop through apps
   const apps = await App.find(
     {
       chat: { $ne: null },

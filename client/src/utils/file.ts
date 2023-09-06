@@ -26,7 +26,7 @@ export const uploadFiles = (
 };
 
 /**
- * 读取 txt 文件内容
+ * Read txt file content
  */
 export const readTxtContent = (file: File) => {
   return new Promise((resolve: (_: string) => void, reject) => {
@@ -37,17 +37,17 @@ export const readTxtContent = (file: File) => {
       };
       reader.onerror = (err) => {
         console.log('error txt read:', err);
-        reject('读取 txt 文件失败');
+        reject('Failed to read txt file');
       };
       reader.readAsText(file);
     } catch (error) {
-      reject('浏览器不支持文件内容读取');
+      reject('The browser does not support reading file content');
     }
   });
 };
 
 /**
- * 读取 pdf 内容
+ * read pdf content
  */
 export const readPdfContent = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -69,7 +69,7 @@ export const readPdfContent = (file: File) =>
       let reader = new FileReader();
       reader.readAsArrayBuffer(file);
       reader.onload = async (event) => {
-        if (!event?.target?.result) return reject('解析 PDF 失败');
+        if (!event?.target?.result) return reject('Failed to parse PDF');
         try {
           const doc = await pdfjsLib.getDocument(event.target.result).promise;
           const pageTextPromises = [];
@@ -80,20 +80,20 @@ export const readPdfContent = (file: File) =>
           resolve(pageTexts.join('\n'));
         } catch (err) {
           console.log(err, 'pdf load error');
-          reject('解析 PDF 失败');
+          reject('Failed to parse PDF');
         }
       };
       reader.onerror = (err) => {
         console.log(err, 'pdf load error');
-        reject('解析 PDF 失败');
+        reject('Failed to parse PDF');
       };
     } catch (error) {
-      reject('浏览器不支持文件内容读取');
+      reject('Browser does not support file content reading');
     }
   });
 
 /**
- * 读取doc
+ * read doc
  */
 export const readDocContent = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -101,7 +101,7 @@ export const readDocContent = (file: File) =>
       const reader = new FileReader();
       reader.readAsArrayBuffer(file);
       reader.onload = async ({ target }) => {
-        if (!target?.result) return reject('读取 doc 文件失败');
+        if (!target?.result) return reject('Failed to read doc file');
         try {
           const res = await mammoth.extractRawText({
             arrayBuffer: target.result as ArrayBuffer
@@ -113,7 +113,7 @@ export const readDocContent = (file: File) =>
           });
           console.log('error doc read:', error);
 
-          reject('读取 doc 文件失败, 请转换成 PDF');
+          reject('Failed to read doc file, please convert to PDF');
         }
       };
       reader.onerror = (err) => {
@@ -122,29 +122,29 @@ export const readDocContent = (file: File) =>
         });
         console.log('error doc read:', err);
 
-        reject('读取 doc 文件失败');
+        reject('Failed to read doc file');
       };
     } catch (error) {
-      reject('浏览器不支持文件内容读取');
+      reject('The browser does not support reading file content');
     }
   });
 
 /**
- * 读取csv
+ * read csv
  */
 export const readCsvContent = async (file: File) => {
   try {
     const textArr = await readTxtContent(file);
     const json = Papa.parse(textArr).data as string[][];
     if (json.length === 0) {
-      throw new Error('csv 解析失败');
+      throw new Error('csv parsing failed');
     }
     return {
       header: json.shift()?.filter((item) => item) as string[],
       data: json.map((item) => item?.filter((item) => item))
     };
   } catch (error) {
-    return Promise.reject('解析 csv 文件失败');
+    return Promise.reject('Failed to parse the csv file');
   }
 };
 
@@ -160,15 +160,15 @@ export const fileDownload = ({
   type: string;
   filename: string;
 }) => {
-  // 导出为文件
+  // Export to file
   const blob = new Blob([`\uFEFF${text}`], { type: `${type};charset=utf-8;` });
 
-  // 创建下载链接
+  //Create download link
   const downloadLink = document.createElement('a');
   downloadLink.href = window.URL.createObjectURL(blob);
   downloadLink.download = filename;
 
-  // 添加链接到页面并触发下载
+  //Add link to page and trigger download
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
@@ -184,7 +184,7 @@ export const splitText2Chunks = ({ text, maxLen }: { text: string; maxLen: numbe
   const overlapLen = Math.floor(maxLen * 0.25); // Overlap length
 
   try {
-    const splitTexts = text.split(/(?<=[。！？；.!?;])/g);
+    const splitTexts = text.split(/(?<=[.!?;.!?;])/g);
     const chunks: string[] = [];
 
     let preChunk = '';
@@ -236,7 +236,7 @@ export const fileToBase64 = (file: File) => {
 };
 
 /**
- * compress image. response base64
+ * compress image.response base64
  * @param maxSize The max size of the compressed image
  */
 export const compressImg = ({
@@ -279,16 +279,16 @@ export const compressImg = ({
         const ctx = canvas.getContext('2d');
 
         if (!ctx) {
-          return reject('压缩图片异常');
+          return reject('compressed image exception');
         }
 
         ctx.drawImage(img, 0, 0, width, height);
         const compressedDataUrl = canvas.toDataURL(file.type, 0.8);
-        // 移除 canvas 元素
+        // remove the canvas element
         canvas.remove();
 
         if (compressedDataUrl.length > maxSize) {
-          return reject('图片太大了');
+          return reject('The picture is too big');
         }
 
         const src = await (async () => {
@@ -305,7 +305,7 @@ export const compressImg = ({
     };
     reader.onerror = (err) => {
       console.log(err);
-      reject('压缩图片异常');
+      reject('compressed image exception');
     };
   });
 

@@ -96,7 +96,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
       throw new Error('Account is error');
     }
     // if (authType === AuthUserTypeEnum.apikey || shareId) {
-    //   user.openaiAccount = undefined;
+    // user. openaiAccount = undefined;
     // }
 
     appId = appId ? appId : authAppid;
@@ -125,7 +125,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
       throw new Error('Question is empty');
     }
 
-    // 创建响应流
+    // create response stream
     if (stream) {
       res.setHeader('Content-Type', 'text/event-stream;charset=utf-8');
       res.setHeader('Access-Control-Allow-Origin', '*');
@@ -149,7 +149,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     // console.log(responseData, '===', answerText);
 
     // if (!answerText) {
-    //   throw new Error('回复内容为空，可能模块编排出现问题');
+    // throw new Error('The reply content is empty, there may be a problem with module arrangement');
     // }
 
     // save chat

@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { id } = req.query as { id: string };
 
     if (!id) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
     const { userId } = await authUser({ req, authToken: true });

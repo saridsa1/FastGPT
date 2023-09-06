@@ -11,11 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await connectToDatabase();
 
-    // 根据 id 获取用户信息
+    // Get user information based on id
     const user = await User.findById(userId);
 
     if (!user) {
-      throw new Error('账号异常');
+      throw new Error('account exception');
     }
 
     jsonRes(res, {

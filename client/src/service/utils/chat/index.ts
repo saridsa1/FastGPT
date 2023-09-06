@@ -47,10 +47,10 @@ export const ChatContextFilter = ({
     messages: systemPrompts
   });
 
-  // 根据 tokens 截断内容
+  //Truncate content based on tokens
   const chats: ChatItemType[] = [];
 
-  // 从后往前截取对话内容
+  // Capture the conversation content from back to front
   for (let i = chatPrompts.length - 1; i >= 0; i--) {
     chats.unshift(chatPrompts[i]);
 
@@ -58,7 +58,7 @@ export const ChatContextFilter = ({
       messages: chats
     });
 
-    /* 整体 tokens 超出范围, system必须保留 */
+    /* The overall tokens are out of range and the system must retain them */
     if (tokens >= maxTokens) {
       chats.shift();
       break;

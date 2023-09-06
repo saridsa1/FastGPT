@@ -35,7 +35,7 @@ export const getKbDataList = (data: GetKbDataListProps) =>
   POST(`/plugins/kb/data/getDataList`, data);
 
 /**
- * 获取导出数据（不分页）
+ * Get export data (without paging)
  */
 export const getExportDataList = (kbId: string) =>
   GET<[string, string, string][]>(
@@ -47,7 +47,7 @@ export const getExportDataList = (kbId: string) =>
   );
 
 /**
- * 获取模型正在拆分数据的数量
+ * Get the number of data the model is splitting
  */
 export const getTrainingData = (data: { kbId: string; init: boolean }) =>
   POST<{
@@ -62,29 +62,29 @@ export const getKbDataItemById = (dataId: string) =>
   GET<QuoteItemType>(`/plugins/kb/data/getDataById`, { dataId });
 
 /**
- * 直接push数据
+ * Push data directly
  */
 export const postKbDataFromList = (data: PushDataProps) =>
   POST<PushDateResponse>(`/openapi/kb/pushData`, data);
 
 /**
- * insert one data to dataset
+ * insert one data into dataset
  */
 export const insertData2Kb = (data: { kbId: string; data: DatasetItemType }) =>
   POST<string>(`/plugins/kb/data/insertData`, data);
 
 /**
- * 更新一条数据
+ * Update a piece of data
  */
 export const putKbDataById = (data: UpdateDataProps) => PUT('/openapi/kb/updateData', data);
 /**
- * 删除一条知识库数据
+ * Delete a piece of knowledge base data
  */
 export const delOneKbDataByDataId = (dataId: string) =>
   DELETE(`/openapi/kb/delDataById?dataId=${dataId}`);
 
 /**
- * 拆分数据
+ * Split data
  */
 export const postSplitData = (data: {
   kbId: string;

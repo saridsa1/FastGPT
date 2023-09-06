@@ -23,7 +23,7 @@ type State = {
 export const defaultHistory: ShareChatHistoryItemType = {
   chatId: `${Date.now()}`,
   updateTime: new Date(),
-  title: '新对话',
+  title: 'New Conversation',
   shareId: '',
   chats: []
 };

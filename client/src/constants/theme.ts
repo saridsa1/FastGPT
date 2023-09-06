@@ -14,7 +14,7 @@ const { definePartsStyle: selectPart, defineMultiStyleConfig: selectMultiStyle }
 const { definePartsStyle: numInputPart, defineMultiStyleConfig: numInputMultiStyle } =
   createMultiStyleConfigHelpers(numberInputAnatomy.keys);
 
-// 按键
+// button
 const Button = defineStyleConfig({
   baseStyle: {
     _active: {
@@ -199,7 +199,7 @@ const Select = selectMultiStyle({
   }
 });
 
-// 全局主题
+// global theme
 export const theme = extendTheme({
   styles: {
     global: {

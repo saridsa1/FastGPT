@@ -7,7 +7,7 @@ import { getVectorModel } from '@/service/utils/data';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();

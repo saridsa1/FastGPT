@@ -19,17 +19,16 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     const { kbId, text } = req.body as Props;
 
     if (!kbId || !text) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
-    // 凭证校验
     const [{ userId }, kb] = await Promise.all([
       authUser({ req }),
       KB.findById(kbId, 'vectorModel')
     ]);
 
     if (!userId || !kb) {
-      throw new Error('缺少用户ID');
+      throw new Error('Missing user ID');
     }
 
     const { vectors } = await getVector({

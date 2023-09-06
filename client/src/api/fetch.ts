@@ -42,7 +42,7 @@ export const streamFetch = ({
 
       const reader = response.body?.getReader();
 
-      // response data
+      //response data
       let responseText = '';
       let errMsg = '';
       let responseData: ChatHistoryItemResType[] = [];
@@ -60,7 +60,7 @@ export const streamFetch = ({
               });
             } else {
               return reject({
-                message: errMsg || '响应过程出现异常~',
+                message: errMsg || 'An exception occurred during the response~',
                 responseText
               });
             }
@@ -89,7 +89,7 @@ export const streamFetch = ({
             ) {
               responseData = data;
             } else if (eventName === sseResponseEventEnum.error) {
-              errMsg = getErrText(data, '流响应错误');
+              errMsg = getErrText(data, 'Stream response error');
             }
           });
           read();
@@ -102,7 +102,7 @@ export const streamFetch = ({
           }
           reject({
             responseText,
-            message: getErrText(err, '请求异常')
+            message: getErrText(err, 'Request exception')
           });
         }
       };
@@ -110,6 +110,6 @@ export const streamFetch = ({
     } catch (err: any) {
       console.log(err, 'fetch error');
 
-      reject(getErrText(err, '请求异常'));
+      reject(getErrText(err, 'Request exception'));
     }
   });

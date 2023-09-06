@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       inviterId: userId
     });
 
-    // 计算累计合
+    // Calculate the cumulative sum
     const countHistory: { totalAmount: number }[] = await promotionRecord.aggregate([
       {
         $match: {
@@ -24,14 +24,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
       {
         $group: {
-          _id: null, // 分组条件，这里使用 null 表示不分组
-          totalAmount: { $sum: '$amount' } // 计算 amount 字段的总和
+          _id: null, // Grouping condition, use null here to indicate no grouping
+          totalAmount: { $sum: '$amount' } // Calculate the sum of the amount field
         }
       },
       {
         $project: {
-          _id: false, // 排除 _id 字段
-          totalAmount: true // 只返回 totalAmount 字段
+          _id: false, // exclude _id field
+          totalAmount: true // Only return the totalAmount field
         }
       }
     ]);

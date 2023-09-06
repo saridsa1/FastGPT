@@ -3,7 +3,7 @@ import { jsonRes } from '@/service/response';
 import { TrainingData } from '@/service/mongo';
 import { authUser } from '@/service/utils/auth';
 
-/* 拆分数据成QA */
+/* Split data into QA */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     await authUser({ req, authToken: true });

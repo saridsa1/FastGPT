@@ -21,8 +21,8 @@ export interface KbItemType {
 }
 
 export type DatasetItemType = {
-  q: string; // 提问词
-  a: string; // 原文
+  q: string; // question word
+  a: string; // original text
   source?: string;
   file_id?: string;
 };

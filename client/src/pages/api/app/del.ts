@@ -4,42 +4,42 @@ import { Chat, App, connectToDatabase, Collection, OutLink } from '@/service/mon
 import { authUser } from '@/service/utils/auth';
 import { authApp } from '@/service/utils/auth';
 
-/* 获取我的模型 */
+/* get my model */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     const { appId } = req.query as { appId: string };
 
     if (!appId) {
-      throw new Error('参数错误');
+      throw new Error('Parameter error');
     }
 
-    // 凭证校验
+    // credential verification
     const { userId } = await authUser({ req, authToken: true });
 
     await connectToDatabase();
 
-    // 验证是否是该用户的 app
+    //Verify whether it is the user's app
     await authApp({
       appId,
       userId
     });
 
-    // 删除对应的聊天
+    //Delete the corresponding chat
     await Chat.deleteMany({
       appId
     });
 
-    // 删除收藏列表
+    //Delete favorite list
     await Collection.deleteMany({
       modelId: appId
     });
 
-    // 删除分享链接
+    // Delete sharing link
     await OutLink.deleteMany({
       appId
     });
 
-    // 删除模型
+    //delete model
     await App.deleteOne({
       _id: appId,
       userId

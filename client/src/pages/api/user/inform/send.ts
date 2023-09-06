@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     jsonRes(res, {
       data: await sendInform(req.body),
-      message: '发送通知成功'
+      message: 'Notification sent successfully'
     });
   } catch (err) {
     jsonRes(res, {

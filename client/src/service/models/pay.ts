@@ -19,7 +19,7 @@ const PaySchema = new Schema({
     required: true
   },
   status: {
-    // 支付的状态
+    // status of payment
     type: String,
     default: 'NOTPAY',
     enum: ['SUCCESS', 'REFUND', 'NOTPAY', 'CLOSED']

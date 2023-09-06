@@ -1,7 +1,7 @@
 ### Fast GPT V4.3
 
-1. 新增 - 知识库源文件存储，可以从引用窗口点击文件名，查看源文件。
-2. 新增 - 用户反馈和管理员标注预期答案，以不断提高模型回复准确率。 该功能为测试版，未来交互可能会有变化，欢迎大家提出宝贵意见。
-3. 优化 - [使用文档](https://doc.fastgpt.run/docs/intro/)
-4. [点击查看高级编排介绍文档](https://doc.fastgpt.run/docs/workflow)
-5. [点击查看商业版](https://fael3z0zfze.feishu.cn/docx/F155dbirfo8vDDx2WgWc6extnwf)
+1. New - Knowledge base source file storage. You can click on the file name from the reference window to view the source file.
+2. New - User feedback and admin annotations for expected answers to continuously improve model response accuracy. This feature is in beta, and future interactions may change. We welcome valuable feedback from everyone.
+3. Optimization - [User Documentation](https://doc.fastgpt.run/docs/intro/)
+4. [Click to view the advanced orchestration documentation](https://doc.fastgpt.run/docs/workflow)
+5. [Click to view the Business Edition](https://fael3z0zfze.feishu.cn/docx/F155dbirfo8vDDx2WgWc6extnwf)

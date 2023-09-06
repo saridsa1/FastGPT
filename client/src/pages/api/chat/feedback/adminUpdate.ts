@@ -4,7 +4,7 @@ import { connectToDatabase, ChatItem } from '@/service/mongo';
 import { AdminUpdateFeedbackParams } from '@/api/request/chat';
 import { authUser } from '@/service/utils/auth';
 
-/* 初始化我的聊天框，需要身份验证 */
+/* Initialize my chat box, authentication required */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     await connectToDatabase();

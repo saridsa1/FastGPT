@@ -22,13 +22,13 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     const { kbId, data = { q: '', a: '' } } = req.body as Props;
 
     if (!kbId || !data?.q) {
-      throw new Error('缺少参数');
+      throw new Error('Missing parameter');
     }
 
-    // 凭证校验
+    //Certificate verification
     const { userId } = await authUser({ req });
 
-    // auth kb
+    //auth-kb
     const kb = await authKb({ kbId, userId });
 
     const q = data?.q?.replace(/\\n/g, '\n').trim().replace(/'/g, '"');
@@ -51,7 +51,7 @@ export default withNextCors(async function handler(req: NextApiRequest, res: Nex
     const exists = existsRows[0]?.exists || false;
 
     if (exists) {
-      throw new Error('已经存在完全一致的数据');
+      throw new Error('Exactly consistent data already exists');
     }
 
     const { vectors } = await getVector({

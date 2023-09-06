@@ -9,7 +9,7 @@ import type { ChatSchema } from '@/types/mongoSchema';
 import { getSpecialModule, getChatModelNameList } from '@/components/ChatBox/utils';
 import { TaskResponseKeyEnum } from '@/constants/chat';
 
-/* 初始化我的聊天框，需要身份验证 */
+/* Initialize my chat box, authentication required */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { userId } = await authUser({ req, authToken: true });
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
-    // 校验使用权限
+    //Verify usage permissions
     const app = (
       await authApp({
         appId,
@@ -36,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       })
     ).app;
 
-    // get app and history
+    //get app and history
     const { chat, history = [] }: { chat?: ChatSchema; history?: ChatItemType[] } =
       await (async () => {
         if (chatId) {
@@ -60,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               .limit(30)
           ]);
           if (!chat) {
-            throw new Error('聊天框不存在');
+            throw new Error('Chat box does not exist');
           }
           history.reverse();
           return { app, history, chat };
@@ -86,7 +86,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           intro: app.intro,
           canUse: app.share.isShare || isOwner
         },
-        title: chat?.title || '新对话',
+        title: chat?.title || 'New conversation',
         variables: chat?.variables || {},
         history
       }

@@ -10,7 +10,7 @@ const reduceQueue = () => {
   global.vectorQueueLen = global.vectorQueueLen > 0 ? global.vectorQueueLen - 1 : 0;
 };
 
-/* 索引生成队列。每导入一次，就是一个单独的线程 */
+/* Index generation queue. Each time it is imported, it is a separate thread */
 export async function generateVector(): Promise<any> {
   if (global.vectorQueueLen >= global.systemEnv.vectorMaxProcess) return;
   global.vectorQueueLen++;
@@ -42,10 +42,10 @@ export async function generateVector(): Promise<any> {
       vectorModel: 1
     });
 
-    // task preemption
+    //task preemption
     if (!data) {
       reduceQueue();
-      global.vectorQueueLen <= 0 && console.log(`【索引】任务完成`);
+      global.vectorQueueLen <= 0 && console.log(`[Index] Task completed`);
       return;
     }
 
@@ -60,14 +60,14 @@ export async function generateVector(): Promise<any> {
       }
     ];
 
-    // 生成词向量
+    // Generate word vectors
     const { vectors } = await getVector({
       model: data.vectorModel,
       input: dataItems.map((item) => item.q),
       userId
     });
 
-    // 生成结果插入到 pg
+    // Generate the result and insert it into pg
     await insertKbItem({
       userId,
       kbId,
@@ -82,7 +82,7 @@ export async function generateVector(): Promise<any> {
 
     // delete data from training
     await TrainingData.findByIdAndDelete(data._id);
-    // console.log(`生成向量成功: ${data._id}`);
+    // console.log(`Vector generation successful: ${data._id}`);
 
     reduceQueue();
     generateVector();
@@ -90,13 +90,13 @@ export async function generateVector(): Promise<any> {
     reduceQueue();
     // log
     if (err?.response) {
-      addLog.info('openai error: 生成向量错误', {
+      addLog.info('openai error: Generate vector error', {
         status: err.response?.status,
-        stateusText: err.response?.statusText,
+        statusText: err.response?.statusText,
         data: err.response?.data
       });
     } else {
-      addLog.info('openai error: 生成向量错误', {
+      addLog.info('openai error: Generate vector error', {
         err
       });
     }
@@ -123,17 +123,17 @@ export async function generateVector(): Promise<any> {
       return generateVector();
     }
 
-    // 账号余额不足，删除任务
+    // Account balance is insufficient, delete task
     if (userId && err === ERROR_ENUM.insufficientQuota) {
       try {
         sendInform({
           type: 'system',
-          title: '索引生成任务中止',
+          title: 'Index generation task aborted',
           content:
-            '由于账号余额不足，索引生成任务中止，重新充值后将会继续。暂停的任务将在 7 天后被删除。',
+            'Due to insufficient account balance, the index generation task is suspended and will continue after recharging. Paused tasks will be deleted after 7 days. ',
           userId
         });
-        console.log('余额不足，暂停向量生成任务');
+        console.log('Insufficient balance, suspending vector generation task');
         await TrainingData.updateMany(
           {
             userId
